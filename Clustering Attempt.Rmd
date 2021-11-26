@@ -1,0 +1,29 @@
+---
+title: "Test Clustering"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load Packages
+library(tidyverse)
+library(robotstxt)
+library(ggrepel)
+
+#Import data
+test_cluster <- read_csv("Excel Wrangling.csv")
+
+test_cluster_new <- test_cluster %>%
+  rename(graduation_rate = `Graduation Rate`)%>%
+  rename(demographic = Demographic) %>%
+  rename(earnings = Earnings) %>%
+  slice(-(46:66))
+
+ggplot(data = test_cluster_new, aes(x = earnings, y = graduation_rate)) +
+  geom_point() +
+  geom_text_repel(aes(label = demographic), size = 3) +
+  labs(x = "Earnings", 
+       y = "Graduation Rates") +
+  facet_wrap(~ Year)
+
+```
+
