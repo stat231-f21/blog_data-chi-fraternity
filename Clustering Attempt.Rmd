@@ -3,27 +3,55 @@ title: "Test Clustering"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, fig.height= 3, include=FALSE}
 # Load Packages
 library(tidyverse)
 library(robotstxt)
 library(ggrepel)
 
 #Import data
-test_cluster <- read_csv("Excel Wrangling.csv")
+grad_earnings <- read_csv("Excel Wrangling Final.csv")
 
-test_cluster_new <- test_cluster %>%
+#a bit of tidying
+grad_earnings_new <- grad_earnings %>%
   rename(graduation_rate = `Graduation Rate`)%>%
   rename(demographic = Demographic) %>%
   rename(earnings = Earnings) %>%
-  slice(-(46:66))
+  slice(-(46:66)) %>%
+  select(-c(5, 6)) 
 
-ggplot(data = test_cluster_new, aes(x = earnings, y = graduation_rate)) +
-  geom_point() +
-  geom_text_repel(aes(label = demographic), size = 3) +
+grad_earnings_new <- grad_earnings_new %>%
+  mutate(earnings_num = as.numeric(earnings),
+         grad_rate_num = as.numeric(graduation_rate))
+
+grad_earnings_new <- grad_earnings_new %>%
+  drop_na(earnings_num, grad_rate_num) %>%
+  select(-c(earnings, graduation_rate))
+
+#kmeans clustering
+set.seed(2)
+clustering_vars <- c("earnings_num", "grad_rate_num")
+grad_earnings_km2 <- grad_earnings_new %>% 
+  select(clustering_vars) %>% 
+  kmeans(centers = 3)
+
+# Vector of cluster assignments
+grad_earnings_km2$cluster
+
+# The centroids for the fit
+grad_earnings_km2$centers
+
+# Add cluster assignment to the data frame
+grad_earnings_cluster <- grad_earnings_new %>%
+  mutate(clusters2 = factor(grad_earnings_km2$cluster)) 
+
+# Visualize the cluster assignments and centroids
+ggplot(data = grad_earnings_cluster, aes(x = earnings_num, y = grad_rate_num)) +
+  geom_point(aes(color = clusters2)) +
+  geom_text_repel(aes(label = demographic, color = clusters2), size = 3) +
   labs(x = "Earnings", 
        y = "Graduation Rates") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
   facet_wrap(~ Year)
-
 ```
 
