@@ -56,22 +56,36 @@ institution_types <- read.csv("data/institutions_per_state.csv") %>%
          "Private For-Profit 2-Year" = private_fp_2yr) %>%
   pivot_longer(-state, names_to = "institution_type", values_to = "count")
 
-student_demographics <- read.csv("data/student_demographics_per_state.csv") %>%
+demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %>%
+  mutate(women = as.numeric(str_extract(women, ".+(?=%)")),
+         minority = as.numeric(str_extract(minority, ".+(?=%)")),
+         native_american = as.numeric(str_extract(native_american, ".+(?=%)")),
+         asian = as.numeric(str_extract(asian, ".+(?=%)")),
+         black = as.numeric(str_extract(black, ".+(?=%)")),
+         hispanic = as.numeric(str_extract(hispanic, ".+(?=%)")),
+         pacific_islander = as.numeric(str_extract(pacific_islander, ".+(?=%)")),
+         white = as.numeric(str_extract(white, ".+(?=%)")),
+         X2._races = as.numeric(str_extract(X2._races, ".+(?=%)")),
+         nonresident = as.numeric(str_extract(nonresident, ".+(?=%)")))
+
+student_demographics <- demographics_clustering %>%
   mutate(
-    "Women" = as.numeric(str_extract(women, ".+(?=%)")),
+    "Women" = women,
     "Men" = 100-Women,
-    "Native\nAmerican" = as.numeric(str_extract(native_american, ".+(?=%)")),
-    "Asian" = as.numeric(str_extract(asian, ".+(?=%)")),
-    "Black" = as.numeric(str_extract(black, ".+(?=%)")),
-    "Hispanic" = as.numeric(str_extract(hispanic, ".+(?=%)")),
-    "Pacific\nIslander" = as.numeric(str_extract(pacific_islander, ".+(?=%)")),
-    "White" = as.numeric(str_extract(white, ".+(?=%)")),
-    "2 or more\nRaces" = as.numeric(str_extract(X2._races, ".+(?=%)"))
+    "Native\nAmerican" = native_american,
+    "Asian" = asian,
+    "Black" = black,
+    "Hispanic" = hispanic,
+    "Pacific\nIslander" = pacific_islander,
+    "White" = white,
+    "2 or more\nRaces" = X2._races
   ) %>%
   select(-c(X, minority, nonresident, total, women, native_american, asian, black, hispanic, pacific_islander, white, X2._races)) %>%
   pivot_longer(-state, names_to = "group", values_to = "percent")
 
-student_aid <- read.csv("data/finance_table.csv") %>%
+finance_table <- read_csv("data/finance_table.csv")
+  
+student_aid <- finance_table %>%
   select(state, need_based_grants, non_need_based_grants, non_grant_aid, total_aid) %>% 
   rename("Need-Based Grants" = need_based_grants,
          "Non-Need-Based Grants" = non_need_based_grants, 
@@ -79,26 +93,82 @@ student_aid <- read.csv("data/finance_table.csv") %>%
          "Total Aid" = total_aid) %>%
   pivot_longer(-state, names_to = "aid_type", values_to = "amount")
 
+faculty_table <- read.csv("data/faculty_pay.csv") %>%
+  mutate(
+    public_doctor_prof = as.numeric(gsub("[,\\$]", "", public_doctor_prof)),
+    public_doctor_assoc = as.numeric(gsub("[,\\$]", "", public_doctor_assoc)),
+    public_doctor_assist = as.numeric(gsub("[,\\$]", "", public_doctor_assist)),
+    public_doctor_all = as.numeric(gsub("[,\\$]", "", public_doctor_all)),
+    public_masters_prof = as.numeric(gsub("[,\\$]", "", public_masters_prof)),
+    public_masters_assoc = as.numeric(gsub("[,\\$]", "", public_masters_assoc)),
+    public_masters_assist = as.numeric(gsub("[,\\$]", "", public_masters_assist)),
+    public_masters_all = as.numeric(gsub("[,\\$]", "", public_masters_all)),
+    other_4yr_all = as.numeric(gsub("[,\\$]", "", other_4yr_all)),
+    X2yr_all = as.numeric(gsub("[,\\$]", "", X2yr_all))
+  ) %>%
+  select(-X)
+
+graduation_rates <- read_csv("data/graduation_rates.csv")
+
+cluster_table <- demographics_clustering %>%
+  left_join(finance_table, by = "state") %>%
+  left_join(graduation_rates, by = "state") %>%
+  left_join(faculty_table, by = "state") %>%
+  select(-X)
+
 ## state geometries
 states_sf_rne <- ne_states(country = "united states of america", returnclass = "sf") %>%
-  select(name, geometry)
+  select(name, geometry) %>%
+  rename(state = name)
 
+## Plot choices
 plot_choice_values <- c("student_aid", "institutions", "majors", "demographics", "admissions", "enrollments")
 plot_choice_names <- c("Student Aid Awarded", "Types of Institutions", "Areas of Study",
-                       "Student Demographics","Admission Rates Over Time", "Enrollment Rates Over Time"
-)
-
+                       "Student Demographics","Admission Rates Over Time", "Enrollment Rates Over Time")
 names(plot_choice_values) <- plot_choice_names
 
+## Clustering Choices
+names <- colnames(cluster_table)
+cluster_choice_values <- names[! names %in% c("state")]
+
+######
+# UI #
+######
+
 ui <- fluidPage(
-  selectInput(inputId = "plot",
-              label = "Choose the data you are interested in:",
-              choices = plot_choice_values,
-              selected = "Student Aid Awarded"),
-  leafletOutput("map"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(inputId = "plot",
+                  label = "Choose the data you are interested in:",
+                  choices = plot_choice_values,
+                  selected = "Student Aid Awarded"),
+      
+      selectizeInput(inputId = "cluster_var",
+                  label = "Choose the 2 variables to cluster states by",
+                  choices = cluster_choice_values,
+                  multiple = TRUE,
+                  options = list(maxItems = 2)),
+      
+      sliderInput(inputId = "num_clusters",
+                  label = "Choose the number of state clusters",
+                  min = 1, max = 10, value = 3),
+    ), 
   
-  plotOutput("vis")
+    mainPanel(
+      leafletOutput("map"),
+      
+      plotOutput("vis"),
+      
+      plotOutput("cluster_scatter"),
+      
+      plotOutput("elbow_plot")
+    )
+  )
 )
+
+##########
+# Server #
+##########
 
 server <- function(input, output) {
   ## Plot generation
@@ -153,9 +223,6 @@ server <- function(input, output) {
         ) + 
         geom_text(aes(label = paste0(percent, "%")), vjust = -0.3)
       
-      #} else if (plot_type == "stud_fac_staff") {
-      
-      
     } else if (plot_type == "admissions") {
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = admission_rate)) + 
         geom_line() + 
@@ -185,12 +252,82 @@ server <- function(input, output) {
   
   output$map <- renderLeaflet({
     leaflet() %>%
-      addTiles() %>%
-      addPolygons(
-        data = states_sf_rne,
-        layerId = ~name
-    )
+      addTiles()
   })
+  
+  observeEvent(
+    {
+      input$cluster_var
+      input$num_clusters
+    }, {
+      proxy <- leafletProxy("map")
+      
+      if (!is.null(input$cluster_var) && length(input$cluster_var) == 2) {
+        
+        # Clustering
+        set.seed(3)
+        
+        cluster_table_2 <- cluster_table %>%
+          drop_na(input$cluster_var[1], input$cluster_var[2])
+        
+        table_k <- cluster_table_2 %>%
+          select(input$cluster_var) %>%
+          kmeans(centers = input$num_clusters, nstart = 20)
+        
+        cluster_table_2 <- cluster_table_2 %>%
+          mutate(clusters = factor(table_k$cluster))
+        
+        states_sf_and_clusters <- states_sf_rne %>%
+          left_join(cluster_table_2, by = "state")
+        
+        pal <- colorFactor(topo.colors(input$num_clusters), cluster_table_2$clusters)
+        
+        # Display clusters in map
+        proxy %>%
+          addPolygons(
+            data = states_sf_and_clusters,
+            color = ~pal(clusters),
+            stroke = FALSE,
+            fillOpacity = 0.5,
+            layerId = ~state
+          )
+        
+        # Display scatterplot of clusters
+        output$cluster_scatter <- renderPlot({
+          ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
+            geom_point(aes(color = clusters)) + 
+            labs(color = "Cluster assignment")
+        })
+        
+        # Elbowplot
+        elbow_plot <- data.frame(elbow_clusters = 1:10,
+                                 within_ss = rep(NA, 10))
+        
+        for(i in 1:10) {
+          table_kmi_output <- cluster_table_2 %>%
+            select(input$cluster_var) %>%
+            kmeans(centers = i, nstart = 20)
+          
+          elbow_plot$within_ss[i] <- table_kmi_output$tot.withinss
+        }
+        
+        output$elbow_plot <- renderPlot({
+          ggplot(elbow_plot, aes(x = elbow_clusters, y = within_ss)) +
+            geom_point() + 
+            geom_line() +
+            scale_x_continuous(breaks = 1:10) +
+            labs(x = "Number of clusters (k)", y = expression("Total W"[k]))
+        })
+      } else {
+        # Map without clustering
+        proxy %>%
+          addPolygons(
+            data = states_sf_rne,
+            layerId = ~state
+          )
+      }
+    }
+  )
   
   observeEvent(input$map_shape_click, {
     click <- input$map_shape_click
