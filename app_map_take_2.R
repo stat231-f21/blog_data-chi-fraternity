@@ -7,112 +7,12 @@ library(leaflet)
 library(rnaturalearth)
 
 ## Data sets
-areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
-  select(-X) %>%
-  rename(education = edutation) %>%
-  mutate(
-    total = as.numeric(gsub(",", "", total)),
-    humanities = as.numeric(gsub(",", "", humanities)),
-    psychology = as.numeric(gsub(",", "", psychology)),
-    social_sci_hist = as.numeric(gsub(",", "", social_sci_hist)),
-    natural_sci_math = as.numeric(gsub(",", "", natural_sci_math)),
-    computer_sci = as.numeric(gsub(",", "", computer_sci)),
-    engineering = as.numeric(gsub(",", "", engineering)),
-    education = as.numeric(gsub(",", "", education)),
-    business = as.numeric(gsub(",", "", business)),
-    healthcare = as.numeric(gsub(",", "", healthcare)),
-    other = as.numeric(gsub(",", "", other))
-  ) %>%
-  rename(
-    "Total" = total,
-    "Humanities" = humanities,
-    "Psychology" = psychology,
-    "Social Sciences\n& History" = social_sci_hist,
-    "Natural Sciences\n& Mathematics" = natural_sci_math,
-    "Computer Science" = computer_sci,
-    "Engineering" = engineering,
-    "Education" = education,
-    "Business" = business,
-    "Healthcare" = healthcare,
-    "Other" = other
-  ) %>%
-  pivot_longer(-state, names_to = "major", values_to = "count")
-
-admission_enrollment_data <- read.csv("data/admission_enrollment_data.csv") %>%
-  select(state, year, admission_rate, enrollment_rate) %>%
-  mutate(enrollment_rate = round(enrollment_rate, 1))
-
-institution_types <- read.csv("data/institutions_per_state.csv") %>%
-  select(-X) %>% 
-  mutate(private_np_2yr = as.numeric(private_np_2yr)) %>%
-  rename("Total" = total,
-         "Public 4-Year" = public_4year,
-         "Public 2-Year" = public_2year,
-         "Private Nonprofit 4-Year" = private_np_4yr,
-         "Private Nonprofit 2-Year" = private_np_2yr,
-         "Private For-Profit 4-Year" = private_fp_4yr,
-         "Private For-Profit 2-Year" = private_fp_2yr) %>%
-  pivot_longer(-state, names_to = "institution_type", values_to = "count")
-
-demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %>%
-  mutate(women = as.numeric(str_extract(women, ".+(?=%)")),
-         minority = as.numeric(str_extract(minority, ".+(?=%)")),
-         native_american = as.numeric(str_extract(native_american, ".+(?=%)")),
-         asian = as.numeric(str_extract(asian, ".+(?=%)")),
-         black = as.numeric(str_extract(black, ".+(?=%)")),
-         hispanic = as.numeric(str_extract(hispanic, ".+(?=%)")),
-         pacific_islander = as.numeric(str_extract(pacific_islander, ".+(?=%)")),
-         white = as.numeric(str_extract(white, ".+(?=%)")),
-         X2._races = as.numeric(str_extract(X2._races, ".+(?=%)")),
-         nonresident = as.numeric(str_extract(nonresident, ".+(?=%)")))
-
-student_demographics <- demographics_clustering %>% # for plot visualization
-  mutate(
-    "Women" = women,
-    "Men" = 100-Women,
-    "Native\nAmerican" = native_american,
-    "Asian" = asian,
-    "Black" = black,
-    "Hispanic" = hispanic,
-    "Pacific\nIslander" = pacific_islander,
-    "White" = white,
-    "2 or more\nRaces" = X2._races
-  ) %>%
-  select(-c(X, minority, nonresident, total, women, native_american, asian, black, hispanic, pacific_islander, white, X2._races)) %>%
-  pivot_longer(-state, names_to = "group", values_to = "percent")
-
-finance_table <- read_csv("data/finance_table.csv")
-  
-student_aid <- finance_table %>%
-  select(state, need_based_grants, non_need_based_grants, non_grant_aid, total_aid) %>% 
-  rename("Need-Based Grants" = need_based_grants,
-         "Non-Need-Based Grants" = non_need_based_grants, 
-         "Non-Grant Aid" = non_grant_aid, 
-         "Total Aid" = total_aid) %>%
-  pivot_longer(-state, names_to = "aid_type", values_to = "amount")
-
-faculty_table <- read.csv("data/faculty_pay.csv") %>%
-  mutate(
-    public_doctor_prof = as.numeric(gsub("[,\\$]", "", public_doctor_prof)),
-    public_doctor_assoc = as.numeric(gsub("[,\\$]", "", public_doctor_assoc)),
-    public_doctor_assist = as.numeric(gsub("[,\\$]", "", public_doctor_assist)),
-    public_doctor_all = as.numeric(gsub("[,\\$]", "", public_doctor_all)),
-    public_masters_prof = as.numeric(gsub("[,\\$]", "", public_masters_prof)),
-    public_masters_assoc = as.numeric(gsub("[,\\$]", "", public_masters_assoc)),
-    public_masters_assist = as.numeric(gsub("[,\\$]", "", public_masters_assist)),
-    public_masters_all = as.numeric(gsub("[,\\$]", "", public_masters_all)),
-    other_4yr_all = as.numeric(gsub("[,\\$]", "", other_4yr_all)),
-    X2yr_all = as.numeric(gsub("[,\\$]", "", X2yr_all))
-  ) %>%
-  select(-X)
-
-graduation_rates <- read_csv("data/graduation_rates.csv")
-
-cluster_table <- demographics_clustering %>%
-  left_join(finance_table, by = "state") %>%
-  left_join(graduation_rates, by = "state") %>%
-  left_join(faculty_table, by = "state") %>%
-  select(-X)
+areas_of_study <- read.csv("map_data/areas_of_study.csv")
+admission_enrollment_data <- read.csv("map_data/admission_enrollment_data.csv")
+institution_types <- read.csv("map_data/institution_types.csv")
+student_demographics <- read.csv("map_data/student_demographics.csv")
+student_aid <- read.csv("map_data/student_aid.csv")
+cluster_table <- read.csv("map_data/cluster_table.csv")
 
 ## state geometries
 states_sf_rne <- ne_states(country = "united states of america", returnclass = "sf") %>%
@@ -401,3 +301,4 @@ server <- function(input, output) {
 # call to shinyApp #
 ####################
 shinyApp(ui = ui, server = server)
+
