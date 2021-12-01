@@ -257,7 +257,7 @@ server <- function(input, output) {
           
           output$cluster_plot <- renderPlot({
             ggplot(table_map, aes_string(x = input$cluster_var[1])) + 
-              geom_density(adjust = 0.3)
+              geom_histogram(bins = 10)
           })
           
           # Hide Elbow Plot output
