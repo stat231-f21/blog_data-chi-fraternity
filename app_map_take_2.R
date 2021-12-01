@@ -68,7 +68,7 @@ demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %
          X2._races = as.numeric(str_extract(X2._races, ".+(?=%)")),
          nonresident = as.numeric(str_extract(nonresident, ".+(?=%)")))
 
-student_demographics <- demographics_clustering %>%
+student_demographics <- demographics_clustering %>% # for plot visualization
   mutate(
     "Women" = women,
     "Men" = 100-Women,
@@ -130,6 +130,8 @@ names(plot_choice_values) <- plot_choice_names
 ## Clustering Choices
 names <- colnames(cluster_table)
 cluster_choice_values <- names[! names %in% c("state")]
+#cluster_choice_names <- c()
+#names(cluster_choice_values) <- cluster_choice_names
 
 ######
 # UI #
@@ -144,7 +146,7 @@ ui <- fluidPage(
                   selected = "Student Aid Awarded"),
       
       selectizeInput(inputId = "cluster_var",
-                  label = "Choose the 2 variables to cluster states by",
+                  label = "Choose the variable(s) to cluster states by",
                   choices = cluster_choice_values,
                   multiple = TRUE,
                   options = list(maxItems = 2)),
@@ -159,7 +161,7 @@ ui <- fluidPage(
       
       plotOutput("vis"),
       
-      plotOutput("cluster_scatter"),
+      plotOutput("cluster_plot"),
       
       plotOutput("elbow_plot")
     )
@@ -223,6 +225,9 @@ server <- function(input, output) {
         ) + 
         geom_text(aes(label = paste0(percent, "%")), vjust = -0.3)
       
+      #} else if (plot_type == "stud_fac_staff") {
+      
+      
     } else if (plot_type == "admissions") {
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = admission_rate)) + 
         geom_line() + 
@@ -250,6 +255,11 @@ server <- function(input, output) {
     return(plot)
   }
   
+  # center_on <- states_sf_rne %>%
+  #   filter(state == "Alaska") %>%
+  #   pull(geometry) %>%
+  #   st_coordinates()
+  
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles()
@@ -259,65 +269,98 @@ server <- function(input, output) {
     {
       input$cluster_var
       input$num_clusters
-    }, {
+    }, 
+    {
       proxy <- leafletProxy("map")
       
-      if (!is.null(input$cluster_var) && length(input$cluster_var) == 2) {
+      if (!is.null(input$cluster_var)) {
         
-        # Clustering
-        set.seed(3)
-        
-        cluster_table_2 <- cluster_table %>%
-          drop_na(input$cluster_var[1], input$cluster_var[2])
-        
-        table_k <- cluster_table_2 %>%
-          select(input$cluster_var) %>%
-          kmeans(centers = input$num_clusters, nstart = 20)
-        
-        cluster_table_2 <- cluster_table_2 %>%
-          mutate(clusters = factor(table_k$cluster))
-        
-        states_sf_and_clusters <- states_sf_rne %>%
-          left_join(cluster_table_2, by = "state")
-        
-        pal <- colorFactor(topo.colors(input$num_clusters), cluster_table_2$clusters)
-        
-        # Display clusters in map
-        proxy %>%
-          addPolygons(
-            data = states_sf_and_clusters,
-            color = ~pal(clusters),
-            stroke = FALSE,
-            fillOpacity = 0.5,
-            layerId = ~state
-          )
-        
-        # Display scatterplot of clusters
-        output$cluster_scatter <- renderPlot({
-          ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
-            geom_point(aes(color = clusters)) + 
-            labs(color = "Cluster assignment")
-        })
-        
-        # Elbowplot
-        elbow_plot <- data.frame(elbow_clusters = 1:10,
-                                 within_ss = rep(NA, 10))
-        
-        for(i in 1:10) {
-          table_kmi_output <- cluster_table_2 %>%
-            select(input$cluster_var) %>%
-            kmeans(centers = i, nstart = 20)
+        if (length(input$cluster_var) == 2) {
+          # Clustering
+          set.seed(3)
           
-          elbow_plot$within_ss[i] <- table_kmi_output$tot.withinss
+          cluster_table_2 <- cluster_table %>%
+            drop_na(input$cluster_var[1], input$cluster_var[2])
+          
+          table_k <- cluster_table_2 %>%
+            select(input$cluster_var) %>%
+            kmeans(centers = input$num_clusters, nstart = 20)
+          
+          cluster_table_2 <- cluster_table_2 %>%
+            mutate(clusters = factor(table_k$cluster))
+          
+          states_sf_and_clusters <- states_sf_rne %>%
+            left_join(cluster_table_2, by = "state")
+          
+          pal <- colorFactor(topo.colors(input$num_clusters), cluster_table_2$clusters)
+          
+          # Display clusters in map
+          proxy %>%
+            addPolygons(
+              data = states_sf_and_clusters,
+              color = ~pal(clusters),
+              stroke = FALSE,
+              fillOpacity = 0.5,
+              layerId = ~state
+            ) #%>%
+            #addLegend(values = ~pal(clusters), opacity = 0.5, position = "bottomleft")
+          
+          # Display scatterplot of clusters
+          output$cluster_plot <- renderPlot({
+            ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
+              geom_point(aes(color = clusters)) + 
+              labs(color = "Cluster assignment")
+          })
+          
+          # Elbowplot
+          elbow_plot <- data.frame(elbow_clusters = 1:10,
+                                   within_ss = rep(NA, 10))
+          
+          for(i in 1:10) {
+            table_kmi_output <- cluster_table_2 %>%
+              select(input$cluster_var) %>%
+              kmeans(centers = i, nstart = 20)
+            
+            elbow_plot$within_ss[i] <- table_kmi_output$tot.withinss
+          }
+          
+          output$elbow_plot <- renderPlot({
+            ggplot(elbow_plot, aes(x = elbow_clusters, y = within_ss)) +
+              geom_point() + 
+              geom_line() +
+              scale_x_continuous(breaks = 1:10) +
+              labs(x = "Number of clusters (k)", y = expression("Total W"[k]))
+          })
+          
+        } else if (length(input$cluster_var) == 1) {
+          #var <- input$cluster_var[1]
+          
+          table_map <- states_sf_rne %>%
+            left_join(cluster_table, by = "state") #%>%
+          #   mutate(selected_ratio = .data[[var]]/max( .data[[var]], na.rm = TRUE))
+          
+          # mybins <- c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1)
+          # mypalette <- colorBin(palette = "magma", domain = table_map$selected_ratio, na.color="transparent", bins = mybins)
+          
+          mypalette <- colorNumeric(palette = "magma", domain = table_map[[input$cluster_var[1]]], na.color = "transparent")
+          
+          proxy %>%
+            addPolygons(
+              data = table_map,
+              fillColor = ~mypalette(.data[[input$cluster_var[1]]]), 
+              stroke=FALSE, 
+              fillOpacity = .5,
+              layerId = ~state
+            ) %>%
+            addLegend(pal = mypalette, values = table_map[[input$cluster_var[1]]], opacity=0.9, position = "bottomleft")
+          
+          output$cluster_plot <- renderPlot({
+            ggplot(table_map, aes_string(x = input$cluster_var[1])) + 
+              geom_density(adjust = 0.3)
+          })
+          
         }
         
-        output$elbow_plot <- renderPlot({
-          ggplot(elbow_plot, aes(x = elbow_clusters, y = within_ss)) +
-            geom_point() + 
-            geom_line() +
-            scale_x_continuous(breaks = 1:10) +
-            labs(x = "Number of clusters (k)", y = expression("Total W"[k]))
-        })
       } else {
         # Map without clustering
         proxy %>%
