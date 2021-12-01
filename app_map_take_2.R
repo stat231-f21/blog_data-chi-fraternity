@@ -4,9 +4,7 @@ library(shinythemes)
 library(tidyverse)
 library(sf)
 library(leaflet)
-library(leafpop)
 library(rnaturalearth)
-library(sp)
 
 ## Data sets
 areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
@@ -296,6 +294,8 @@ server <- function(input, output) {
           
           # Display clusters in map
           proxy %>%
+            clearShapes() %>%
+            clearControls() %>%
             addPolygons(
               data = states_sf_and_clusters,
               color = ~pal(clusters),
@@ -333,30 +333,36 @@ server <- function(input, output) {
           })
           
         } else if (length(input$cluster_var) == 1) {
-          #var <- input$cluster_var[1]
           
           table_map <- states_sf_rne %>%
-            left_join(cluster_table, by = "state") #%>%
-          #   mutate(selected_ratio = .data[[var]]/max( .data[[var]], na.rm = TRUE))
+            left_join(cluster_table, by = "state") %>%
+            mutate(selected_ratio = .data[[input$cluster_var[1]]]/max( .data[[input$cluster_var[1]]], na.rm = TRUE))
           
-          # mybins <- c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1)
-          # mypalette <- colorBin(palette = "magma", domain = table_map$selected_ratio, na.color="transparent", bins = mybins)
-          
-          mypalette <- colorNumeric(palette = "magma", domain = table_map[[input$cluster_var[1]]], na.color = "transparent")
+          mybins <- c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1)
+          mypalette <- colorBin(palette = "magma", domain = table_map$selected_ratio, na.color="transparent", bins = mybins)
           
           proxy %>%
+            clearShapes() %>%
+            clearControls() %>%
             addPolygons(
               data = table_map,
-              fillColor = ~mypalette(.data[[input$cluster_var[1]]]), 
+              #fillColor = ~mypalette(.data[[input$cluster_var[1]]]), 
+              fillColor = ~mypalette(selected_ratio),
               stroke=FALSE, 
               fillOpacity = .5,
               layerId = ~state
             ) %>%
-            addLegend(pal = mypalette, values = table_map[[input$cluster_var[1]]], opacity=0.9, position = "bottomleft")
+            #addLegend(pal = mypalette, values = table_map[[input$cluster_var[1]]], opacity=0.9, position = "bottomleft")
+            addLegend(pal = mypalette, values = table_map$selected_ratio, opacity=0.9, position = "bottomleft")
           
           output$cluster_plot <- renderPlot({
             ggplot(table_map, aes_string(x = input$cluster_var[1])) + 
               geom_density(adjust = 0.3)
+          })
+          
+          # Hide Elbow Plot output
+          output$elbow_plot <- renderPlot({
+            ggplot()
           })
           
         }
@@ -364,10 +370,22 @@ server <- function(input, output) {
       } else {
         # Map without clustering
         proxy %>%
+          clearShapes() %>%
+          clearControls() %>%
           addPolygons(
             data = states_sf_rne,
             layerId = ~state
           )
+        
+        # Hide Cluster Plot output
+        output$cluster_plot <- renderPlot({
+          ggplot()
+        })
+        
+        # Hide Elbow Plot output
+        output$elbow_plot <- renderPlot({
+          ggplot()
+        })
       }
     }
   )
