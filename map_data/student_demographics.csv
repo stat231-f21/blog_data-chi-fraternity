@@ -1,0 +1,613 @@
+"","state","group","percent"
+"1","Alabama","Women",57.7
+"2","Alabama","Men",42.3
+"3","Alabama","Native
+American",0.6
+"4","Alabama","Asian",1.9
+"5","Alabama","Black",24
+"6","Alabama","Hispanic",3.9
+"7","Alabama","Pacific
+Islander",0.1
+"8","Alabama","White",59.5
+"9","Alabama","2 or more
+Races",2.6
+"10","Alaska","Women",61.3
+"11","Alaska","Men",38.7
+"12","Alaska","Native
+American",9.4
+"13","Alaska","Asian",4.9
+"14","Alaska","Black",2.8
+"15","Alaska","Hispanic",7.8
+"16","Alaska","Pacific
+Islander",2.1
+"17","Alaska","White",51.3
+"18","Alaska","2 or more
+Races",10
+"19","Arizona","Women",61.4
+"20","Arizona","Men",38.6
+"21","Arizona","Native
+American",2.1
+"22","Arizona","Asian",3.8
+"23","Arizona","Black",10.5
+"24","Arizona","Hispanic",24
+"25","Arizona","Pacific
+Islander",0.4
+"26","Arizona","White",43.9
+"27","Arizona","2 or more
+Races",3.8
+"28","Arkansas","Women",59.2
+"29","Arkansas","Men",40.8
+"30","Arkansas","Native
+American",0.7
+"31","Arkansas","Asian",1.9
+"32","Arkansas","Black",15.3
+"33","Arkansas","Hispanic",7.2
+"34","Arkansas","Pacific
+Islander",0.1
+"35","Arkansas","White",66.6
+"36","Arkansas","2 or more
+Races",4
+"37","California","Women",55.6
+"38","California","Men",44.4
+"39","California","Native
+American",0.3
+"40","California","Asian",14.1
+"41","California","Black",5.7
+"42","California","Hispanic",40
+"43","California","Pacific
+Islander",0.4
+"44","California","White",24.8
+"45","California","2 or more
+Races",4.3
+"46","Colorado","Women",56.6
+"47","Colorado","Men",43.4
+"48","Colorado","Native
+American",0.9
+"49","Colorado","Asian",3.6
+"50","Colorado","Black",6.3
+"51","Colorado","Hispanic",17.6
+"52","Colorado","Pacific
+Islander",0.3
+"53","Colorado","White",56.5
+"54","Colorado","2 or more
+Races",4.4
+"55","Connecticut","Women",58.5
+"56","Connecticut","Men",41.5
+"57","Connecticut","Native
+American",0.2
+"58","Connecticut","Asian",5.6
+"59","Connecticut","Black",12.3
+"60","Connecticut","Hispanic",15.7
+"61","Connecticut","Pacific
+Islander",0.1
+"62","Connecticut","White",52.3
+"63","Connecticut","2 or more
+Races",3.7
+"64","Delaware","Women",61.8
+"65","Delaware","Men",38.2
+"66","Delaware","Native
+American",0.3
+"67","Delaware","Asian",3.6
+"68","Delaware","Black",20.2
+"69","Delaware","Hispanic",9.4
+"70","Delaware","Pacific
+Islander",0.1
+"71","Delaware","White",52.3
+"72","Delaware","2 or more
+Races",3.7
+"73","District of Columbia","Women",61.4
+"74","District of Columbia","Men",38.6
+"75","District of Columbia","Native
+American",0.3
+"76","District of Columbia","Asian",6.6
+"77","District of Columbia","Black",22.5
+"78","District of Columbia","Hispanic",9.4
+"79","District of Columbia","Pacific
+Islander",0.2
+"80","District of Columbia","White",39.7
+"81","District of Columbia","2 or more
+Races",3.4
+"82","Florida","Women",58.9
+"83","Florida","Men",41.1
+"84","Florida","Native
+American",0.3
+"85","Florida","Asian",3.6
+"86","Florida","Black",16.5
+"87","Florida","Hispanic",27.3
+"88","Florida","Pacific
+Islander",0.2
+"89","Florida","White",40.2
+"90","Florida","2 or more
+Races",3.3
+"91","Georgia","Women",59.3
+"92","Georgia","Men",40.7
+"93","Georgia","Native
+American",0.3
+"94","Georgia","Asian",5.8
+"95","Georgia","Black",29.5
+"96","Georgia","Hispanic",8.7
+"97","Georgia","Pacific
+Islander",0.1
+"98","Georgia","White",45.7
+"99","Georgia","2 or more
+Races",3.1
+"100","Hawaii","Women",61.1
+"101","Hawaii","Men",38.9
+"102","Hawaii","Native
+American",0.2
+"103","Hawaii","Asian",29.5
+"104","Hawaii","Black",1.7
+"105","Hawaii","Hispanic",12.4
+"106","Hawaii","Pacific
+Islander",6.1
+"107","Hawaii","White",15.5
+"108","Hawaii","2 or more
+Races",25.9
+"109","Idaho","Women",57.7
+"110","Idaho","Men",42.3
+"111","Idaho","Native
+American",0.7
+"112","Idaho","Asian",1.6
+"113","Idaho","Black",1.1
+"114","Idaho","Hispanic",10
+"115","Idaho","Pacific
+Islander",0.4
+"116","Idaho","White",71.2
+"117","Idaho","2 or more
+Races",5.1
+"118","Illinois","Women",57.8
+"119","Illinois","Men",42.2
+"120","Illinois","Native
+American",0.2
+"121","Illinois","Asian",7.1
+"122","Illinois","Black",11.5
+"123","Illinois","Hispanic",19.3
+"124","Illinois","Pacific
+Islander",0.1
+"125","Illinois","White",49.5
+"126","Illinois","2 or more
+Races",2.8
+"127","Indiana","Women",56.8
+"128","Indiana","Men",43.2
+"129","Indiana","Native
+American",0.2
+"130","Indiana","Asian",3.5
+"131","Indiana","Black",9.9
+"132","Indiana","Hispanic",7.6
+"133","Indiana","Pacific
+Islander",0.1
+"134","Indiana","White",66.6
+"135","Indiana","2 or more
+Races",3.7
+"136","Iowa","Women",54
+"137","Iowa","Men",46
+"138","Iowa","Native
+American",0.4
+"139","Iowa","Asian",2.9
+"140","Iowa","Black",5.3
+"141","Iowa","Hispanic",7.1
+"142","Iowa","Pacific
+Islander",0.2
+"143","Iowa","White",70.5
+"144","Iowa","2 or more
+Races",2.5
+"145","Kansas","Women",55.1
+"146","Kansas","Men",44.9
+"147","Kansas","Native
+American",1.2
+"148","Kansas","Asian",2.9
+"149","Kansas","Black",7.2
+"150","Kansas","Hispanic",10.5
+"151","Kansas","Pacific
+Islander",0.2
+"152","Kansas","White",62.6
+"153","Kansas","2 or more
+Races",4.3
+"154","Kentucky","Women",56.7
+"155","Kentucky","Men",43.3
+"156","Kentucky","Native
+American",0.2
+"157","Kentucky","Asian",2
+"158","Kentucky","Black",7.9
+"159","Kentucky","Hispanic",3.9
+"160","Kentucky","Pacific
+Islander",0.1
+"161","Kentucky","White",70.1
+"162","Kentucky","2 or more
+Races",3.1
+"163","Louisiana","Women",60.6
+"164","Louisiana","Men",39.4
+"165","Louisiana","Native
+American",0.6
+"166","Louisiana","Asian",2.5
+"167","Louisiana","Black",29.2
+"168","Louisiana","Hispanic",5.6
+"169","Louisiana","Pacific
+Islander",0.5
+"170","Louisiana","White",51.3
+"171","Louisiana","2 or more
+Races",3
+"172","Maine","Women",58.8
+"173","Maine","Men",41.2
+"174","Maine","Native
+American",0.8
+"175","Maine","Asian",2.4
+"176","Maine","Black",3.8
+"177","Maine","Hispanic",3
+"178","Maine","Pacific
+Islander",0.1
+"179","Maine","White",74.2
+"180","Maine","2 or more
+Races",2.8
+"181","Maryland","Women",55.8
+"182","Maryland","Men",44.2
+"183","Maryland","Native
+American",0.3
+"184","Maryland","Asian",7.7
+"185","Maryland","Black",26.2
+"186","Maryland","Hispanic",9.7
+"187","Maryland","Pacific
+Islander",0.2
+"188","Maryland","White",41.5
+"189","Maryland","2 or more
+Races",4.2
+"190","Massachusetts","Women",57
+"191","Massachusetts","Men",43
+"192","Massachusetts","Native
+American",0.2
+"193","Massachusetts","Asian",8.1
+"194","Massachusetts","Black",8.1
+"195","Massachusetts","Hispanic",11.3
+"196","Massachusetts","Pacific
+Islander",0.1
+"197","Massachusetts","White",50.4
+"198","Massachusetts","2 or more
+Races",3.1
+"199","Michigan","Women",55.3
+"200","Michigan","Men",44.7
+"201","Michigan","Native
+American",0.5
+"202","Michigan","Asian",4.4
+"203","Michigan","Black",10.7
+"204","Michigan","Hispanic",5.6
+"205","Michigan","Pacific
+Islander",0.1
+"206","Michigan","White",65.3
+"207","Michigan","2 or more
+Races",3.8
+"208","Minnesota","Women",62.5
+"209","Minnesota","Men",37.5
+"210","Minnesota","Native
+American",0.7
+"211","Minnesota","Asian",5.5
+"212","Minnesota","Black",13.7
+"213","Minnesota","Hispanic",6.1
+"214","Minnesota","Pacific
+Islander",0.2
+"215","Minnesota","White",60.5
+"216","Minnesota","2 or more
+Races",3.4
+"217","Mississippi","Women",60.6
+"218","Mississippi","Men",39.4
+"219","Mississippi","Native
+American",0.5
+"220","Mississippi","Asian",1.6
+"221","Mississippi","Black",34.7
+"222","Mississippi","Hispanic",2.7
+"223","Mississippi","Pacific
+Islander",0.1
+"224","Mississippi","White",54.8
+"225","Mississippi","2 or more
+Races",1.9
+"226","Missouri","Women",57.8
+"227","Missouri","Men",42.2
+"228","Missouri","Native
+American",0.4
+"229","Missouri","Asian",3.5
+"230","Missouri","Black",10.8
+"231","Missouri","Hispanic",5.7
+"232","Missouri","Pacific
+Islander",0.2
+"233","Missouri","White",67.6
+"234","Missouri","2 or more
+Races",3.6
+"235","Montana","Women",54.8
+"236","Montana","Men",45.2
+"237","Montana","Native
+American",6.7
+"238","Montana","Asian",2
+"239","Montana","Black",0.9
+"240","Montana","Hispanic",4.1
+"241","Montana","Pacific
+Islander",0.2
+"242","Montana","White",75.8
+"243","Montana","2 or more
+Races",3.9
+"244","Nebraska","Women",56.4
+"245","Nebraska","Men",43.6
+"246","Nebraska","Native
+American",0.7
+"247","Nebraska","Asian",3.1
+"248","Nebraska","Black",4.9
+"249","Nebraska","Hispanic",10.5
+"250","Nebraska","Pacific
+Islander",0.2
+"251","Nebraska","White",68.8
+"252","Nebraska","2 or more
+Races",3
+"253","Nevada","Women",58.3
+"254","Nevada","Men",41.7
+"255","Nevada","Native
+American",0.6
+"256","Nevada","Asian",10.9
+"257","Nevada","Black",7.3
+"258","Nevada","Hispanic",28.5
+"259","Nevada","Pacific
+Islander",0.9
+"260","Nevada","White",38.7
+"261","Nevada","2 or more
+Races",7
+"262","New Hampshire","Women",62.1
+"263","New Hampshire","Men",37.9
+"264","New Hampshire","Native
+American",0.5
+"265","New Hampshire","Asian",2.4
+"266","New Hampshire","Black",11.6
+"267","New Hampshire","Hispanic",8.4
+"268","New Hampshire","Pacific
+Islander",0.3
+"269","New Hampshire","White",62.6
+"270","New Hampshire","2 or more
+Races",2.3
+"271","New Jersey","Women",54.6
+"272","New Jersey","Men",45.4
+"273","New Jersey","Native
+American",0.2
+"274","New Jersey","Asian",9.5
+"275","New Jersey","Black",12.8
+"276","New Jersey","Hispanic",20.9
+"277","New Jersey","Pacific
+Islander",0.2
+"278","New Jersey","White",42.5
+"279","New Jersey","2 or more
+Races",2.5
+"280","New Mexico","Women",59.4
+"281","New Mexico","Men",40.6
+"282","New Mexico","Native
+American",9.4
+"283","New Mexico","Asian",2.1
+"284","New Mexico","Black",2.7
+"285","New Mexico","Hispanic",46.9
+"286","New Mexico","Pacific
+Islander",0.2
+"287","New Mexico","White",29.2
+"288","New Mexico","2 or more
+Races",2.4
+"289","New York","Women",56.7
+"290","New York","Men",43.3
+"291","New York","Native
+American",0.3
+"292","New York","Asian",9.8
+"293","New York","Black",12.8
+"294","New York","Hispanic",17.8
+"295","New York","Pacific
+Islander",0.1
+"296","New York","White",43.6
+"297","New York","2 or more
+Races",2.6
+"298","North Carolina","Women",59.3
+"299","North Carolina","Men",40.7
+"300","North Carolina","Native
+American",1
+"301","North Carolina","Asian",3.6
+"302","North Carolina","Black",20.9
+"303","North Carolina","Hispanic",8.9
+"304","North Carolina","Pacific
+Islander",0.1
+"305","North Carolina","White",54.6
+"306","North Carolina","2 or more
+Races",3.4
+"307","North Dakota","Women",52.2
+"308","North Dakota","Men",47.8
+"309","North Dakota","Native
+American",4.1
+"310","North Dakota","Asian",1.4
+"311","North Dakota","Black",3.2
+"312","North Dakota","Hispanic",3.8
+"313","North Dakota","Pacific
+Islander",0.1
+"314","North Dakota","White",76.2
+"315","North Dakota","2 or more
+Races",3.7
+"316","Ohio","Women",56.7
+"317","Ohio","Men",43.3
+"318","Ohio","Native
+American",0.2
+"319","Ohio","Asian",3.1
+"320","Ohio","Black",10.9
+"321","Ohio","Hispanic",4.7
+"322","Ohio","Pacific
+Islander",0.1
+"323","Ohio","White",68.5
+"324","Ohio","2 or more
+Races",3.7
+"325","Oklahoma","Women",57.9
+"326","Oklahoma","Men",42.1
+"327","Oklahoma","Native
+American",6.9
+"328","Oklahoma","Asian",3.1
+"329","Oklahoma","Black",7.7
+"330","Oklahoma","Hispanic",10.2
+"331","Oklahoma","Pacific
+Islander",0.1
+"332","Oklahoma","White",55.5
+"333","Oklahoma","2 or more
+Races",9.5
+"334","Oregon","Women",55.8
+"335","Oregon","Men",44.2
+"336","Oregon","Native
+American",0.9
+"337","Oregon","Asian",5.8
+"338","Oregon","Black",2.8
+"339","Oregon","Hispanic",13.6
+"340","Oregon","Pacific
+Islander",0.6
+"341","Oregon","White",58.6
+"342","Oregon","2 or more
+Races",6
+"343","Pennsylvania","Women",56.6
+"344","Pennsylvania","Men",43.4
+"345","Pennsylvania","Native
+American",0.2
+"346","Pennsylvania","Asian",5.8
+"347","Pennsylvania","Black",10.1
+"348","Pennsylvania","Hispanic",7.6
+"349","Pennsylvania","Pacific
+Islander",0.1
+"350","Pennsylvania","White",61.9
+"351","Pennsylvania","2 or more
+Races",3.3
+"352","Rhode Island","Women",57.1
+"353","Rhode Island","Men",42.9
+"354","Rhode Island","Native
+American",0.3
+"355","Rhode Island","Asian",4.7
+"356","Rhode Island","Black",6.9
+"357","Rhode Island","Hispanic",13
+"358","Rhode Island","Pacific
+Islander",0.1
+"359","Rhode Island","White",58.2
+"360","Rhode Island","2 or more
+Races",3.5
+"361","South Carolina","Women",59.4
+"362","South Carolina","Men",40.6
+"363","South Carolina","Native
+American",0.3
+"364","South Carolina","Asian",1.9
+"365","South Carolina","Black",22.4
+"366","South Carolina","Hispanic",5.5
+"367","South Carolina","Pacific
+Islander",0.1
+"368","South Carolina","White",61.1
+"369","South Carolina","2 or more
+Races",3.4
+"370","South Dakota","Women",55
+"371","South Dakota","Men",45
+"372","South Dakota","Native
+American",5.3
+"373","South Dakota","Asian",1.4
+"374","South Dakota","Black",3.2
+"375","South Dakota","Hispanic",3.6
+"376","South Dakota","Pacific
+Islander",0.1
+"377","South Dakota","White",78.7
+"378","South Dakota","2 or more
+Races",2.6
+"379","Tennessee","Women",59.3
+"380","Tennessee","Men",40.7
+"381","Tennessee","Native
+American",0.3
+"382","Tennessee","Asian",2.8
+"383","Tennessee","Black",17.7
+"384","Tennessee","Hispanic",5.4
+"385","Tennessee","Pacific
+Islander",0.1
+"386","Tennessee","White",65.5
+"387","Tennessee","2 or more
+Races",3.2
+"388","Texas","Women",57.6
+"389","Texas","Men",42.4
+"390","Texas","Native
+American",0.3
+"391","Texas","Asian",6.3
+"392","Texas","Black",11.8
+"393","Texas","Hispanic",39.1
+"394","Texas","Pacific
+Islander",0.1
+"395","Texas","White",33.6
+"396","Texas","2 or more
+Races",2.8
+"397","Utah","Women",57.8
+"398","Utah","Men",42.2
+"399","Utah","Native
+American",0.7
+"400","Utah","Asian",2.8
+"401","Utah","Black",4.6
+"402","Utah","Hispanic",10.6
+"403","Utah","Pacific
+Islander",0.6
+"404","Utah","White",70.3
+"405","Utah","2 or more
+Races",3.5
+"406","Vermont","Women",54.8
+"407","Vermont","Men",45.2
+"408","Vermont","Native
+American",0.3
+"409","Vermont","Asian",2.8
+"410","Vermont","Black",3.4
+"411","Vermont","Hispanic",5.4
+"412","Vermont","Pacific
+Islander",0.1
+"413","Vermont","White",75.8
+"414","Vermont","2 or more
+Races",3.5
+"415","Virginia","Women",57.4
+"416","Virginia","Men",42.6
+"417","Virginia","Native
+American",0.3
+"418","Virginia","Asian",6.7
+"419","Virginia","Black",17.9
+"420","Virginia","Hispanic",9
+"421","Virginia","Pacific
+Islander",0.2
+"422","Virginia","White",51.7
+"423","Virginia","2 or more
+Races",4.2
+"424","Washington","Women",56.2
+"425","Washington","Men",43.8
+"426","Washington","Native
+American",0.9
+"427","Washington","Asian",9.5
+"428","Washington","Black",4.2
+"429","Washington","Hispanic",13.2
+"430","Washington","Pacific
+Islander",0.6
+"431","Washington","White",49.6
+"432","Washington","2 or more
+Races",7.4
+"433","West Virginia","Women",51
+"434","West Virginia","Men",49
+"435","West Virginia","Native
+American",0.4
+"436","West Virginia","Asian",1.7
+"437","West Virginia","Black",9.2
+"438","West Virginia","Hispanic",6.5
+"439","West Virginia","Pacific
+Islander",0.4
+"440","West Virginia","White",70.7
+"441","West Virginia","2 or more
+Races",3.4
+"442","Wisconsin","Women",56.2
+"443","Wisconsin","Men",43.8
+"444","Wisconsin","Native
+American",0.7
+"445","Wisconsin","Asian",4.2
+"446","Wisconsin","Black",5.2
+"447","Wisconsin","Hispanic",7.9
+"448","Wisconsin","Pacific
+Islander",0.1
+"449","Wisconsin","White",72.9
+"450","Wisconsin","2 or more
+Races",3
+"451","Wyoming","Women",54.1
+"452","Wyoming","Men",45.9
+"453","Wyoming","Native
+American",1.4
+"454","Wyoming","Asian",0.9
+"455","Wyoming","Black",1.2
+"456","Wyoming","Hispanic",8.9
+"457","Wyoming","Pacific
+Islander",0.2
+"458","Wyoming","White",74.5
+"459","Wyoming","2 or more
+Races",3.1
