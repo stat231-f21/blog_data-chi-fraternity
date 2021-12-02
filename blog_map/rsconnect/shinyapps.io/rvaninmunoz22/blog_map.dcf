@@ -1,0 +1,13 @@
+name: blog_map
+title: blog_map
+username:
+account: rvaninmunoz22
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5249249
+bundleId: 5321172
+url: https://rvaninmunoz22.shinyapps.io/blog_map/
+when: 1638483142.20032
+lastSyncTime: 1638483142.20032
+asMultiple: FALSE
+asStatic: FALSE
