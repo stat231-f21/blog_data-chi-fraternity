@@ -1,358 +1,868 @@
 "","state","institution_type","count"
 "1","Alabama","Total",62
-"2","Alabama","Public 4-Year",14
-"3","Alabama","Public 2-Year",24
-"4","Alabama","Private Nonprofit 4-Year",19
-"5","Alabama","Private Nonprofit 2-Year",0
-"6","Alabama","Private For-Profit 4-Year",3
-"7","Alabama","Private For-Profit 2-Year",2
+"2","Alabama","Public
+4-Year",14
+"3","Alabama","Public
+2-Year",24
+"4","Alabama","Private
+Nonprofit
+4-Year",19
+"5","Alabama","Private
+Nonprofit
+2-Year",0
+"6","Alabama","Private
+For-Profit
+4-Year",3
+"7","Alabama","Private
+For-Profit
+2-Year",2
 "8","Alaska","Total",8
-"9","Alaska","Public 4-Year",4
-"10","Alaska","Public 2-Year",0
-"11","Alaska","Private Nonprofit 4-Year",2
-"12","Alaska","Private Nonprofit 2-Year",1
-"13","Alaska","Private For-Profit 4-Year",0
-"14","Alaska","Private For-Profit 2-Year",1
+"9","Alaska","Public
+4-Year",4
+"10","Alaska","Public
+2-Year",0
+"11","Alaska","Private
+Nonprofit
+4-Year",2
+"12","Alaska","Private
+Nonprofit
+2-Year",1
+"13","Alaska","Private
+For-Profit
+4-Year",0
+"14","Alaska","Private
+For-Profit
+2-Year",1
 "15","Arizona","Total",68
-"16","Arizona","Public 4-Year",9
-"17","Arizona","Public 2-Year",20
-"18","Arizona","Private Nonprofit 4-Year",12
-"19","Arizona","Private Nonprofit 2-Year",1
-"20","Arizona","Private For-Profit 4-Year",15
-"21","Arizona","Private For-Profit 2-Year",11
+"16","Arizona","Public
+4-Year",9
+"17","Arizona","Public
+2-Year",20
+"18","Arizona","Private
+Nonprofit
+4-Year",12
+"19","Arizona","Private
+Nonprofit
+2-Year",1
+"20","Arizona","Private
+For-Profit
+4-Year",15
+"21","Arizona","Private
+For-Profit
+2-Year",11
 "22","Arkansas","Total",54
-"23","Arkansas","Public 4-Year",12
-"24","Arkansas","Public 2-Year",22
-"25","Arkansas","Private Nonprofit 4-Year",14
-"26","Arkansas","Private Nonprofit 2-Year",4
-"27","Arkansas","Private For-Profit 4-Year",1
-"28","Arkansas","Private For-Profit 2-Year",1
+"23","Arkansas","Public
+4-Year",12
+"24","Arkansas","Public
+2-Year",22
+"25","Arkansas","Private
+Nonprofit
+4-Year",14
+"26","Arkansas","Private
+Nonprofit
+2-Year",4
+"27","Arkansas","Private
+For-Profit
+4-Year",1
+"28","Arkansas","Private
+For-Profit
+2-Year",1
 "29","California","Total",416
-"30","California","Public 4-Year",49
-"31","California","Public 2-Year",102
-"32","California","Private Nonprofit 4-Year",145
-"33","California","Private Nonprofit 2-Year",5
-"34","California","Private For-Profit 4-Year",68
-"35","California","Private For-Profit 2-Year",47
+"30","California","Public
+4-Year",49
+"31","California","Public
+2-Year",102
+"32","California","Private
+Nonprofit
+4-Year",145
+"33","California","Private
+Nonprofit
+2-Year",5
+"34","California","Private
+For-Profit
+4-Year",68
+"35","California","Private
+For-Profit
+2-Year",47
 "36","Colorado","Total",68
-"37","Colorado","Public 4-Year",22
-"38","Colorado","Public 2-Year",7
-"39","Colorado","Private Nonprofit 4-Year",12
-"40","Colorado","Private Nonprofit 2-Year",1
-"41","Colorado","Private For-Profit 4-Year",13
-"42","Colorado","Private For-Profit 2-Year",13
+"37","Colorado","Public
+4-Year",22
+"38","Colorado","Public
+2-Year",7
+"39","Colorado","Private
+Nonprofit
+4-Year",12
+"40","Colorado","Private
+Nonprofit
+2-Year",1
+"41","Colorado","Private
+For-Profit
+4-Year",13
+"42","Colorado","Private
+For-Profit
+2-Year",13
 "43","Connecticut","Total",41
-"44","Connecticut","Public 4-Year",11
-"45","Connecticut","Public 2-Year",12
-"46","Connecticut","Private Nonprofit 4-Year",17
-"47","Connecticut","Private Nonprofit 2-Year",0
-"48","Connecticut","Private For-Profit 4-Year",1
-"49","Connecticut","Private For-Profit 2-Year",0
+"44","Connecticut","Public
+4-Year",11
+"45","Connecticut","Public
+2-Year",12
+"46","Connecticut","Private
+Nonprofit
+4-Year",17
+"47","Connecticut","Private
+Nonprofit
+2-Year",0
+"48","Connecticut","Private
+For-Profit
+4-Year",1
+"49","Connecticut","Private
+For-Profit
+2-Year",0
 "50","Delaware","Total",8
-"51","Delaware","Public 4-Year",3
-"52","Delaware","Public 2-Year",0
-"53","Delaware","Private Nonprofit 4-Year",3
-"54","Delaware","Private Nonprofit 2-Year",1
-"55","Delaware","Private For-Profit 4-Year",1
-"56","Delaware","Private For-Profit 2-Year",0
+"51","Delaware","Public
+4-Year",3
+"52","Delaware","Public
+2-Year",0
+"53","Delaware","Private
+Nonprofit
+4-Year",3
+"54","Delaware","Private
+Nonprofit
+2-Year",1
+"55","Delaware","Private
+For-Profit
+4-Year",1
+"56","Delaware","Private
+For-Profit
+2-Year",0
 "57","District of Columbia","Total",18
-"58","District of Columbia","Public 4-Year",2
-"59","District of Columbia","Public 2-Year",0
-"60","District of Columbia","Private Nonprofit 4-Year",12
-"61","District of Columbia","Private Nonprofit 2-Year",0
-"62","District of Columbia","Private For-Profit 4-Year",3
-"63","District of Columbia","Private For-Profit 2-Year",1
+"58","District of Columbia","Public
+4-Year",2
+"59","District of Columbia","Public
+2-Year",0
+"60","District of Columbia","Private
+Nonprofit
+4-Year",12
+"61","District of Columbia","Private
+Nonprofit
+2-Year",0
+"62","District of Columbia","Private
+For-Profit
+4-Year",3
+"63","District of Columbia","Private
+For-Profit
+2-Year",1
 "64","Florida","Total",176
-"65","Florida","Public 4-Year",42
-"66","Florida","Public 2-Year",1
-"67","Florida","Private Nonprofit 4-Year",57
-"68","Florida","Private Nonprofit 2-Year",7
-"69","Florida","Private For-Profit 4-Year",29
-"70","Florida","Private For-Profit 2-Year",40
+"65","Florida","Public
+4-Year",42
+"66","Florida","Public
+2-Year",1
+"67","Florida","Private
+Nonprofit
+4-Year",57
+"68","Florida","Private
+Nonprofit
+2-Year",7
+"69","Florida","Private
+For-Profit
+4-Year",29
+"70","Florida","Private
+For-Profit
+2-Year",40
 "71","Georgia","Total",113
-"72","Georgia","Public 4-Year",27
-"73","Georgia","Public 2-Year",23
-"74","Georgia","Private Nonprofit 4-Year",33
-"75","Georgia","Private Nonprofit 2-Year",4
-"76","Georgia","Private For-Profit 4-Year",11
-"77","Georgia","Private For-Profit 2-Year",15
+"72","Georgia","Public
+4-Year",27
+"73","Georgia","Public
+2-Year",23
+"74","Georgia","Private
+Nonprofit
+4-Year",33
+"75","Georgia","Private
+Nonprofit
+2-Year",4
+"76","Georgia","Private
+For-Profit
+4-Year",11
+"77","Georgia","Private
+For-Profit
+2-Year",15
 "78","Hawaii","Total",17
-"79","Hawaii","Public 4-Year",4
-"80","Hawaii","Public 2-Year",6
-"81","Hawaii","Private Nonprofit 4-Year",4
-"82","Hawaii","Private Nonprofit 2-Year",0
-"83","Hawaii","Private For-Profit 4-Year",2
-"84","Hawaii","Private For-Profit 2-Year",1
+"79","Hawaii","Public
+4-Year",4
+"80","Hawaii","Public
+2-Year",6
+"81","Hawaii","Private
+Nonprofit
+4-Year",4
+"82","Hawaii","Private
+Nonprofit
+2-Year",0
+"83","Hawaii","Private
+For-Profit
+4-Year",2
+"84","Hawaii","Private
+For-Profit
+2-Year",1
 "85","Idaho","Total",15
-"86","Idaho","Public 4-Year",5
-"87","Idaho","Public 2-Year",3
-"88","Idaho","Private Nonprofit 4-Year",6
-"89","Idaho","Private Nonprofit 2-Year",0
-"90","Idaho","Private For-Profit 4-Year",0
-"91","Idaho","Private For-Profit 2-Year",1
+"86","Idaho","Public
+4-Year",5
+"87","Idaho","Public
+2-Year",3
+"88","Idaho","Private
+Nonprofit
+4-Year",6
+"89","Idaho","Private
+Nonprofit
+2-Year",0
+"90","Idaho","Private
+For-Profit
+4-Year",0
+"91","Idaho","Private
+For-Profit
+2-Year",1
 "92","Illinois","Total",156
-"93","Illinois","Public 4-Year",12
-"94","Illinois","Public 2-Year",48
-"95","Illinois","Private Nonprofit 4-Year",78
-"96","Illinois","Private Nonprofit 2-Year",2
-"97","Illinois","Private For-Profit 4-Year",8
-"98","Illinois","Private For-Profit 2-Year",8
+"93","Illinois","Public
+4-Year",12
+"94","Illinois","Public
+2-Year",48
+"95","Illinois","Private
+Nonprofit
+4-Year",78
+"96","Illinois","Private
+Nonprofit
+2-Year",2
+"97","Illinois","Private
+For-Profit
+4-Year",8
+"98","Illinois","Private
+For-Profit
+2-Year",8
 "99","Indiana","Total",74
-"100","Indiana","Public 4-Year",15
-"101","Indiana","Public 2-Year",1
-"102","Indiana","Private Nonprofit 4-Year",41
-"103","Indiana","Private Nonprofit 2-Year",1
-"104","Indiana","Private For-Profit 4-Year",4
-"105","Indiana","Private For-Profit 2-Year",12
+"100","Indiana","Public
+4-Year",15
+"101","Indiana","Public
+2-Year",1
+"102","Indiana","Private
+Nonprofit
+4-Year",41
+"103","Indiana","Private
+Nonprofit
+2-Year",1
+"104","Indiana","Private
+For-Profit
+4-Year",4
+"105","Indiana","Private
+For-Profit
+2-Year",12
 "106","Iowa","Total",56
-"107","Iowa","Public 4-Year",3
-"108","Iowa","Public 2-Year",16
-"109","Iowa","Private Nonprofit 4-Year",34
-"110","Iowa","Private Nonprofit 2-Year",0
-"111","Iowa","Private For-Profit 4-Year",2
-"112","Iowa","Private For-Profit 2-Year",1
+"107","Iowa","Public
+4-Year",3
+"108","Iowa","Public
+2-Year",16
+"109","Iowa","Private
+Nonprofit
+4-Year",34
+"110","Iowa","Private
+Nonprofit
+2-Year",0
+"111","Iowa","Private
+For-Profit
+4-Year",2
+"112","Iowa","Private
+For-Profit
+2-Year",1
 "113","Kansas","Total",63
-"114","Kansas","Public 4-Year",8
-"115","Kansas","Public 2-Year",25
-"116","Kansas","Private Nonprofit 4-Year",24
-"117","Kansas","Private Nonprofit 2-Year",0
-"118","Kansas","Private For-Profit 4-Year",3
-"119","Kansas","Private For-Profit 2-Year",3
+"114","Kansas","Public
+4-Year",8
+"115","Kansas","Public
+2-Year",25
+"116","Kansas","Private
+Nonprofit
+4-Year",24
+"117","Kansas","Private
+Nonprofit
+2-Year",0
+"118","Kansas","Private
+For-Profit
+4-Year",3
+"119","Kansas","Private
+For-Profit
+2-Year",3
 "120","Kentucky","Total",59
-"121","Kentucky","Public 4-Year",8
-"122","Kentucky","Public 2-Year",16
-"123","Kentucky","Private Nonprofit 4-Year",25
-"124","Kentucky","Private Nonprofit 2-Year",0
-"125","Kentucky","Private For-Profit 4-Year",5
-"126","Kentucky","Private For-Profit 2-Year",5
+"121","Kentucky","Public
+4-Year",8
+"122","Kentucky","Public
+2-Year",16
+"123","Kentucky","Private
+Nonprofit
+4-Year",25
+"124","Kentucky","Private
+Nonprofit
+2-Year",0
+"125","Kentucky","Private
+For-Profit
+4-Year",5
+"126","Kentucky","Private
+For-Profit
+2-Year",5
 "127","Louisiana","Total",56
-"128","Louisiana","Public 4-Year",17
-"129","Louisiana","Public 2-Year",14
-"130","Louisiana","Private Nonprofit 4-Year",12
-"131","Louisiana","Private Nonprofit 2-Year",4
-"132","Louisiana","Private For-Profit 4-Year",1
-"133","Louisiana","Private For-Profit 2-Year",8
+"128","Louisiana","Public
+4-Year",17
+"129","Louisiana","Public
+2-Year",14
+"130","Louisiana","Private
+Nonprofit
+4-Year",12
+"131","Louisiana","Private
+Nonprofit
+2-Year",4
+"132","Louisiana","Private
+For-Profit
+4-Year",1
+"133","Louisiana","Private
+For-Profit
+2-Year",8
 "134","Maine","Total",30
-"135","Maine","Public 4-Year",8
-"136","Maine","Public 2-Year",7
-"137","Maine","Private Nonprofit 4-Year",13
-"138","Maine","Private Nonprofit 2-Year",1
-"139","Maine","Private For-Profit 4-Year",1
-"140","Maine","Private For-Profit 2-Year",0
+"135","Maine","Public
+4-Year",8
+"136","Maine","Public
+2-Year",7
+"137","Maine","Private
+Nonprofit
+4-Year",13
+"138","Maine","Private
+Nonprofit
+2-Year",1
+"139","Maine","Private
+For-Profit
+4-Year",1
+"140","Maine","Private
+For-Profit
+2-Year",0
 "141","Maryland","Total",53
-"142","Maryland","Public 4-Year",14
-"143","Maryland","Public 2-Year",16
-"144","Maryland","Private Nonprofit 4-Year",20
-"145","Maryland","Private Nonprofit 2-Year",0
-"146","Maryland","Private For-Profit 4-Year",1
-"147","Maryland","Private For-Profit 2-Year",2
+"142","Maryland","Public
+4-Year",14
+"143","Maryland","Public
+2-Year",16
+"144","Maryland","Private
+Nonprofit
+4-Year",20
+"145","Maryland","Private
+Nonprofit
+2-Year",0
+"146","Maryland","Private
+For-Profit
+4-Year",1
+"147","Maryland","Private
+For-Profit
+2-Year",2
 "148","Massachusetts","Total",107
-"149","Massachusetts","Public 4-Year",14
-"150","Massachusetts","Public 2-Year",16
-"151","Massachusetts","Private Nonprofit 4-Year",73
-"152","Massachusetts","Private Nonprofit 2-Year",2
-"153","Massachusetts","Private For-Profit 4-Year",1
-"154","Massachusetts","Private For-Profit 2-Year",1
+"149","Massachusetts","Public
+4-Year",14
+"150","Massachusetts","Public
+2-Year",16
+"151","Massachusetts","Private
+Nonprofit
+4-Year",73
+"152","Massachusetts","Private
+Nonprofit
+2-Year",2
+"153","Massachusetts","Private
+For-Profit
+4-Year",1
+"154","Massachusetts","Private
+For-Profit
+2-Year",1
 "155","Michigan","Total",92
-"156","Michigan","Public 4-Year",22
-"157","Michigan","Public 2-Year",24
-"158","Michigan","Private Nonprofit 4-Year",39
-"159","Michigan","Private Nonprofit 2-Year",0
-"160","Michigan","Private For-Profit 4-Year",1
-"161","Michigan","Private For-Profit 2-Year",6
+"156","Michigan","Public
+4-Year",22
+"157","Michigan","Public
+2-Year",24
+"158","Michigan","Private
+Nonprofit
+4-Year",39
+"159","Michigan","Private
+Nonprofit
+2-Year",0
+"160","Michigan","Private
+For-Profit
+4-Year",1
+"161","Michigan","Private
+For-Profit
+2-Year",6
 "162","Minnesota","Total",84
-"163","Minnesota","Public 4-Year",12
-"164","Minnesota","Public 2-Year",32
-"165","Minnesota","Private Nonprofit 4-Year",32
-"166","Minnesota","Private Nonprofit 2-Year",1
-"167","Minnesota","Private For-Profit 4-Year",6
-"168","Minnesota","Private For-Profit 2-Year",1
+"163","Minnesota","Public
+4-Year",12
+"164","Minnesota","Public
+2-Year",32
+"165","Minnesota","Private
+Nonprofit
+4-Year",32
+"166","Minnesota","Private
+Nonprofit
+2-Year",1
+"167","Minnesota","Private
+For-Profit
+4-Year",6
+"168","Minnesota","Private
+For-Profit
+2-Year",1
 "169","Mississippi","Total",34
-"170","Mississippi","Public 4-Year",8
-"171","Mississippi","Public 2-Year",15
-"172","Mississippi","Private Nonprofit 4-Year",9
-"173","Mississippi","Private Nonprofit 2-Year",NA
-"174","Mississippi","Private For-Profit 4-Year",1
-"175","Mississippi","Private For-Profit 2-Year",1
+"170","Mississippi","Public
+4-Year",8
+"171","Mississippi","Public
+2-Year",15
+"172","Mississippi","Private
+Nonprofit
+4-Year",9
+"173","Mississippi","Private
+Nonprofit
+2-Year",NA
+"174","Mississippi","Private
+For-Profit
+4-Year",1
+"175","Mississippi","Private
+For-Profit
+2-Year",1
 "176","Missouri","Total",97
-"177","Missouri","Public 4-Year",13
-"178","Missouri","Public 2-Year",14
-"179","Missouri","Private Nonprofit 4-Year",53
-"180","Missouri","Private Nonprofit 2-Year",2
-"181","Missouri","Private For-Profit 4-Year",9
-"182","Missouri","Private For-Profit 2-Year",6
+"177","Missouri","Public
+4-Year",13
+"178","Missouri","Public
+2-Year",14
+"179","Missouri","Private
+Nonprofit
+4-Year",53
+"180","Missouri","Private
+Nonprofit
+2-Year",2
+"181","Missouri","Private
+For-Profit
+4-Year",9
+"182","Missouri","Private
+For-Profit
+2-Year",6
 "183","Montana","Total",23
-"184","Montana","Public 4-Year",8
-"185","Montana","Public 2-Year",10
-"186","Montana","Private Nonprofit 4-Year",3
-"187","Montana","Private Nonprofit 2-Year",1
-"188","Montana","Private For-Profit 4-Year",0
-"189","Montana","Private For-Profit 2-Year",1
+"184","Montana","Public
+4-Year",8
+"185","Montana","Public
+2-Year",10
+"186","Montana","Private
+Nonprofit
+4-Year",3
+"187","Montana","Private
+Nonprofit
+2-Year",1
+"188","Montana","Private
+For-Profit
+4-Year",0
+"189","Montana","Private
+For-Profit
+2-Year",1
 "190","Nebraska","Total",36
-"191","Nebraska","Public 4-Year",7
-"192","Nebraska","Public 2-Year",9
-"193","Nebraska","Private Nonprofit 4-Year",15
-"194","Nebraska","Private Nonprofit 2-Year",1
-"195","Nebraska","Private For-Profit 4-Year",2
-"196","Nebraska","Private For-Profit 2-Year",2
+"191","Nebraska","Public
+4-Year",7
+"192","Nebraska","Public
+2-Year",9
+"193","Nebraska","Private
+Nonprofit
+4-Year",15
+"194","Nebraska","Private
+Nonprofit
+2-Year",1
+"195","Nebraska","Private
+For-Profit
+4-Year",2
+"196","Nebraska","Private
+For-Profit
+2-Year",2
 "197","Nevada","Total",22
-"198","Nevada","Public 4-Year",7
-"199","Nevada","Public 2-Year",0
-"200","Nevada","Private Nonprofit 4-Year",4
-"201","Nevada","Private Nonprofit 2-Year",0
-"202","Nevada","Private For-Profit 4-Year",4
-"203","Nevada","Private For-Profit 2-Year",7
+"198","Nevada","Public
+4-Year",7
+"199","Nevada","Public
+2-Year",0
+"200","Nevada","Private
+Nonprofit
+4-Year",4
+"201","Nevada","Private
+Nonprofit
+2-Year",0
+"202","Nevada","Private
+For-Profit
+4-Year",4
+"203","Nevada","Private
+For-Profit
+2-Year",7
 "204","New Hampshire","Total",24
-"205","New Hampshire","Public 4-Year",6
-"206","New Hampshire","Public 2-Year",7
-"207","New Hampshire","Private Nonprofit 4-Year",10
-"208","New Hampshire","Private Nonprofit 2-Year",1
-"209","New Hampshire","Private For-Profit 4-Year",0
-"210","New Hampshire","Private For-Profit 2-Year",0
+"205","New Hampshire","Public
+4-Year",6
+"206","New Hampshire","Public
+2-Year",7
+"207","New Hampshire","Private
+Nonprofit
+4-Year",10
+"208","New Hampshire","Private
+Nonprofit
+2-Year",1
+"209","New Hampshire","Private
+For-Profit
+4-Year",0
+"210","New Hampshire","Private
+For-Profit
+2-Year",0
 "211","New Jersey","Total",86
-"212","New Jersey","Public 4-Year",13
-"213","New Jersey","Public 2-Year",19
-"214","New Jersey","Private Nonprofit 4-Year",40
-"215","New Jersey","Private Nonprofit 2-Year",1
-"216","New Jersey","Private For-Profit 4-Year",9
-"217","New Jersey","Private For-Profit 2-Year",4
+"212","New Jersey","Public
+4-Year",13
+"213","New Jersey","Public
+2-Year",19
+"214","New Jersey","Private
+Nonprofit
+4-Year",40
+"215","New Jersey","Private
+Nonprofit
+2-Year",1
+"216","New Jersey","Private
+For-Profit
+4-Year",9
+"217","New Jersey","Private
+For-Profit
+2-Year",4
 "218","New Mexico","Total",39
-"219","New Mexico","Public 4-Year",9
-"220","New Mexico","Public 2-Year",19
-"221","New Mexico","Private Nonprofit 4-Year",3
-"222","New Mexico","Private Nonprofit 2-Year",0
-"223","New Mexico","Private For-Profit 4-Year",6
-"224","New Mexico","Private For-Profit 2-Year",2
+"219","New Mexico","Public
+4-Year",9
+"220","New Mexico","Public
+2-Year",19
+"221","New Mexico","Private
+Nonprofit
+4-Year",3
+"222","New Mexico","Private
+Nonprofit
+2-Year",0
+"223","New Mexico","Private
+For-Profit
+4-Year",6
+"224","New Mexico","Private
+For-Profit
+2-Year",2
 "225","New York","Total",301
-"226","New York","Public 4-Year",45
-"227","New York","Public 2-Year",36
-"228","New York","Private Nonprofit 4-Year",173
-"229","New York","Private Nonprofit 2-Year",17
-"230","New York","Private For-Profit 4-Year",18
-"231","New York","Private For-Profit 2-Year",12
+"226","New York","Public
+4-Year",45
+"227","New York","Public
+2-Year",36
+"228","New York","Private
+Nonprofit
+4-Year",173
+"229","New York","Private
+Nonprofit
+2-Year",17
+"230","New York","Private
+For-Profit
+4-Year",18
+"231","New York","Private
+For-Profit
+2-Year",12
 "232","North Carolina","Total",135
-"233","North Carolina","Public 4-Year",17
-"234","North Carolina","Public 2-Year",58
-"235","North Carolina","Private Nonprofit 4-Year",48
-"236","North Carolina","Private Nonprofit 2-Year",1
-"237","North Carolina","Private For-Profit 4-Year",8
-"238","North Carolina","Private For-Profit 2-Year",3
+"233","North Carolina","Public
+4-Year",17
+"234","North Carolina","Public
+2-Year",58
+"235","North Carolina","Private
+Nonprofit
+4-Year",48
+"236","North Carolina","Private
+Nonprofit
+2-Year",1
+"237","North Carolina","Private
+For-Profit
+4-Year",8
+"238","North Carolina","Private
+For-Profit
+2-Year",3
 "239","North Dakota","Total",20
-"240","North Dakota","Public 4-Year",9
-"241","North Dakota","Public 2-Year",5
-"242","North Dakota","Private Nonprofit 4-Year",5
-"243","North Dakota","Private Nonprofit 2-Year",0
-"244","North Dakota","Private For-Profit 4-Year",1
-"245","North Dakota","Private For-Profit 2-Year",0
+"240","North Dakota","Public
+4-Year",9
+"241","North Dakota","Public
+2-Year",5
+"242","North Dakota","Private
+Nonprofit
+4-Year",5
+"243","North Dakota","Private
+Nonprofit
+2-Year",0
+"244","North Dakota","Private
+For-Profit
+4-Year",1
+"245","North Dakota","Private
+For-Profit
+2-Year",0
 "246","Ohio","Total",162
-"247","Ohio","Public 4-Year",40
-"248","Ohio","Public 2-Year",20
-"249","Ohio","Private Nonprofit 4-Year",65
-"250","Ohio","Private Nonprofit 2-Year",4
-"251","Ohio","Private For-Profit 4-Year",8
-"252","Ohio","Private For-Profit 2-Year",25
+"247","Ohio","Public
+4-Year",40
+"248","Ohio","Public
+2-Year",20
+"249","Ohio","Private
+Nonprofit
+4-Year",65
+"250","Ohio","Private
+Nonprofit
+2-Year",4
+"251","Ohio","Private
+For-Profit
+4-Year",8
+"252","Ohio","Private
+For-Profit
+2-Year",25
 "253","Oklahoma","Total",51
-"254","Oklahoma","Public 4-Year",17
-"255","Oklahoma","Public 2-Year",13
-"256","Oklahoma","Private Nonprofit 4-Year",13
-"257","Oklahoma","Private Nonprofit 2-Year",2
-"258","Oklahoma","Private For-Profit 4-Year",1
-"259","Oklahoma","Private For-Profit 2-Year",5
+"254","Oklahoma","Public
+4-Year",17
+"255","Oklahoma","Public
+2-Year",13
+"256","Oklahoma","Private
+Nonprofit
+4-Year",13
+"257","Oklahoma","Private
+Nonprofit
+2-Year",2
+"258","Oklahoma","Private
+For-Profit
+4-Year",1
+"259","Oklahoma","Private
+For-Profit
+2-Year",5
 "260","Oregon","Total",54
-"261","Oregon","Public 4-Year",9
-"262","Oregon","Public 2-Year",17
-"263","Oregon","Private Nonprofit 4-Year",23
-"264","Oregon","Private Nonprofit 2-Year",1
-"265","Oregon","Private For-Profit 4-Year",2
-"266","Oregon","Private For-Profit 2-Year",2
+"261","Oregon","Public
+4-Year",9
+"262","Oregon","Public
+2-Year",17
+"263","Oregon","Private
+Nonprofit
+4-Year",23
+"264","Oregon","Private
+Nonprofit
+2-Year",1
+"265","Oregon","Private
+For-Profit
+4-Year",2
+"266","Oregon","Private
+For-Profit
+2-Year",2
 "267","Pennsylvania","Total",217
-"268","Pennsylvania","Public 4-Year",45
-"269","Pennsylvania","Public 2-Year",18
-"270","Pennsylvania","Private Nonprofit 4-Year",104
-"271","Pennsylvania","Private Nonprofit 2-Year",11
-"272","Pennsylvania","Private For-Profit 4-Year",6
-"273","Pennsylvania","Private For-Profit 2-Year",33
+"268","Pennsylvania","Public
+4-Year",45
+"269","Pennsylvania","Public
+2-Year",18
+"270","Pennsylvania","Private
+Nonprofit
+4-Year",104
+"271","Pennsylvania","Private
+Nonprofit
+2-Year",11
+"272","Pennsylvania","Private
+For-Profit
+4-Year",6
+"273","Pennsylvania","Private
+For-Profit
+2-Year",33
 "274","Rhode Island","Total",14
-"275","Rhode Island","Public 4-Year",2
-"276","Rhode Island","Public 2-Year",1
-"277","Rhode Island","Private Nonprofit 4-Year",11
-"278","Rhode Island","Private Nonprofit 2-Year",0
-"279","Rhode Island","Private For-Profit 4-Year",0
-"280","Rhode Island","Private For-Profit 2-Year",0
+"275","Rhode Island","Public
+4-Year",2
+"276","Rhode Island","Public
+2-Year",1
+"277","Rhode Island","Private
+Nonprofit
+4-Year",11
+"278","Rhode Island","Private
+Nonprofit
+2-Year",0
+"279","Rhode Island","Private
+For-Profit
+4-Year",0
+"280","Rhode Island","Private
+For-Profit
+2-Year",0
 "281","South Carolina","Total",66
-"282","South Carolina","Public 4-Year",14
-"283","South Carolina","Public 2-Year",19
-"284","South Carolina","Private Nonprofit 4-Year",24
-"285","South Carolina","Private Nonprofit 2-Year",0
-"286","South Carolina","Private For-Profit 4-Year",3
-"287","South Carolina","Private For-Profit 2-Year",6
+"282","South Carolina","Public
+4-Year",14
+"283","South Carolina","Public
+2-Year",19
+"284","South Carolina","Private
+Nonprofit
+4-Year",24
+"285","South Carolina","Private
+Nonprofit
+2-Year",0
+"286","South Carolina","Private
+For-Profit
+4-Year",3
+"287","South Carolina","Private
+For-Profit
+2-Year",6
 "288","South Dakota","Total",22
-"289","South Dakota","Public 4-Year",8
-"290","South Dakota","Public 2-Year",5
-"291","South Dakota","Private Nonprofit 4-Year",6
-"292","South Dakota","Private Nonprofit 2-Year",0
-"293","South Dakota","Private For-Profit 4-Year",3
-"294","South Dakota","Private For-Profit 2-Year",0
+"289","South Dakota","Public
+4-Year",8
+"290","South Dakota","Public
+2-Year",5
+"291","South Dakota","Private
+Nonprofit
+4-Year",6
+"292","South Dakota","Private
+Nonprofit
+2-Year",0
+"293","South Dakota","Private
+For-Profit
+4-Year",3
+"294","South Dakota","Private
+For-Profit
+2-Year",0
 "295","Tennessee","Total",86
-"296","Tennessee","Public 4-Year",10
-"297","Tennessee","Public 2-Year",13
-"298","Tennessee","Private Nonprofit 4-Year",42
-"299","Tennessee","Private Nonprofit 2-Year",3
-"300","Tennessee","Private For-Profit 4-Year",10
-"301","Tennessee","Private For-Profit 2-Year",8
+"296","Tennessee","Public
+4-Year",10
+"297","Tennessee","Public
+2-Year",13
+"298","Tennessee","Private
+Nonprofit
+4-Year",42
+"299","Tennessee","Private
+Nonprofit
+2-Year",3
+"300","Tennessee","Private
+For-Profit
+4-Year",10
+"301","Tennessee","Private
+For-Profit
+2-Year",8
 "302","Texas","Total",244
-"303","Texas","Public 4-Year",53
-"304","Texas","Public 2-Year",56
-"305","Texas","Private Nonprofit 4-Year",67
-"306","Texas","Private Nonprofit 2-Year",5
-"307","Texas","Private For-Profit 4-Year",28
-"308","Texas","Private For-Profit 2-Year",35
+"303","Texas","Public
+4-Year",53
+"304","Texas","Public
+2-Year",56
+"305","Texas","Private
+Nonprofit
+4-Year",67
+"306","Texas","Private
+Nonprofit
+2-Year",5
+"307","Texas","Private
+For-Profit
+4-Year",28
+"308","Texas","Private
+For-Profit
+2-Year",35
 "309","Utah","Total",30
-"310","Utah","Public 4-Year",7
-"311","Utah","Public 2-Year",1
-"312","Utah","Private Nonprofit 4-Year",9
-"313","Utah","Private Nonprofit 2-Year",2
-"314","Utah","Private For-Profit 4-Year",10
-"315","Utah","Private For-Profit 2-Year",1
+"310","Utah","Public
+4-Year",7
+"311","Utah","Public
+2-Year",1
+"312","Utah","Private
+Nonprofit
+4-Year",9
+"313","Utah","Private
+Nonprofit
+2-Year",2
+"314","Utah","Private
+For-Profit
+4-Year",10
+"315","Utah","Private
+For-Profit
+2-Year",1
 "316","Vermont","Total",19
-"317","Vermont","Public 4-Year",4
-"318","Vermont","Public 2-Year",1
-"319","Vermont","Private Nonprofit 4-Year",13
-"320","Vermont","Private Nonprofit 2-Year",0
-"321","Vermont","Private For-Profit 4-Year",1
-"322","Vermont","Private For-Profit 2-Year",0
+"317","Vermont","Public
+4-Year",4
+"318","Vermont","Public
+2-Year",1
+"319","Vermont","Private
+Nonprofit
+4-Year",13
+"320","Vermont","Private
+Nonprofit
+2-Year",0
+"321","Vermont","Private
+For-Profit
+4-Year",1
+"322","Vermont","Private
+For-Profit
+2-Year",0
 "323","Virginia","Total",111
-"324","Virginia","Public 4-Year",17
-"325","Virginia","Public 2-Year",24
-"326","Virginia","Private Nonprofit 4-Year",38
-"327","Virginia","Private Nonprofit 2-Year",2
-"328","Virginia","Private For-Profit 4-Year",16
-"329","Virginia","Private For-Profit 2-Year",14
+"324","Virginia","Public
+4-Year",17
+"325","Virginia","Public
+2-Year",24
+"326","Virginia","Private
+Nonprofit
+4-Year",38
+"327","Virginia","Private
+Nonprofit
+2-Year",2
+"328","Virginia","Private
+For-Profit
+4-Year",16
+"329","Virginia","Private
+For-Profit
+2-Year",14
 "330","Washington","Total",74
-"331","Washington","Public 4-Year",37
-"332","Washington","Public 2-Year",6
-"333","Washington","Private Nonprofit 4-Year",20
-"334","Washington","Private Nonprofit 2-Year",2
-"335","Washington","Private For-Profit 4-Year",6
-"336","Washington","Private For-Profit 2-Year",3
+"331","Washington","Public
+4-Year",37
+"332","Washington","Public
+2-Year",6
+"333","Washington","Private
+Nonprofit
+4-Year",20
+"334","Washington","Private
+Nonprofit
+2-Year",2
+"335","Washington","Private
+For-Profit
+4-Year",6
+"336","Washington","Private
+For-Profit
+2-Year",3
 "337","West Virginia","Total",42
-"338","West Virginia","Public 4-Year",13
-"339","West Virginia","Public 2-Year",9
-"340","West Virginia","Private Nonprofit 4-Year",10
-"341","West Virginia","Private Nonprofit 2-Year",0
-"342","West Virginia","Private For-Profit 4-Year",4
-"343","West Virginia","Private For-Profit 2-Year",6
+"338","West Virginia","Public
+4-Year",13
+"339","West Virginia","Public
+2-Year",9
+"340","West Virginia","Private
+Nonprofit
+4-Year",10
+"341","West Virginia","Private
+Nonprofit
+2-Year",0
+"342","West Virginia","Private
+For-Profit
+4-Year",4
+"343","West Virginia","Private
+For-Profit
+2-Year",6
 "344","Wisconsin","Total",69
-"345","Wisconsin","Public 4-Year",16
-"346","Wisconsin","Public 2-Year",16
-"347","Wisconsin","Private Nonprofit 4-Year",33
-"348","Wisconsin","Private Nonprofit 2-Year",0
-"349","Wisconsin","Private For-Profit 4-Year",3
-"350","Wisconsin","Private For-Profit 2-Year",1
+"345","Wisconsin","Public
+4-Year",16
+"346","Wisconsin","Public
+2-Year",16
+"347","Wisconsin","Private
+Nonprofit
+4-Year",33
+"348","Wisconsin","Private
+Nonprofit
+2-Year",0
+"349","Wisconsin","Private
+For-Profit
+4-Year",3
+"350","Wisconsin","Private
+For-Profit
+2-Year",1
 "351","Wyoming","Total",9
-"352","Wyoming","Public 4-Year",1
-"353","Wyoming","Public 2-Year",7
-"354","Wyoming","Private Nonprofit 4-Year",0
-"355","Wyoming","Private Nonprofit 2-Year",0
-"356","Wyoming","Private For-Profit 4-Year",0
-"357","Wyoming","Private For-Profit 2-Year",1
+"352","Wyoming","Public
+4-Year",1
+"353","Wyoming","Public
+2-Year",7
+"354","Wyoming","Private
+Nonprofit
+4-Year",0
+"355","Wyoming","Private
+Nonprofit
+2-Year",0
+"356","Wyoming","Private
+For-Profit
+4-Year",0
+"357","Wyoming","Private
+For-Profit
+2-Year",1
