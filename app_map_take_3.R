@@ -153,11 +153,6 @@ server <- function(input, output) {
     return(plot)
   }
   
-  # getColor <- function(num) {
-  #   return(ifelse(num==1, "red",
-  #                 ifelse(num==2, "blue", "green")))
-  # }
-  
   # center_on <- states_sf_rne %>%
   #   filter(state == "Alaska") %>%
   #   pull(geometry) %>%
@@ -192,10 +187,27 @@ server <- function(input, output) {
           cluster_table_2 <- cluster_table_2 %>%
             mutate(clusters = factor(table_k$cluster))
           
+          #Assigning colors to the clusters
+          getColors <- function(num) {
+            return(ifelse(num==1, "red",
+                          ifelse(num==2, "magenta",
+                                 ifelse(num==3, "deeppink",
+                                        ifelse(num==4, "darkviolet",
+                                               ifelse(num==5, "seagreen",
+                                                      ifelse(num==6, "turquoise",
+                                                             ifelse(num==7, "tomato",
+                                                                    ifelse(num==8, "orange",
+                                                                           ifelse(num==9, "burlywood",
+                                                                                  ifelse(num==10, "chocolate4",
+                                                                                         "deeppink")))))))))))
+          }
+          
+          cluster_table_2 <- cluster_table_2 %>%
+            mutate(colors = getColors(clusters))
+          
+          #joining cluster table with map data
           states_sf_and_clusters <- states_sf_rne %>%
             left_join(cluster_table_2, by = "state")
-          
-          pal <- colorFactor(topo.colors(input$num_clusters), cluster_table_2$clusters)
           
           # Display clusters in map
           proxy %>%
@@ -203,17 +215,19 @@ server <- function(input, output) {
             clearControls() %>%
             addPolygons(
               data = states_sf_and_clusters,
-              color = ~pal(clusters),
+              color = ~colors,
               stroke = FALSE,
-              fillOpacity = 0.5,
+              fillOpacity = 0.9,
               layerId = ~state
-            ) #%>%
-          #addLegend(values = ~pal(clusters), opacity = 0.5, position = "bottomleft")
+            )
           
           # Display scatterplot of clusters
           output$cluster_plot <- renderPlot({
             ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
               geom_point(aes(color = clusters)) + 
+              scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "magenta", `3` = "deeppink",
+                                                                `4` = "darkviolet", `5` = "seagreen", `6` = "turquoise", `7` = "tomato",
+                                                                `8` = "orange", `9` = "burlywood", `10` = "chocolate4")) +
               labs(color = "Cluster assignment")
           })
           
@@ -239,6 +253,7 @@ server <- function(input, output) {
           
         } else if (length(input$cluster_var) == 1) {
           
+          #Heat Map
           table_map <- states_sf_rne %>%
             left_join(cluster_table, by = "state") %>%
             mutate(selected_ratio = .data[[input$cluster_var[1]]]/max( .data[[input$cluster_var[1]]], na.rm = TRUE))
@@ -251,15 +266,14 @@ server <- function(input, output) {
             clearControls() %>%
             addPolygons(
               data = table_map,
-              #fillColor = ~mypalette(.data[[input$cluster_var[1]]]), 
               fillColor = ~mypalette(selected_ratio),
               stroke=FALSE, 
               fillOpacity = .5,
               layerId = ~state
             ) %>%
-            #addLegend(pal = mypalette, values = table_map[[input$cluster_var[1]]], opacity=0.9, position = "bottomleft")
             addLegend(pal = mypalette, values = table_map$selected_ratio, opacity=0.9, position = "bottomleft")
           
+          #Histogram
           output$cluster_plot <- renderPlot({
             ggplot(table_map, aes_string(x = input$cluster_var[1])) + 
               geom_histogram(bins = 10)
@@ -306,3 +320,5 @@ server <- function(input, output) {
 # call to shinyApp #
 ####################
 shinyApp(ui = ui, server = server)
+
+
