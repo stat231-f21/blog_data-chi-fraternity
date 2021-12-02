@@ -27,7 +27,7 @@ names(plot_choice_values) <- plot_choice_names
 
 ## Clustering Choices
 names <- colnames(cluster_table)
-cluster_choice_values <- names[! names %in% c("state")]
+cluster_choice_values <- names[! names %in% c("state", "X", "total")]
 #cluster_choice_names <- c()
 #names(cluster_choice_values) <- cluster_choice_names
 
@@ -44,16 +44,16 @@ ui <- fluidPage(
                   selected = "Student Aid Awarded"),
       
       selectizeInput(inputId = "cluster_var",
-                  label = "Choose the variable(s) to cluster states by",
-                  choices = cluster_choice_values,
-                  multiple = TRUE,
-                  options = list(maxItems = 2)),
+                     label = "Choose the variable(s) to cluster states by",
+                     choices = cluster_choice_values,
+                     multiple = TRUE,
+                     options = list(maxItems = 2)),
       
       sliderInput(inputId = "num_clusters",
                   label = "Choose the number of state clusters",
                   min = 1, max = 10, value = 3),
     ), 
-  
+    
     mainPanel(
       leafletOutput("map"),
       
@@ -153,6 +153,11 @@ server <- function(input, output) {
     return(plot)
   }
   
+  # getColor <- function(num) {
+  #   return(ifelse(num==1, "red",
+  #                 ifelse(num==2, "blue", "green")))
+  # }
+  
   # center_on <- states_sf_rne %>%
   #   filter(state == "Alaska") %>%
   #   pull(geometry) %>%
@@ -203,7 +208,7 @@ server <- function(input, output) {
               fillOpacity = 0.5,
               layerId = ~state
             ) #%>%
-            #addLegend(values = ~pal(clusters), opacity = 0.5, position = "bottomleft")
+          #addLegend(values = ~pal(clusters), opacity = 0.5, position = "bottomleft")
           
           # Display scatterplot of clusters
           output$cluster_plot <- renderPlot({
@@ -301,4 +306,3 @@ server <- function(input, output) {
 # call to shinyApp #
 ####################
 shinyApp(ui = ui, server = server)
-
