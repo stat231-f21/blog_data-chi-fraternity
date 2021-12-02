@@ -190,15 +190,15 @@ server <- function(input, output) {
           #Assigning colors to the clusters
           getColors <- function(num) {
             return(ifelse(num==1, "red",
-                          ifelse(num==2, "magenta",
+                          ifelse(num==2, "chocolate",
                                  ifelse(num==3, "deeppink",
-                                        ifelse(num==4, "darkviolet",
+                                        ifelse(num==4, "tomato",
                                                ifelse(num==5, "seagreen",
                                                       ifelse(num==6, "turquoise",
-                                                             ifelse(num==7, "tomato",
+                                                             ifelse(num==7, "darkviolet",
                                                                     ifelse(num==8, "orange",
                                                                            ifelse(num==9, "burlywood",
-                                                                                  ifelse(num==10, "chocolate4",
+                                                                                  ifelse(num==10, "magenta",
                                                                                          "deeppink")))))))))))
           }
           
@@ -225,9 +225,9 @@ server <- function(input, output) {
           output$cluster_plot <- renderPlot({
             ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
               geom_point(aes(color = clusters)) + 
-              scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "magenta", `3` = "deeppink",
-                                                                `4` = "darkviolet", `5` = "seagreen", `6` = "turquoise", `7` = "tomato",
-                                                                `8` = "orange", `9` = "burlywood", `10` = "chocolate4")) +
+              scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "chocolate", `3` = "deeppink",
+                                                                `4` = "tomato", `5` = "seagreen", `6` = "turquoise", `7` = "darkviolet",
+                                                                `8` = "orange", `9` = "burlywood", `10` = "magenta")) +
               labs(color = "Cluster assignment")
           })
           
