@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+        <meta name="author" content="Rafael Vanin Munoz, Kalidas Shanti, and Rebecca Picciotto" />
+    
+        <meta name="date" content="2021-12-07" />
+    
+    <title>The Playing Field of Higher Education</title>
+
+        <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="index_files/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="index_files/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="index_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+    <script src="index_files/navigation-1.1/tabsets.js"></script>
+    <link href="index_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+    <script src="index_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+    <link href="index_files/downcute-0.1/downcute.css" rel="stylesheet" />
+    <link href="index_files/downcute-0.1/downcute_fonts_embed.css" rel="stylesheet" />
+    <script src="index_files/downcute-0.1/downcute_styles.js"></script>
+    <script src="index_files/downcute-0.1/downcute.js"></script>
+    <script src="index_files/prism-1.22/prism.js"></script>
+    
+    
+    
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+                  <!-- downcute start -->   
+   <div id="docute" class="Root theme-default">
+     <div class="Page layout-narrow">
+      <div class="Wrap">
+        <div class="Sidebar">
+          <div class="SidebarItems" id="toc">
+            <ul>
+            <li><a href="#introduction">Introduction</a><ul>
+            <li><a href="#motivation">Motivation</a></li>
+            <li><a href="#framing-questions">Framing Questions</a></li>
+            </ul></li>
+            <li><a href="#map">Map</a><ul>
+            <li><a href="#overview">Overview</a></li>
+            </ul></li>
+            <li><a href="#section"></a><ul>
+            <li><a href="#general-map-statistics">General Map &amp; Statistics</a></li>
+            <li><a href="#heat-map-clustering">Heat Map &amp; Clustering</a></li>
+            </ul></li>
+            <li><a href="#notable-findings">Notable Findings</a></li>
+            <li><a href="#section-1"></a><ul>
+            <li><a href="#general-map-statistics-1">General Map &amp; Statistics</a></li>
+            <li><a href="#heat-map-clustering-1">Heat map &amp; Clustering</a></li>
+            </ul></li>
+            <li><a href="#map-limitations">Map Limitations</a></li>
+            <li><a href="#section-2"></a><ul>
+            <li><a href="#general-map-statistics-2">General Map &amp; Statistics</a></li>
+            <li><a href="#heat-map-clustering-2">Heat Map &amp; Clustering</a></li>
+            </ul></li>
+            <li><a href="#timeline">Timeline</a><ul>
+            <li><a href="#data-overview">Data overview</a></li>
+            <li><a href="#analysis">Analysis</a></li>
+            </ul></li>
+            <li><a href="#section-3"></a><ul>
+            <li><a href="#graduation-rates-time-series">Graduation Rates Time Series</a></li>
+            <li><a href="#earnings-time-series">Earnings Time Series</a></li>
+            <li><a href="#clustering">Clustering</a></li>
+            </ul></li>
+            <li><a href="#timeline-limitations">Timeline Limitations</a></li>
+            <li><a href="#conclusion">Conclusion</a><ul>
+            <li><a href="#major-takeaways">Major Takeaways</a></li>
+            <li><a href="#future-steps">Future Steps</a></li>
+            </ul></li>
+            </ul>
+          </div>
+          <div data-position="sidebar:post-end" class="InjectedComponents"><div class="dark-theme-toggler"><div class="toggle "><div class="toggle-track"><div class="toggle-track-check"><img  src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div> <div class="toggle-track-x"><img src="data:image/png;base64,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" role="presentation" style="pointer-events: none;" width="16" height="16"></div></div> <div class="toggle-thumb"></div></div> <input type="checkbox" aria-label="Switch between Dark and Default theme" class="toggler-screen-reader-only"></div></div>
+        </div>
+        <div class="Main">
+          <div class="Content" id="content"> 
+   
+   
+        
+      <h1 class="title">The Playing Field of Higher Education</h1>
+      
+      <p class="authors">
+           <span class="glyphicon glyphicon-user"></span> Rafael Vanin Munoz, Kalidas Shanti, and Rebecca Picciotto
+      </p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> Dec. 7, 2021</p>
+         
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div class="page-content has-page-title">
+<p><img src="https://cdn.wallethub.com/wallethub/posts/85332/best-worst-college-towns-in-america.png" style="display: block; margin: auto;" /></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>The world of higher education is difficult to distill. From the skewed dynamics of the college admission process to the infinite variations of the student experience to ultimate post-graduation outcomes, there is not just one thread that can fully tell the story of the college sphere. As college students with graduation on the horizon, we have taken the opportunity to visualize just some of the many forces of higher education.</p>
+</div>
+<div id="framing-questions" class="section level2">
+<h2>Framing Questions</h2>
+<p>The college playing field is by no means level and so we wanted to take a closer look at how certain factors influence that playing field. In fact, something as simple as where you grew up can vastly impact your decision to go to college and your overall experience if you do go. With that in mind, we decided to construct the “landscape” of higher education with a map that displays state-specific results for a variety of college statistics. <strong>In particular, we investigated the following questions:</strong></p>
+<ul>
+<li>Do your chances of getting financial aid change based on where you live?</li>
+<li>What kinds of institutions are more likely to exist in certain places?</li>
+<li>Are you more likely to study a particular field based on your location?</li>
+<li>How does one’s identities affect likelihood of college enrollment based on where you live?</li>
+<li>Are you more likely to get into college in certain places?</li>
+<li>Are you more likely to enroll in college in certain places?</li>
+</ul>
+<p>Along with the geographic variation of the college sphere, we have also thought about how the role of higher education has evolved over time in our society. Some hold that the structural inequity of the college process and experience cannot justify its existence as an institution. Others have argued that college itself might be able to serve as an equalizer or mechanism of social mobility. Still others have argued that college degrees have lost their value all together. We decided to take a look at graduation rates and post-grad earnings across different demographic groups in order to investigate some of these claims. <strong>We asked:</strong></p>
+<ul>
+<li>How does one’s identities affect whether or not you graduate?</li>
+<li>How does one’s identities affect how much you make?</li>
+<li>Which demographic groups are most similar in how they fare in graduation rates and post-grad earnings?</li>
+</ul>
+</div>
+</div>
+<div id="map" class="section level1">
+<h1>Map</h1>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+</div>
+</div>
+<div id="section" class="section level1 tabset tabset-fade tabset-pills">
+<h1></h1>
+<div id="general-map-statistics" class="section level2">
+<h2>General Map &amp; Statistics</h2>
+<p>The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from the National Center for Education Statistics’ (NCES) Trend Generator tool (<a href="https://nces.ed.gov/ipeds/TrendGenerator/" class="uri">https://nces.ed.gov/ipeds/TrendGenerator/</a>) and then used to calculate admission and enrollment rates. Information on areas of study for graduates came from the NCES 2020 Digest of Education Statistics (<a href="https://nces.ed.gov/programs/digest/2020menu_tables.asp" class="uri">https://nces.ed.gov/programs/digest/2020menu_tables.asp</a>). All other data were taken from the Chronicle of Higher Education’s 2021-22 Almanac state data (<a href="https://www.chronicle.com/article/almanac-states-2021" class="uri">https://www.chronicle.com/article/almanac-states-2021</a>).</p>
+</div>
+<div id="heat-map-clustering" class="section level2">
+<h2>Heat Map &amp; Clustering</h2>
+<p>The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.</p>
+<iframe src="https://rvaninmunoz22.shinyapps.io/blog_map/?showcase=0" width="100%" height="500px" data-external="1" frameborder="no">
+</iframe>
+</div>
+</div>
+<div id="notable-findings" class="section level1">
+<h1>Notable Findings</h1>
+</div>
+<div id="section-1" class="section level1 tabset tabset-fade tabset-pills">
+<h1></h1>
+<div id="general-map-statistics-1" class="section level2">
+<h2>General Map &amp; Statistics</h2>
+<p>One notable trend we can see from the plots is that almost all states (with the exception of Alaska and New Hampshire) experienced an overall decrease in enrollment rates from 2014 to 2020, while most states (except for Idaho, Wyoming, Kansas, South Dakota, Michigan, Wisconsin, DC, Delaware, Rhode Island, Massachusetts, Vermont and Maine) experienced an increase in admission rates throughout the same time period. However, many of these fluctuations in rates are too small to be an indicator of any major shift in the enrollment or admission rates in their respective states.</p>
+<p>In terms of demographic information, women outnumber men when it comes to college enrollment, and white people constitute the largest racial group of college students in almost all states. The only exceptions to the latter trend are California, Texas and New Mexico, where Hispanics make up the largest group, as well as Hawaii, where Asians constitute the largest ethnic group.</p>
+<p>When it comes to the types of postsecondary institutions present in each state, public 4-year and private nonprofit 4-year colleges were the most popular for most states. Private nonprofit 4-year institutions are particularly popular among northeastern states. However, a few states, such as Hawaii and North Carolina, tended to have more private 2-year colleges than any other type of institution.</p>
+<p>Additionally, the majority of states dedicate the majority of their student aid funding on need-based grants. Some exceptions to this trend are states such as DC, Kentucky, Tennessee, Georgia, South Dakota and Nevada, which fund non-need based grants over other types of aid. Only Alaska, Utah, Montana and Connecticut dedicate most of their funding on non-grant aid.</p>
+<p>Finally, among most states, business appears to be the single most popular area of study amongst graduates earning bachelor’s degrees. Other popular areas of study among graduates in each state include healthcare, humanities, and engineering. For most states, the areas of study with the least number of graduates include education, psychology and computer science.</p>
+</div>
+<div id="heat-map-clustering-1" class="section level2">
+<h2>Heat map &amp; Clustering</h2>
+<p>One interesting finding when looking at the map is that the states with the largest percentages of enrollments of any particular race/ethnicity have limited overlap with others. The states with the largest percentage of white enrollment are the midwestern states, whereas the states with the most hispanic enrollment are the southwestern states, particularly California and Texas. Black enrollment is highest in Southeast, and asian enrollment is highest along the northern coasts and hawaii.</p>
+<p>Interestingly, it appears that the average tuition of institutions doesn’t have much relationship with the enrollment of students based on race/ethnicity. Particularly, the tuition of private institutions seemed to have almost no relationship with the enrollment percentage by race. This could be seen because of the fact that the clustering of the map stayed almost uniform across races when looking at the average tuition of a four year college. That said, the average tuition of 2yr institutions clusters did have different implications. The states in which average tuition were highest were also the states in which the percentage of white enrollment was highest and the states with the lowest tuition were the states with the highest percentage of hispanic enrollment. For black and asian students, the highest percentage of enrollment was the second and third cluster (with five clusters) for the public 2-yr institutions, implying that there is a relationship between tuition and black and asian enrollment. And giving a sense of how much they pay for tuition in comparison to their peers.</p>
+<p>It can also be seen that the places professors receive the most pay, whether they be doctorate or master’s professors or full-time, associates, or assistant, is the southwest and northeast, which also leads to the interesting fact that the places with the highest enrollment of asian and hispanics students tend to also be the states with the highest paid professors.</p>
+<p>There are many other variables by which a user can make comparisons and examine the variables. However, for the purposes of the report I will treat this as sufficient to give the user a sense of what they may be able to reason through use of the visualization.</p>
+</div>
+</div>
+<div id="map-limitations" class="section level1">
+<h1>Map Limitations</h1>
+</div>
+<div id="section-2" class="section level1 tabset tabset-fade tabset-pills">
+<h1></h1>
+<div id="general-map-statistics-2" class="section level2">
+<h2>General Map &amp; Statistics</h2>
+<p>It is important to note that the data on areas of study, admission rates and enrollment rates focuses mainly on undergraduate students, particularly those seeking bachelor’s degrees. Conversely, the Chronicle Almanac state data website states that its data “cover all degree-granting institutions in the United States that are eligible to receive Title IV federal financial aid, unless otherwise specified,” but does not specify whether student demographic data includes graduate students in addition to undergraduates. Thus, the state plots generated for the map may not be suited for analyzing the landscape of post baccalaureate education in each state. Additionally, as previously mentioned, some states do not display a large overall change in their admissions and/or enrollment rates over time.</p>
+</div>
+<div id="heat-map-clustering-2" class="section level2">
+<h2>Heat Map &amp; Clustering</h2>
+<p>One of the main issues with the clustering is when there isn’t much variation in one variable, in comparison to the other chosen variable then the clustering seems to be selected entirely on the variable with more variation. For instance, when clustering by native_american.x and tuition_4yr_public, the clusters are selected almost entirely on how much tuition costs. In other words, it would be more ideal to use a heat map instead. That said, given that a heat map is displayed if only one variable is chosen, it is possible to look at a heat map when such a scenario occurs. However, the usefulness of the clustering is lost in these moments.</p>
+<p>Additionally, a large limitation of the heat map is that when there is an extreme value, all the other values of the heat map will be on the other end of the heat, making it impossible to identify the differences between the states as the only identifiable difference will be the outlier. To compensate for this, the heat map is constructed based on the variable as a ratio, so that the extreme values have less weight. However, this doesn’t completely solve the problem. For example, California is an extreme outlier when looking at a heat map by state_funds. As such most other states, with the exception of the east of the U.S., are in the lowest bin making it difficult to see if there is a level of difference in state funds for education in those states that would be worth observing.</p>
+<p>The last limitation would be that the clustering only allows the user to select two variables at a time. This was not done out of a limitation of clustering, but due to the increasing difficulty of understanding the clusters as the clusters are assigned based on more variables. This is especially true in the case of the world map’s clusters, which can only be understood through looking at another visual. In the case of two dimensions, a scatterplot is the basic choice, but once there are more, visualizations for the cluster assignments become impossible and comprehension is far more difficult.</p>
+</div>
+</div>
+<div id="timeline" class="section level1">
+<h1>Timeline</h1>
+<p>The state-by-state map offers a geographic look at U.S. college characteristics and outcomes. However, the landscape of higher education has also evolved over time. To get a fuller scope of the world of higher education, it is therefore of interest to take a look at the variance of some college outcomes over the years.</p>
+<p>In particular, we were interested in how graduation rates and post-grad earnings differ based on demographic category and how those differences have varied over time.</p>
+<div id="data-overview" class="section level2">
+<h2>Data overview</h2>
+<ul>
+<li><strong>Graduation rates data</strong></li>
+</ul>
+<p>We used graduation rates data from the National Center for Education Statistics (<a href="https://nces.ed.gov/programs/digest/d20/tables/dt20_326.10.asp?current=yes" class="uri">https://nces.ed.gov/programs/digest/d20/tables/dt20_326.10.asp?current=yes</a>), which looked at rates of first-time, full-time bachelor degree-seeking students at four-year postsecondary institutions between 1996 and 2013. It broke down the results by race, ethnicity, sex, and documentation status.</p>
+<ul>
+<li><strong>Earnings data</strong></li>
+</ul>
+<p>The data on earnings came from the U.S. Department of Labor (<a href="https://www.dol.gov/agencies/wb/data/earnings/median-annual-sex-race-hispanic-ethnicity" class="uri">https://www.dol.gov/agencies/wb/data/earnings/median-annual-sex-race-hispanic-ethnicity</a>). It breaks down its results by race, ethnicity and sex.</p>
+<iframe src="https://rvaninmunoz22.shinyapps.io/becca_code/?showcase=0" width="100%" height="500px" data-external="1" frameborder="no">
+</iframe>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+</div>
+</div>
+<div id="section-3" class="section level1 tabset tabset-fade tabset-pills">
+<h1></h1>
+<div id="graduation-rates-time-series" class="section level2">
+<h2>Graduation Rates Time Series</h2>
+<p>There are a couple of obvious observations to make from this visualization, but before that a quick disclaimer. The NCES graduation rates data did not include results for either Asian women or Asian men until 2005, which is why the lines for those two groups start later than the others. Beyond this data hole, the graph still provides some interesting insights.</p>
+<p>The likelihood of someone graduating from college is largely determined by a certain combination between incentives and access. That is, to complete a college degree, an individual must not only have the desire but also the resources. This framework might help explain graduation rate disparities among demographic groups. Given the well-documented inequities of higher education, the fact that Black and Hispanic students graduate at lower rates than white and Asian students might not come as a surprise, especially when speaking about historically and predominantly white institutions. It is with this framing in mind that we can make sense of the following results.</p>
+<p>First, it appears that all of the groups have parallel upward slopes except, notably, Black Women who maintain a flat line for nearly the entire 17-year period (despite a slight uptick toward the end of the year range). Though there are no definitive tell-all explanations for this feature of the graph, it is reasonable to assume that the disparity in college resources may have some role in keeping Black Women’s graduation rates stagnant. Otherwise, the groups tend to run slightly upwards for the entirety of the year range.</p>
+<p>The relative similarity among the trends of the lines however does not lead to the conclusion that these groups experience the same graduation outcomes. The starting points of each line are crucial. We see that despite the similar slopes, Asian Women, White Women, and Asian Men see the highest rates of graduation for 4-year, 5-year, and 6-year rates (though the order of that top three changes across those categories). From 1996 to 2013, Asian Women see 4-year graduation rates go from about 50 to 60% range; White Women from about 40 to 55% range; and Asian Men from about 40 to 50%. Perhaps predictably, the longer the timeframe of completing a college degree, the higher the graduation rates across all groups.</p>
+</div>
+<div id="earnings-time-series" class="section level2">
+<h2>Earnings Time Series</h2>
+<p>Next to the graduation rates time series, the earnings plot displays some interesting results. White Men and White Women have essentially shifted positions with White Men making the second-highest earnings below Asian Men across the entire time range. Also notice that before 2003, Asian Women and Black Men were essentially tied for third-highest earnings and afterwards, Asian Women secured the third-highest spot while Black Men and White Women began to tie for fourth-highest. This is especially notable given that Black Men consistently had the lowest graduation rates in the time range while White Women had the second-highest.</p>
+<p>It is difficult to say what exactly could have triggered this downward trend for Black Men’s earnings. Some helpful context might be found in the recession of the early 2000s. The economic crash was concentrated around 2001, but downstream detriments to unemployment continued to trickle until the third quarter of 2003 when the economy finally started to rebound.</p>
+<p>It is important to observe that, of all the groups, Hispanic men and women, along with Black women are closest to the federal poverty line at the time (though no group actually hits it) which, for a 4-person family, ranged from $15,600 in 1996 to $23,550 in 2013.</p>
+</div>
+<div id="clustering" class="section level2">
+<h2>Clustering</h2>
+<p>This part of the app allows the user to cross-reference graduation rates (averages taken among the 4-year, 5-year and 6-year rates) and earnings and detect which demographic groups are most similar for both variables. Choosing two clusters, we can see that Asian Men, Asian Women, and White Men are most similar to each other except in 2005, 2011, and 2013 when Asian Women fell out of that cluster. This first cluster seems to indicate the demographic groups that tended to have higher graduation rates and especially high earnings. It is important to note that neither Black Women, White Women, Hispanic Men nor Hispanic Women enter that first cluster in any of the years.</p>
+<p>Selecting three clusters provides even more detail. Across all years (post-2005 due to the data restrictions), Asian Men and White Men are in the same cluster — the cluster that indicates the upper echelon of the graduation rates and earnings cross-reference. Meanwhile, White Women, Asian Women, and Black Men are in the next highest cluster together. Black Women, Hispanic Men, and Hispanic Women are in the third cluster together for all years. Interestingly, White Women joined that third cluster only in 1996.</p>
+<p>With four clusters, Asian Men get separated out into their own cluster for every year except 2010 where White Men enter that cluster. This is interesting, because in other years, White Men and Asian Women are grouped together, but 2010 sees Asian Women grouped with White Women and Black Men. What appears to happen is that White Men earnings move slightly up and Asian Women earnings move slightly down. This is notable given that in 2010, the country was still grappling with the downstream effects of the 2008 crash and the Great Recession. It might thus be expected that certain groups see elevated graduation rates because more people are risk-averse in the job market and deciding to stay in school. But it is helpful to see how certain groups’ earnings changed to understand the degree of safety nets that each group might have to weather the national financial crisis.</p>
+<p>Choosing five groups yields clusters that are the most specific, showing us which groups are most similar to each other. White Men, Asian Men, and Asian Women are often put in their own category while Black Women, Hispanic Men, and Hispanic Women are consistently grouped together. White Women and Black Men are also often in the same cluster. It is notable that even at the most specific level of clustering, Black Women, Hispanic Men and Hispanic Women are still consistently grouped together. This might point to a common obstacle in the structure of higher education that they all face.</p>
+<p>The relative consistency of these clusters may be expected given the time series trends seen in the first two tabs of the Shiny app. The slopes of each demographic group were either flat or only slightly upward. That is to say, graduation rates and earnings among demographic groups stayed pretty much the same over the 17-year time period. This tells a bleak story for social mobility in this time period. It seems that the starting points of each demographic group were also their end points, with only a bit of variation in between.</p>
+</div>
+</div>
+<div id="timeline-limitations" class="section level1">
+<h1>Timeline Limitations</h1>
+<p>One might raise questions about the choice to analyze these outcomes by the demographics of race, ethnicity, and gender as opposed to other categories like socioeconomic status, ability, international status, first-generation status, and a host of others. These are all crucial social criteria that would seem to provide more depth in our conclusions when we think about the factors that influence likelihood of graduation and post-grad earnings.</p>
+<p>Indeed, this data, with its focus on race, ethnicity, and sex does not claim to tell the whole story of how identities impact college outcomes. Each individual student will lie at the intersection of a host of different identities that may lead them to contradict the patterns presented in this data. That is, the story told here is in no way sufficient to explain the demographic influence over graduation rates and earnings. However, this data still has value in that it provides a case study in how the higher education system leads to different outcomes for certain groups. Overall, we recommend viewing this data as one part of a much larger story.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>These visualizations and data analyses have helped explain some aspects of the institution of higher education from its geographic variations to its demographic disparities to its overall inequities. Given this data, it seems clear that at the very least, where you grow up and what identities you hold have some influence on your college experience and college outcomes.</p>
+<div id="major-takeaways" class="section level2">
+<h2>Major Takeaways</h2>
+<p><strong>While several aspects of secondary education differ from state to state, there are some characteristics shared by a majority of states:</strong></p>
+<ul>
+<li>Admission rates have increased and enrollment rates have decreased from 2014 to 2020</li>
+<li>More women than men are enrolled into postsecondary institutions.</li>
+<li>White people constitute the largest ethnic group enrolled into college.</li>
+<li>Public 4-year and private nonprofit 4-year institutions are the most prevalent institutions of higher education.</li>
+<li>Most state-funded student aid is given in the form of need-based grants to students.</li>
+<li>Most popular areas of study among undergraduates earning a bachelor’s degree are business, healthcare, humanities and engineering.</li>
+</ul>
+<p><strong>Looking at the heat map and the clustering by state, some larger takeaways are:</strong></p>
+<ul>
+<li>The regions of highest enrollment were different for each race/ethnicity.</li>
+<li>The regions with the highest professor pay was the same for each type of professor and these regions were the southwest and northeast</li>
+<li>This meant that the places with the highest hispanic enrollment (the southwest) and the highest asain enrollment percentages (the northeast) were places with the highest professor pay, whereas the places with the highest percentage of white enrollment were the places with the lowest pay.</li>
+<li>The average tuition for private and public 4yr institutions within a state are high and low across the U.S., particularly with private institutions and there seems to be little to no correlation between enrollment demographics and average tuition by state</li>
+<li>Average tuition for 2yr public institutions is regional, being cheapest in the southwest and most expensive in the midwest and northeast.</li>
+</ul>
+<p><strong>Seeing graduation rate and earnings outcomes over time revealed several notable results:</strong></p>
+<ul>
+<li>Of the eight demographic categories, White Women hold the second-highest graduation rates, but the fifth-highest earnings</li>
+<li>Black Men have the lowest graduation rates, but the fourth-highest earnings</li>
+<li>Black Women are the only category whose graduation rates stayed the same and did not noticeably increase during the 17-year period where data was taken</li>
+<li>Black Women and Hispanic Men and Women are the most similar to each other in how they fare in graduation rates and earnings</li>
+<li>Despite disparities in graduation rates, Black Men and White Women are most similar to each other due to their overlap in earnings</li>
+<li>White Men and Asian Men and Women are most similar to each other in how they fare in graduation rates and earnings</li>
+</ul>
+</div>
+<div id="future-steps" class="section level2">
+<h2>Future Steps</h2>
+<p>As noted at the start, these statistics and visualizations can only tell a partial story of the higher education system. To continue filling in the narrative, we would be interested in pursuing the following in the future:</p>
+<ul>
+<li>Look at data for graduate school</li>
+<li>Look at admissions &amp; enrollment rates before 2014 and/or after 2020</li>
+<li>Look at aspects college admissions process to investigate where the inequities begin</li>
+<li>Explore further how large societal phenomena (recessions, COVID, etc.) affected different facets of higher education (enrollment, student aid, etc) and provide that context within the visualizations</li>
+</ul>
+<p>© 2021 GitHub, Inc. Terms Privacy Security Status Docs Contact GitHub Pricing API Training Blog About</p>
+</div>
+</div>
+</div>
+
+   
+   
+              </div>
+  </div>
+  </div>
+  </div>
+   
+      
+
+  <script>
+    $(document).ready(function () {
+
+		// add bootstrap table styles to pandoc tables
+	$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+		
+ 		
+	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>
