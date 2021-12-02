@@ -416,12 +416,12 @@ institution_types <- read.csv("data/institutions_per_state.csv") %>%
   select(-X) %>% 
   mutate(private_np_2yr = as.numeric(private_np_2yr)) %>%
   rename("Total" = total,
-         "Public 4-Year" = public_4year,
-         "Public 2-Year" = public_2year,
-         "Private Nonprofit 4-Year" = private_np_4yr,
-         "Private Nonprofit 2-Year" = private_np_2yr,
-         "Private For-Profit 4-Year" = private_fp_4yr,
-         "Private For-Profit 2-Year" = private_fp_2yr) %>%
+         "Public\n4-Year" = public_4year,
+         "Public\n2-Year" = public_2year,
+         "Private\nNonprofit\n4-Year" = private_np_4yr,
+         "Private\nNonprofit\n2-Year" = private_np_2yr,
+         "Private\nFor-Profit\n4-Year" = private_fp_4yr,
+         "Private\nFor-Profit\n2-Year" = private_fp_2yr) %>%
   pivot_longer(-state, names_to = "institution_type", values_to = "count")
 
 demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %>%
