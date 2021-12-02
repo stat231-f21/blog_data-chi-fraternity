@@ -1,11 +1,12 @@
 ---
-title: "Your Project Title Here"
-author: "Your Names Here"
-date: "Add a date"
+title: "The Playing Field of Higher Education"
+author: "Rafael Vanin Munoz, Kalidas Shanti, and Rebecca Picciotto"
+date: "Dec. 7, 2021"
 output:
-  rmdformats::readthedown:
+  rmdformats::downcute:
     thumbnails: false
     highlight: "kate"
+    self_contained: false
 ---
 
 ```{r setup, include = FALSE}
@@ -22,116 +23,178 @@ knitr::opts_chunk$set(echo = FALSE,
 options(knitr.kable.NA = '')
 ```
 
-# Header 1 (Section heading)
-
-## Header 2 (Subsection heading)
-
-### Header 3 (Subsubsection heading)
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For example, you can include **Bold** and _Italic_ and `Code` text.  For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-You should test out updating your GitHub Pages website:
-
-* clone your group's blog project repo in RStudio
-* update "Your Project Title Here" to a new title in the YAML header
-* knit `index.Rmd` (we will now knit to HTML by default instead of pdf)
-* commit and push **both** `index.Rmd` and `index.html`
-* go to https://stat231-f21.github.io/blog_data-chi-fraternity/ to see the published test document (this is publicly available!)
-
-## Including code and plots
-
-You can embed code as normal, for example:
-
-```{r cars}
-summary(cars)
+```{r}
+knitr::include_graphics("https://cdn.wallethub.com/wallethub/posts/85332/best-worst-college-towns-in-america.png")
 ```
 
-Let's clean up the format of that output instead of using the standard R output:
+# Introduction
 
-```{r pretty-table, echo = TRUE}
-summary(cars) %>%
-  kable(col.names = c("Speed", "Distance"),
-        row.names = FALSE) %>%
-  kable_styling(bootstrap_options = "striped",
-                full_width = FALSE) %>%
-  row_spec(0, bold = TRUE) %>%
-  column_spec(1:2, width = "1.5in") 
+## Motivation
+The world of higher education is difficult to distill. From the skewed dynamics of the college admission process to the infinite variations of the student experience to ultimate post-graduation outcomes, there is not just one thread that can fully tell the story of the college sphere. As college students with graduation on the horizon, we have taken the opportunity to visualize just some of the many forces of higher education. 
+
+## Framing Questions
+
+The college playing field is by no means level and so we wanted to take a closer look at how certain factors influence that playing field. In fact, something as simple as where you grew up can vastly impact your decision to go to college and your overall experience if you do go. With that in mind, we decided to construct the “landscape” of higher education with a map that displays state-specific results for a variety of college statistics. **In particular, we investigated the following questions:**
+
+* Do your chances of getting financial aid change based on where you live?
+* What kinds of institutions are more likely to exist in certain places?
+* Are you more likely to study a particular field based on your location?
+* How does one’s identities affect likelihood of college enrollment based on where you live?
+* Are you more likely to get into college in certain places?
+* Are you more likely to enroll in college in certain places?
+
+Along with the geographic variation of the college sphere, we have also thought about how the role of higher education has evolved over time in our society. Some hold that the structural inequity of the college process and experience cannot justify its existence as an institution. Others have argued that college itself might be able to serve as an equalizer or mechanism of social mobility. Still others have argued that college degrees have lost their value all together. We decided to take a look at graduation rates and post-grad earnings across different demographic groups in order to investigate some of these claims. **We asked:**
+
+* How does one’s identities affect whether or not you graduate?
+* How does one’s identities affect how much you make?
+* Which demographic groups are most similar in how they fare in graduation rates and post-grad earnings?
+
+# Map
+
+## Overview
+# {.tabset .tabset-fade .tabset-pills}
+## General Map & Statistics
+
+The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from the National Center for Education Statistics’ (NCES) Trend Generator tool (https://nces.ed.gov/ipeds/TrendGenerator/) and then used to calculate admission and enrollment rates. Information on areas of study for graduates came from the NCES 2020 Digest of Education Statistics (https://nces.ed.gov/programs/digest/2020menu_tables.asp). All other data were taken from the Chronicle of Higher Education’s 2021-22 Almanac state data (https://www.chronicle.com/article/almanac-states-2021).
+
+## Heat Map & Clustering
+The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.
+
+```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://rvaninmunoz22.shinyapps.io/blog_map/",
+                   height = "500px")
 ```
 
-In a study from the 1920s, fifty cars were used to see how the speed of the car and the distance taken to stop were related.  Speeds ranged between `r min(cars$speed)` and `r max(cars$speed)` mph.  Distances taken to stop ranged between `r min(cars$dist)` and `r max(cars$dist)` feet, with the middle 50% falling between `r as.numeric(quantile(cars$dist)[2])` and `r as.numeric(quantile(cars$dist)[4])` feet.  
+# Notable Findings
+# {.tabset .tabset-fade .tabset-pills}
 
-You can also embed plots as normal, for example:
+## General Map & Statistics
+One notable trend we can see from the plots is that almost all states (with the exception of Alaska and New Hampshire) experienced an overall decrease in enrollment rates from 2014 to 2020, while most states (except for Idaho, Wyoming, Kansas, South Dakota, Michigan, Wisconsin, DC, Delaware, Rhode Island, Massachusetts, Vermont and Maine) experienced an increase in admission rates throughout the same time period. However, many of these fluctuations in rates are too small to be an indicator of any major shift in the enrollment or admission rates in their respective states.
 
-```{r figure1}
-ggplot(data = cars, aes(x = speed, y = dist)) + 
-  geom_point() + 
-  labs(x = "Speed of car (mph)",
-       y = "Distance taken to stop (ft)",
-       title = "Stopping distance increases with faster speeds",
-       subtitle = "Based on 1920s study") +
-  theme_classic()
+In terms of demographic information, women outnumber men when it comes to college enrollment, and white people constitute the largest racial group of college students in almost all states. The only exceptions to the latter trend are California, Texas and New Mexico, where Hispanics make up the largest group, as well as Hawaii, where Asians constitute the largest ethnic group. 
+
+When it comes to the types of postsecondary institutions present in each state, public 4-year and private nonprofit 4-year colleges were the most popular for most states. Private nonprofit 4-year institutions are particularly popular among northeastern states. However, a few states, such as Hawaii and North Carolina, tended to have more private 2-year colleges than any other type of institution.
+
+Additionally, the majority of states dedicate the majority of their student aid funding on need-based grants. Some exceptions to this trend are states such as DC, Kentucky, Tennessee, Georgia, South Dakota and Nevada, which fund non-need based grants over other types of aid. Only Alaska, Utah, Montana and Connecticut dedicate most of their funding on non-grant aid.
+
+Finally, among most states, business appears to be the single most popular area of study amongst graduates earning bachelor’s degrees. Other popular areas of study among graduates in each state include healthcare, humanities, and engineering. For most states, the areas of study with the least number of graduates include education, psychology and computer science.
+
+## Heat map & Clustering
+One interesting finding when looking at the map is that the states with the largest percentages of enrollments of any particular race/ethnicity  have limited overlap with others. The states with the largest percentage of white enrollment are the midwestern states, whereas the states with the most hispanic enrollment are the southwestern states, particularly California and Texas. Black enrollment is highest in Southeast, and asian enrollment is highest along the northern coasts and hawaii.
+
+Interestingly, it appears that the average tuition of institutions doesn’t have much relationship with the enrollment of students based on race/ethnicity. Particularly, the tuition of private institutions seemed to have almost no relationship with the enrollment percentage by race. This could be seen because of the fact that the clustering of the map stayed almost uniform across races when looking at the average tuition of a four year college. That said, the average tuition of 2yr institutions clusters did have different implications. The states in which average tuition were highest were also the states in which the percentage of white enrollment was highest and the states with the lowest tuition were the states with the highest percentage of hispanic enrollment. For black and asian students, the highest percentage of enrollment was the second and third cluster (with five clusters) for the public 2-yr institutions, implying that there is a relationship between tuition and black and asian enrollment. And giving a sense of how much they pay for tuition in comparison to their peers.
+
+It can also be seen that the places professors receive the most pay, whether they be doctorate or master’s professors or full-time, associates, or assistant, is the southwest and northeast, which also leads to the interesting fact that the places with the highest enrollment of asian and hispanics students tend to also be the states with the highest paid professors.
+
+There are many other variables by which a user can make comparisons and examine the variables. However, for the purposes of the report I will treat this as sufficient to give the user a sense of what they may be able to reason through use of the visualization.
+
+# Map Limitations
+# {.tabset .tabset-fade .tabset-pills}
+
+## General Map & Statistics
+It is important to note that the data on areas of study, admission rates and enrollment rates focuses mainly on undergraduate students, particularly those seeking bachelor’s degrees. Conversely, the Chronicle Almanac state data website states that its data “cover all degree-granting institutions in the United States that are eligible to receive Title IV federal financial aid, unless otherwise specified,” but does not specify whether student demographic data includes graduate students in addition to undergraduates. Thus, the state plots generated for the map may not be suited for analyzing the landscape of post baccalaureate education in each state. Additionally, as previously mentioned, some states do not display a large overall change in their admissions and/or enrollment rates over time. 
+
+## Heat Map & Clustering
+One of the main issues with the clustering is when there isn’t much variation in one variable, in comparison to the other chosen variable then the clustering seems to be selected entirely on the variable with more variation. For instance, when clustering by native_american.x and tuition_4yr_public, the clusters are selected almost entirely on how much tuition costs. In other words, it would be more ideal to use a heat map instead. That said, given that a heat map is displayed if only one variable is chosen, it is possible to look at a heat map when such a scenario occurs. However, the usefulness of the clustering is lost in these moments.
+
+Additionally, a large limitation of the heat map is that when there is an extreme value, all the other values of the heat map will be on the other end of the heat, making it impossible to identify the differences between the states as the only identifiable difference will be the outlier. To compensate for this, the heat map is constructed based on the variable as a ratio, so that the extreme values have less weight. However, this doesn’t completely solve the problem. For example, California is an extreme outlier when looking at a heat map by state_funds. As such most other states, with the exception of the east of the U.S., are in the lowest bin making it difficult to see if there is a level of difference in state funds for education in those states that would be worth observing.
+
+The last limitation would be that the clustering only allows the user to select two variables at a time. This was not done out of a limitation of clustering, but due to the increasing difficulty of understanding the clusters as the clusters are assigned based on more variables. This is especially true in the case of the world map’s clusters, which can only be understood through looking at another visual. In the case of two dimensions, a scatterplot is the basic choice, but once there are more, visualizations for the cluster assignments become impossible and comprehension is far more difficult.
+
+# Timeline
+The state-by-state map offers a geographic look at U.S. college characteristics and outcomes. However, the landscape of higher education has also evolved over time. To get a fuller scope of the world of higher education, it is therefore of interest to take a look at the variance of some college outcomes over the years. 
+
+In particular, we were interested in how graduation rates and post-grad earnings differ based on demographic category and how those differences have varied over time.
+
+## Data overview
+* **Graduation rates data**
+
+We used graduation rates data from the National Center for Education Statistics (https://nces.ed.gov/programs/digest/d20/tables/dt20_326.10.asp?current=yes), which looked at rates of first-time, full-time bachelor degree-seeking students at four-year postsecondary institutions between 1996 and 2013. It broke down the results by race, ethnicity, sex, and documentation status. 
+
+* **Earnings data** 
+
+The data on earnings came from the U.S. Department of Labor (https://www.dol.gov/agencies/wb/data/earnings/median-annual-sex-race-hispanic-ethnicity). It breaks down its results by race, ethnicity and sex. 
+
+```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://rvaninmunoz22.shinyapps.io/becca_code/",
+                   height = "500px")
 ```
 
-Take note of the default code chunk options in the `setup` code chunk, and adjust individual code chunk options as needed. for example, unlike the rest of the Rmd files we worked in this semester, the default code chunk option is `echo = FALSE`, so you will need to set `echo  = TRUE` for any code chunks you would like to display in the blog. 
+## Analysis
+
+# {.tabset .tabset-fade .tabset-pills}
+## Graduation Rates Time Series
+
+There are a couple of obvious observations to make from this visualization, but before that a quick disclaimer. The NCES graduation rates data did not include results for either Asian women or Asian men until 2005, which is why the lines for those two groups start later than the others. Beyond this data hole, the graph still provides some interesting insights. 
+
+The likelihood of someone graduating from college is largely determined by a certain combination between incentives and access. That is, to complete a college degree, an individual must not only have the desire but also the resources. This framework might help explain graduation rate disparities among demographic groups. Given the well-documented inequities of higher education, the fact that Black and Hispanic students graduate at lower rates than white and Asian students might not come as a surprise, especially when speaking about historically and predominantly white institutions. It is with this framing in mind that we can make sense of the following results. 
+
+First, it appears that all of the groups have parallel upward slopes except, notably, Black Women who maintain a flat line for nearly the entire 17-year period (despite a slight uptick toward the end of the year range). Though there are no definitive tell-all explanations for this feature of the graph, it is reasonable to assume that the disparity in college resources may have some role in keeping Black Women’s graduation rates stagnant. Otherwise, the groups tend to run slightly upwards for the entirety of the year range. 
+
+The relative similarity among the trends of the lines however does not lead to the conclusion that these groups experience the same graduation outcomes. The starting points of each line are crucial. We see that despite the similar slopes, Asian Women, White Women, and Asian Men see the highest rates of graduation for 4-year, 5-year, and 6-year rates (though the order of that top three changes across those categories). From 1996 to 2013, Asian Women see 4-year graduation rates go from about 50 to 60% range; White Women from about 40 to 55% range; and Asian Men from about 40 to 50%. Perhaps predictably, the longer the timeframe of completing a college degree, the higher the graduation rates across all groups.
+
+## Earnings Time Series
+
+Next to the graduation rates time series, the earnings plot displays some interesting results. White Men and White Women have essentially shifted positions with White Men making the second-highest earnings below Asian Men across the entire time range. Also notice that before 2003, Asian Women and Black Men were essentially tied for third-highest earnings and afterwards, Asian Women secured the third-highest spot while Black Men and White Women began to tie for fourth-highest. This is especially notable given that Black Men consistently had the lowest graduation rates in the time range while White Women had the second-highest.
+
+It is difficult to say what exactly could have triggered this downward trend for Black Men’s earnings. Some helpful context might be found in the recession of the early 2000s. The economic crash was concentrated around 2001, but downstream detriments to unemployment continued to trickle until the third quarter of 2003 when the economy finally started to rebound. 
+
+It is important to observe that, of all the groups, Hispanic men and women, along with Black women are closest to the federal poverty line at the time (though no group actually hits it) which, for a 4-person family, ranged from $15,600 in 1996 to $23,550 in 2013.
+
+## Clustering
+
+This part of the app allows the user to cross-reference graduation rates (averages taken among the 4-year, 5-year and 6-year rates) and earnings and detect which demographic groups are most similar for both variables. Choosing two clusters, we can see that Asian Men, Asian Women, and White Men are most similar to each other except in 2005, 2011, and 2013 when Asian Women fell out of that cluster. This first cluster seems to indicate the demographic groups that tended to have higher graduation rates and especially high earnings. It is important to note that neither Black Women, White Women, Hispanic Men nor Hispanic Women enter that first cluster in any of the years.
+
+Selecting three clusters provides even more detail. Across all years (post-2005 due to the data restrictions), Asian Men and White Men are in the same cluster — the cluster that indicates the upper echelon of the graduation rates and earnings cross-reference. Meanwhile, White Women, Asian Women, and Black Men are in the next highest cluster together. Black Women, Hispanic Men, and Hispanic Women are in the third cluster together for all years. Interestingly, White Women joined that third cluster only in 1996. 
+
+With four clusters, Asian Men get separated out into their own cluster for every year except 2010 where White Men enter that cluster. This is interesting, because in other years, White Men and Asian Women are grouped together, but 2010 sees Asian Women grouped with White Women and Black Men. What appears to happen is that White Men earnings move slightly up and Asian Women earnings move slightly down. This is notable given that in 2010, the country was still grappling with the downstream effects of the 2008 crash and the Great Recession. It might thus be expected that certain groups see elevated graduation rates because more people are risk-averse in the job market and deciding to stay in school. But it is helpful to see how certain groups’ earnings changed to understand the degree of safety nets that each group might have to weather the national financial crisis.
+
+Choosing five groups yields clusters that are the most specific, showing us which groups are most similar to each other. White Men, Asian Men, and Asian Women are often put in their own category while Black Women, Hispanic Men, and Hispanic Women are consistently grouped together. White Women and Black Men are also often in the same cluster. It is notable that even at the most specific level of clustering, Black Women, Hispanic Men and Hispanic Women are still consistently grouped together. This might point to a common obstacle in the structure of higher education that they all face. 
+
+The relative consistency of these clusters may be expected given the time series trends seen in the first two tabs of the Shiny app. The slopes of each demographic group were either flat or only slightly upward. That is to say, graduation rates and earnings among demographic groups stayed pretty much the same over the 17-year time period. This tells a bleak story for social mobility in this time period. It seems that the starting points of each demographic group were also their end points, with only a bit of variation in between.
 
 
-## Including links and images/videos
+# Timeline Limitations
+One might raise questions about the choice to analyze these outcomes by the demographics of race, ethnicity, and gender as opposed to other categories like socioeconomic status, ability, international status, first-generation status, and a host of others. These are all crucial social criteria that would seem to provide more depth in our conclusions when we think about the factors that influence likelihood of graduation and post-grad earnings. 
 
-You can include [links](https://www.datadreaming.org/post/r-markdown-theme-gallery/) and there are a few ways to embed  images! Both options for embedding images below can be used interchangeably. They both work for png, pdf, jpg, and even gif formats, and both support filepaths that are either URLs (for videos, you can include links to any valid YouTube or Vimeo URLs; see [here](https://bookdown.org/yihui/rmarkdown/learnr-videos.html) for more details) or point to a location within your project directory. 
+Indeed, this data, with its focus on race, ethnicity, and sex does not claim to tell the whole story of how identities impact college outcomes. Each individual student will lie at the intersection of a host of different identities that may lead them to contradict the patterns presented in this data. That is, the story told here is in no way sufficient to explain the demographic influence over graduation rates and earnings. However, this data still has value in that it provides a case study in how the higher education system leads to different outcomes for certain groups. Overall, we recommend viewing this data as one part of a much larger story.
 
-### Option 1: Markdown approach
+# Conclusion
+These visualizations and data analyses have helped explain some aspects of the institution of higher education from its geographic variations to its demographic disparities to its overall inequities. Given this data, it seems clear that at the very least, where you grow up and what identities you hold have some influence on your college experience and college outcomes. 
 
-![This is a figure caption. The artwork is called Safe Space by  [Kenesha Sneed](https://www.keneshasneed.com/#/safespace/)](img/Kenesha-Sneed_safe-space.jpeg)
+## Major Takeaways 
+**While several aspects of secondary education differ from state to state, there are some characteristics shared by a majority of states:**
 
+* Admission rates have increased and enrollment rates have decreased from 2014 to 2020
+* More women than men are enrolled into postsecondary institutions.
+* White people constitute the largest ethnic group enrolled into college.
+* Public 4-year and private nonprofit 4-year institutions are the most prevalent institutions of higher education.
+* Most state-funded student aid is given in the form of need-based grants to students.
+* Most popular areas of study among undergraduates earning a bachelor’s degree are business, healthcare, humanities and engineering.
 
-### Option 2: Code chunk approach
+**Looking at the heat map and the clustering by state, some larger takeaways are:**
 
-```{r, fig.cap = "This is also figure caption"}
-knitr::include_graphics("https://media.giphy.com/media/H7ZrrA9V2pd3Tehdds/giphy.gif")
-```
+* The regions of highest enrollment were different for each race/ethnicity.
+* The regions with the highest professor pay was the same for each type of professor and these regions were the southwest and northeast
+* This meant that the places with the highest hispanic enrollment (the southwest) and the highest asain enrollment percentages (the northeast) were places with the highest professor pay, whereas the places with the highest percentage of white enrollment were the places with the lowest pay.
+* The average tuition for private and public 4yr institutions within a state are high and low across the U.S., particularly with private institutions and there seems to be little to no correlation between enrollment demographics and average tuition by state
+* Average tuition for 2yr public institutions is regional, being cheapest in the southwest and most expensive in the midwest and northeast.
 
-## Including equations
+**Seeing graduation rate and earnings outcomes over time revealed several notable results:**
 
-Equations may be needed if you are explaining a new technique or perhaps providing some other relevant formulas in your exposition. There are two ways to include equations:
+* Of the eight demographic categories, White Women hold the second-highest graduation rates, but the fifth-highest earnings
+* Black Men have the lowest graduation rates, but the fourth-highest earnings
+* Black Women are the only category whose graduation rates stayed the same and did not noticeably increase during the 17-year period where data was taken
+* Black Women and Hispanic Men and Women are the most similar to each other in how they fare in graduation rates and earnings
+* Despite disparities in graduation rates, Black Men and White Women are most similar to each other due to their overlap in earnings
+* White Men and Asian Men and Women are most similar to each other in how they fare in graduation rates and earnings
 
-* Inline: $b \sim N(0, \sigma^2_b)$
-* Display-style (displayed on its own line): $$\frac{\sigma^2_b}{\sigma^2_b + \sigma^2_e}$$
+## Future Steps
+As noted at the start, these statistics and visualizations can only tell a partial story of the higher education system. To continue filling in the narrative, we would be interested in pursuing the following in the future:
 
-For typesetting equations appropriately, take a look at the *Symbols in math mode* section of this  [cheat sheet](https://users.dickinson.edu/~richesod/latex/latexcheatsheet.pdf)  (or do some extra Googling---there are *many* resources).
-
-
-# You can even create tabs within your webpage if you want! {.tabset .tabset-fade .tabset-pills}
-
-Every subsection heading (starting with `##`) until you create a new section heading (starting with `#`) will be a new tab.
-
-## Bulleted list
-
-You can make a bulleted list like this:
-
-* item 1
-* item 2
-* item 3
-
-
-## Numbered list
-
-You can make a numbered list like this
-
-1. First thing I want to say
-2. Second thing I want to say
-3. Third thing I want to say
-
-# Customizing your blog design
-
-As a *final* detail **only** if you have time, you can explore options for customizing the style of your blog. By default, we are using the `readthedown` theme from the [**rmdformats** package](https://github.com/juba/rmdformats) (see Line 6 of this file if you want to switch out themes). There are, I'm sure, many many many more similar packages with built in themes, or you can look into how to include a CSS code chunk to customize aspects of the current theme.  
-
-There are some easy-to-change options that you can play around with:
-
-* The theme itself (Line 6): `rmdformats::readthedown`, `rmdformats::downcute`, `rmdformats::robobook`, `rmdformats::material`,
-  * For `downcute` only, you can add a new indented line below Line 6 with the code `downcute_theme: "chaos"` for the `downcute chaos` theme
-  * I would *not* recommend the other themes that do not have the sidebar navigation
-  
-* Syntax highlighting options (Line 8, `highlight`): `"default"`, `"tango"`, `"pygments"`, `"kate"`, `"monochrome"`, `"espresso"`, `"zenburn"`, `"haddock"`, or `"textmate"` (or `NULL` for no syntax highlighting)
+* Look at data for graduate school
+* Look at admissions & enrollment rates before 2014 and/or after 2020
+* Look at aspects college admissions process to investigate where the inequities begin
+* Explore further how large societal phenomena (recessions, COVID, etc.) affected different facets of higher education (enrollment, student aid, etc) and provide that context within the visualizations
 
 
-You can explore additional customizable YAML options by looking at the [**rmdformats** package](https://github.com/juba/rmdformats) page or running, for example, `?rmdformats::readthedown()` to see the help documentation for a particular theme from the package.
