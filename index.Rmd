@@ -109,7 +109,7 @@ In particular, we were interested in how graduation rates and post-grad earnings
 ## Data overview
 * **Graduation rates data**
 
-We used graduation rates data from [the National Center for Education Statistics](https://nces.ed.gov/programs/digest/d20/tables/dt20_326.10.asp?current=yes), which looked at rates of first-time, full-time bachelor degree-seeking students at four-year postsecondary institutions between 1996 and 2013. It broke down the results by race, ethnicity, sex, and documentation status. 
+We used graduation rates data from [the NCES](https://nces.ed.gov/programs/digest/d20/tables/dt20_326.10.asp?current=yes), which looked at rates of first-time, full-time bachelor degree-seeking students at four-year postsecondary institutions between 1996 and 2013. It broke down the results by race, ethnicity, sex, and documentation status. 
 
 * **Earnings data** 
 
