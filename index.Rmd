@@ -116,7 +116,7 @@ We used graduation rates data from [the National Center for Education Statistics
 The data on earnings came from [the U.S. Department of Labor](https://www.dol.gov/agencies/wb/data/earnings/median-annual-sex-race-hispanic-ethnicity). It breaks down its results by race, ethnicity and sex. 
 
 ```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
-knitr::include_app("https://rvaninmunoz22.shinyapps.io/becca_code/",
+knitr::include_app("https://rpicciotto22.shinyapps.io/becca_blogshinyapp/",
                    height = "500px")
 ```
 
