@@ -50,7 +50,10 @@ Along with the geographic variation of the college sphere, we have also thought 
 * Which demographic groups are most similar in how they fare in graduation rates and post-grad earnings?
 
 # Map
-
+```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
+knitr::include_app("https://rvaninmunoz22.shinyapps.io/blog_map/",
+                   height = "500px")
+```
 ## Overview
 # {.tabset .tabset-fade .tabset-pills}
 ## General Map & Statistics
@@ -59,11 +62,6 @@ The interactive Shiny map below shows one of six possible plots for a state when
 
 ## Heat Map & Clustering
 The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.
-
-```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
-knitr::include_app("https://rvaninmunoz22.shinyapps.io/blog_map/",
-                   height = "500px")
-```
 
 # Notable Findings
 # {.tabset .tabset-fade .tabset-pills}
