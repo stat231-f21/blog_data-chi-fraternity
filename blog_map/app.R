@@ -19,6 +19,8 @@ states_sf <- tigris::states(class = "sf") %>%
   filter(! NAME %in% c("United States Virgin Islands", "Commonwealth of the Northern Mariana Islands", "Guam", "American Samoa", "Puerto Rico")) %>%
   select(NAME, geometry) %>%
   rename(state = NAME)
+  #select(NAME, STUSPS, geometry) %>%
+  #rename(state = NAME, abbrev = STUSPS)
 
 ## Plot choices
 plot_choice_values <- c("student_aid", "institutions", "majors", "demographics", "admissions", "enrollments")
@@ -56,9 +58,9 @@ ui <- fluidPage(
     ), 
     
     mainPanel(
-      leafletOutput("map"),
-      
       plotOutput("vis"),
+      
+      leafletOutput("map"),
       
       plotOutput("cluster_plot"),
       
@@ -77,7 +79,7 @@ server <- function(input, output) {
     if (plot_type == "student_aid") {
       plot <- ggplot(data = student_aid %>% filter(state == state_name), aes(x = aid_type, y = amount)) +
         geom_bar(stat = "identity", fill = "darkgreen") + 
-        scale_x_discrete(limits = c("Total Aid", "Need-Based Grants", "Non-Need-Based Grants", "Non-Grant Aid")) + 
+        scale_x_discrete(limits = c("Total Aid", "Need-\nBased Grants", "Non-Need-\nBased Grants", "Non-Grant Aid")) + 
         scale_y_continuous(
           name = "Amount ($)",
           labels = scales::comma
@@ -87,29 +89,32 @@ server <- function(input, output) {
           subtitle = paste("by the state of", state_name, "in 2018-19"),
           x = "Type of Aid"
         ) + 
-        geom_text(aes(label = format(amount, big.mark = ",", scientific = FALSE)), vjust = -0.5)
+        geom_text(aes(label = format(amount, big.mark = ",", scientific = FALSE)), vjust = -0.1, size = 5) + 
+        theme(text = element_text(size = 15))
       
     } else if (plot_type == "institutions") {
-      plot <- ggplot(data = institution_types %>% filter(state == state_name), aes(x = institution_type, y = count)) + 
+      plot <- ggplot(data = institution_types %>% filter(state == state_name, !institution_type == "Total"), aes(x = institution_type, y = count)) + 
         geom_bar(stat = "identity", fill = "darkorchid4") + 
         labs(
           title = "Distribution of Different Types of Institutions of Higher Education",
           subtitle = paste("in", state_name, "in 2019"),
           x = "Type of Institution"
         ) + 
-        geom_text(aes(label = count), vjust = -0.3)
+        geom_text(aes(label = count), vjust = -0.1, size = 5) + 
+        theme(text = element_text(size = 15))
       
     } else if (plot_type == "majors") {
-      plot <- ggplot(data = areas_of_study %>% filter(state == state_name), aes(x = major, y = count)) + 
+      plot <- ggplot(data = areas_of_study %>% filter(state == state_name, !major == "Total"), aes(x = major, y = count)) + 
         geom_bar(stat = "identity", fill = "darkblue") + 
-        scale_x_discrete(limits = c("Humanities", "Psychology", "Social Sciences\n& History", "Natural Sciences\n& Mathematics", "Computer Science", "Engineering", "Education", "Business", "Healthcare", "Other", "Total")) + 
+        scale_x_discrete(limits = c("Humanities", "Psychology", "Social Sciences\n& History", "Natural Sciences\n& Mathematics", "Computer Science", "Engineering", "Education", "Business", "Healthcare", "Other")) + 
         theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
         labs(
           title = "Distribution of Areas of Study of Bachelor's Degrees Granted",
           subtitle = paste("in the state of", state_name, ", 2018-19"),
           x = "Area of Study"
         ) + 
-        geom_text(aes(label = format(count, big.mark = ",", scientific = FALSE)), vjust = -0.3)  
+        geom_text(aes(label = format(count, big.mark = ",", scientific = FALSE)), vjust = -0.1, size = 5) +
+        theme(text = element_text(size = 15))
       
     } else if (plot_type == "demographics") {
       plot <- ggplot(data = student_demographics %>% filter(state == state_name), aes(x = group, y = percent)) + 
@@ -122,32 +127,35 @@ server <- function(input, output) {
           title = paste("Demographic Distributions of Enrolled College Students in", state_name, "in Fall 2019"),
           y = "% of All Students"
         ) + 
-        geom_text(aes(label = paste0(percent, "%")), vjust = -0.3)
+        geom_text(aes(label = paste0(percent, "%")), vjust = -0.3, size = 5) +
+        theme(text = element_text(size = 15))
       
       #} else if (plot_type == "stud_fac_staff") {
       
       
     } else if (plot_type == "admissions") {
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = admission_rate)) + 
-        geom_line() + 
-        geom_point() + 
+        geom_line(size = 1.3) + 
+        geom_point(size = 4) + 
         labs(
           title = paste("Statewide Fall Undergraduate Admission Rates in", state_name, "from 2014-2020"),
           x = "Year",
           y = "Admission Rate"
         ) + 
-        geom_text(aes(label = paste0(admission_rate, "%")), vjust = -0.5, color = "blue")
+        geom_text(aes(label = paste0(admission_rate, "%")), vjust = -0.5, color = "turquoise", size = 5) +
+        theme(text = element_text(size = 15))
       
     } else { #enrollment
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = enrollment_rate)) + 
-        geom_line() + 
-        geom_point() + 
+        geom_line(size = 1.3) + 
+        geom_point(size = 4) + 
         labs(
           title = paste("Statewide Fall Undergraduate Enrollment Rates in", state_name, "from 2014-2020"),
           x = "Year",
           y = "Enrollment Rate"
         ) + 
-        geom_text(aes(label = paste0(enrollment_rate, "%")), vjust = -0.5, color = "blue")
+        geom_text(aes(label = paste0(enrollment_rate, "%")), vjust = -0.5, color = "turquoise", size = 5) +
+        theme(text = element_text(size = 15))
       
     }
     
@@ -225,11 +233,13 @@ server <- function(input, output) {
           # Display scatterplot of clusters
           output$cluster_plot <- renderPlot({
             ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
-              geom_point(aes(color = clusters)) + 
+              geom_point(aes(color = clusters), size = 5) + 
               scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "magenta", `3` = "deeppink",
                                                                 `4` = "darkviolet", `5` = "seagreen", `6` = "turquoise", `7` = "tomato",
                                                                 `8` = "orange", `9` = "burlywood", `10` = "chocolate4")) +
-              labs(color = "Cluster assignment")
+              #geom_text(aes(label = abbrev), vjust = -0.5, color = "black") +
+              labs(color = "Cluster assignment") + 
+              theme(text = element_text(size = 15))
           })
           
           # Elbowplot
@@ -246,10 +256,11 @@ server <- function(input, output) {
           
           output$elbow_plot <- renderPlot({
             ggplot(elbow_plot, aes(x = elbow_clusters, y = within_ss)) +
-              geom_point() + 
-              geom_line() +
+              geom_point(size = 3) + 
+              geom_line(size = 1.3) +
               scale_x_continuous(breaks = 1:10) +
-              labs(x = "Number of clusters (k)", y = expression("Total W"[k]))
+              labs(x = "Number of clusters (k)", y = expression("Total W"[k])) + 
+              theme(text = element_text(size = 15))
           })
           
         } else if (length(input$cluster_var) == 1) {
@@ -277,12 +288,13 @@ server <- function(input, output) {
           #Histogram
           output$cluster_plot <- renderPlot({
             ggplot(table_map, aes_string(x = input$cluster_var[1])) + 
-              geom_histogram(bins = 10)
+              geom_histogram(bins = 10) + 
+              theme(text = element_text(size = 15))
           })
           
           # Hide Elbow Plot output
           output$elbow_plot <- renderPlot({
-            ggplot()
+            #ggplot()
           })
           
         }
@@ -299,12 +311,12 @@ server <- function(input, output) {
         
         # Hide Cluster Plot output
         output$cluster_plot <- renderPlot({
-          ggplot()
+          #ggplot()
         })
         
         # Hide Elbow Plot output
         output$elbow_plot <- renderPlot({
-          ggplot()
+          #ggplot()
         })
       }
     }
