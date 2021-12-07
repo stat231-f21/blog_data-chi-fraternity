@@ -455,8 +455,8 @@ finance_table <- read_csv("data/finance_table.csv")
   
 student_aid <- finance_table %>%
   select(state, need_based_grants, non_need_based_grants, non_grant_aid, total_aid) %>% 
-  rename("Need-Based Grants" = need_based_grants,
-         "Non-Need-Based Grants" = non_need_based_grants, 
+  rename("Need-\nBased Grants" = need_based_grants,
+         "Non-Need-\nBased Grants" = non_need_based_grants, 
          "Non-Grant Aid" = non_grant_aid, 
          "Total Aid" = total_aid) %>%
   pivot_longer(-state, names_to = "aid_type", values_to = "amount")
@@ -485,12 +485,12 @@ cluster_table <- demographics_clustering %>%
   select(-X)
 
 # write to csv
-write.csv(areas_of_study, "map_data/areas_of_study.csv")
-write.csv(admission_enrollment_data, "map_data/admission_enrollment_data.csv")
-write.csv(institution_types, "map_data/institution_types.csv")
-write.csv(student_demographics, "map_data/student_demographics.csv")
-write.csv(student_aid, "map_data/student_aid.csv")
-write.csv(cluster_table, "map_data/cluster_table.csv")
+write.csv(areas_of_study, "blog_map/map_data/areas_of_study.csv")
+write.csv(admission_enrollment_data, "blog_map/map_data/admission_enrollment_data.csv")
+write.csv(institution_types, "blog_map/map_data/institution_types.csv")
+write.csv(student_demographics, "blog_map/map_data/student_demographics.csv")
+write.csv(student_aid, "blog_map/map_data/student_aid.csv")
+write.csv(cluster_table, "blog_map/map_data/cluster_table.csv")
 
 ```
 
