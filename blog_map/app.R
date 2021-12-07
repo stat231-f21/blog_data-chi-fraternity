@@ -77,9 +77,9 @@ server <- function(input, output) {
   ## Plot generation
   getPlot <- function(state_name, plot_type) {
     if (plot_type == "student_aid") {
-      plot <- ggplot(data = student_aid %>% filter(state == state_name), aes(x = aid_type, y = amount)) +
+      plot <- ggplot(data = student_aid %>% filter(state == state_name, !aid_type == "Total Aid"), aes(x = aid_type, y = amount)) +
         geom_bar(stat = "identity", fill = "darkgreen") + 
-        scale_x_discrete(limits = c("Total Aid", "Need-\nBased Grants", "Non-Need-\nBased Grants", "Non-Grant Aid")) + 
+        scale_x_discrete(limits = c("Need-\nBased Grants", "Non-Need-\nBased Grants", "Non-Grant Aid")) + 
         scale_y_continuous(
           name = "Amount ($)",
           labels = scales::comma
