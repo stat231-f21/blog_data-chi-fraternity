@@ -471,6 +471,40 @@ cluster_table <- demographics_clustering %>%
   left_join(faculty_table, by = "state") %>%
   select(-X)
 
+# rename cluster variables
+cluster_table <- cluster_table %>%
+  rename(total_enrolled = total,
+         women_enrollment_perc = women.x,
+         minority_enrollment_perc = minority,
+         native_american_enrollment_perc = native_american.x,
+         asian_enrollment_perc = asian.x,
+         white_enrollment_perc = white.x,
+         black_enrollment_perc = black.x,
+         hispanic_enrollment_perc = hispanic.x,
+         pac_island_enroll_perc = pacific_islander,
+         two_more_races_enroll_perc = `2+_races`,
+         nonresident_enroll_perc = nonresident,
+         change_in_state_funds = state_funds_1yr_delta,
+         all_grad_rates = `all`,
+         men_grad_rates = men,
+         women_grad_rates = women.y,
+         native_american_grad_rates = native_american.y,
+         asian_grad_rates = asian.y,
+         white_grad_rates = white.y,
+         black_grad_rates = black.y,
+         hispanic_grad_rates = hispanic.y,
+         two_more_races_grad_rates = two_more_races,
+         other_4yr_avg_salary = other_4yr_all,
+         other_2yr_avg_salary = `2yr_all`,
+         public_doctor_prof_avg_salary = public_doctor_prof,
+         public_doctor_assist_avg_salary = public_doctor_assist,
+         public_doctor_assoc_avg_salary = public_doctor_assoc,
+         public_doctor_all_avg_salary = public_doctor_all,
+         public_masters_prof_avg_salary = public_masters_prof,
+         public_masters_assist_avg_salary = public_masters_assist,
+         public_masters_assoc_avg_salary = public_masters_assoc,
+         public_masters_all_avg_salary = public_masters_all)
+
 # write to csv
 write.csv(areas_of_study, "blog_map/map_data/areas_of_study.csv")
 write.csv(admission_enrollment_data, "blog_map/map_data/admission_enrollment_data.csv")
