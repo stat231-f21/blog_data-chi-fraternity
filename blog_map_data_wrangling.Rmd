@@ -30,27 +30,10 @@ remDr$open()
 
 rD$server$status()
 
-#remDr$getStatus()
-
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Scraping with **rvest** only
-
-```{r nces-digest-ratios}
-nces_ratios_url <- "https://nces.ed.gov/programs/digest/d20/tables/dt20_314.60.asp"
-paths_allowed(nces_ratios_url)
-
-college_ratios <- nces_ratios_url %>%
-  read_html() %>%
-  html_element("body > div:nth-child(8) > table.tabletop.tableMain.tableWidth.tableBracketRow") %>%
-  html_table() %>%
-  setNames(c("state","staff_allprivate", "staff_4yr_nonprofit", "staff_2yr_nonprofit", "staff_forprofit", "faculty_allprivate", "faculty_4yr_nonprofit", "faculty_2yr_nonprfit", "facutly_forprofit", "faculty_percent_4yr_nonprofit", "faculty_percent_forprofit", "student_staff_4yr_nonprofit", "student_staff_forprofit", "student_faculty_4yr_nonprofit", "student_faculty_forprofit")) %>%
-  tail(60) %>%
-  head(51)
-
-college_ratios
-```
 
 ```{r nces-digest-degrees}
 nces_undergrad_degrees_url <- "https://nces.ed.gov/programs/digest/d20/tables/dt20_319.30.asp"
@@ -185,7 +168,7 @@ demographics_table_clean <- as.data.frame(t(demographics_table)) %>% # Rows and 
 
 demographics_table_clean
 
-#Types of institution
+## Types of institution
 institution_button <- remDr$findElement(using = "css", "#aln-institutions")
 institution_button$clickElement()
 
@@ -203,7 +186,7 @@ institution_table_clean <- as.data.frame(t(institution_table)) %>%
 
 institution_table_clean
 
-#graduration rates
+## Graduation Rates
 
 grad_rates_button <- remDr$findElement(using = "css", "#aln-grad")
 #NOTE: line above throws an error when ran in conjunction with the `remDr$navigate()` line, but then works fine when ran again separately
@@ -236,7 +219,7 @@ grad_rates_table_clean <- as.data.frame(t(grad_rates_table)) %>% # Rows and colu
 
 write.csv(grad_rates_table_clean, "data\\graduation_rates.csv")
 
-# faculty pay
+## Faculty Pay
 
 faculty_pay_button <- remDr$findElement(using = "css", "#aln-salaries_a")
 #NOTE: line above throws an error when ran in conjunction with the `remDr$navigate()` line, but then works fine when ran again separately
@@ -256,7 +239,7 @@ faculty_pay_table_clean <- as.data.frame(t(faculty_pay_table)) %>% # Rows and co
   set_names(c("state", "public_doctor_prof", "public_doctor_assoc", "public_doctor_assist", "public_doctor_all", "public_masters_prof", "public_masters_assoc", "public_masters_assist", "public_masters_all", "other_4yr_all", "2yr_all")) %>% #set column names
   filter(state != "United States")
 
-# finance 
+## Finance 
 
 finance_button <- remDr$findElement(using = "css", "#aln-finance")
 #NOTE: line above throws an error when ran in conjunction with the `remDr$navigate()` line, but then works fine when ran again separately
@@ -302,7 +285,6 @@ write.csv(enrollment_table_clean, "data\\enrollment_per_state.csv")
 write.csv(demographics_table_clean, "data\\student_demographics_per_state.csv")
 write.csv(institution_table_clean, "data\\institutions_per_state.csv")
 
-write.csv(college_ratios, "data\\student_faculty_staff_ratios_per_state.csv")
 write.csv(undergrad_degrees, "data\\undergrad_degree_majors_per_state.csv")
 
 write.csv(faculty_pay_table_clean, "data\\faculty_pay.csv")
@@ -315,7 +297,7 @@ write.csv(finance_table_clean, "data\\finance_table.csv")
 ```{r enrollment-rates}
 applicants <- read.csv("data\\applicants_per_state.csv") %>% 
   select(-X) %>% 
-  mutate(
+  mutate( #Remove commas from values and transform from character() to numeric()
     applicants_2014 = as.numeric(gsub(",", "", applicants_2014)),
     applicants_2015 = as.numeric(gsub(",", "", applicants_2015)),
     applicants_2016 = as.numeric(gsub(",", "", applicants_2016)),
@@ -329,7 +311,7 @@ applicants <- read.csv("data\\applicants_per_state.csv") %>%
 
 admission_rate <- read.csv("data\\admission_rates_per_state.csv") %>% 
   select(-X) %>%
-  mutate(
+  mutate( #Remove percent signs from values and transform from character() to numeric()
     rate_2014 = as.numeric(str_extract(rate_2014, ".+(?=%)")),
     rate_2015 = as.numeric(str_extract(rate_2015, ".+(?=%)")),
     rate_2016 = as.numeric(str_extract(rate_2016, ".+(?=%)")),
@@ -343,7 +325,7 @@ admission_rate <- read.csv("data\\admission_rates_per_state.csv") %>%
 
 yield_rate <- read.csv("data\\yield_rates_per_state.csv") %>% 
   select(-X) %>%
-  mutate(
+  mutate( #Remove percent signs from values and transform from character() to numeric()
     yield_2014 = as.numeric(str_extract(yield_2014, ".+(?=%)")),
     yield_2015 = as.numeric(str_extract(yield_2015, ".+(?=%)")),
     yield_2016 = as.numeric(str_extract(yield_2016, ".+(?=%)")),
@@ -363,9 +345,9 @@ admission_enrollment_data_full <- applicants %>%
   inner_join(admission_rate, by = c("state" = "state", "year" = "year")) %>%
   inner_join(yield_rate, by = c("state" = "state", "year" = "year")) %>%
   mutate(
-    num_acceptances = round(num_applicants*(admission_rate*0.01), 0),
-    num_enrolled = round(num_acceptances*(yield_rate*0.01), 0),
-    enrollment_rate = round((num_enrolled/num_applicants)*100, 1)
+    num_acceptances = round(num_applicants*(admission_rate*0.01), 0), # Calculate total acceptances
+    num_enrolled = round(num_acceptances*(yield_rate*0.01), 0), # Calculate total enrolled
+    enrollment_rate = round((num_enrolled/num_applicants)*100, 1) # Calculate enrollment rate
   )
 
 admission_enrollment_data_full
@@ -380,7 +362,7 @@ write.csv(admission_enrollment_data_full, "data\\admission_enrollment_data.csv")
 areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
   select(-X) %>%
   rename(education = edutation) %>%
-  mutate(
+  mutate( # Change values from character() to numeric()
     total = as.numeric(gsub(",", "", total)),
     humanities = as.numeric(gsub(",", "", humanities)),
     psychology = as.numeric(gsub(",", "", psychology)),
@@ -393,7 +375,7 @@ areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
     healthcare = as.numeric(gsub(",", "", healthcare)),
     other = as.numeric(gsub(",", "", other))
   ) %>%
-  rename(
+  rename( # Rename variables for readability of plot
     "Total" = total,
     "Humanities" = humanities,
     "Psychology" = psychology,
@@ -409,12 +391,14 @@ areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
   pivot_longer(-state, names_to = "major", values_to = "count")
 
 admission_enrollment_data <- read.csv("data/admission_enrollment_data.csv") %>%
+  # Include only variables of interest
   select(state, year, admission_rate, enrollment_rate) %>%
   mutate(enrollment_rate = round(enrollment_rate, 1))
 
 institution_types <- read.csv("data/institutions_per_state.csv") %>%
   select(-X) %>% 
   mutate(private_np_2yr = as.numeric(private_np_2yr)) %>%
+  # Rename variables for readability of plot
   rename("Total" = total,
          "Public\n4-Year" = public_4year,
          "Public\n2-Year" = public_2year,
@@ -425,6 +409,7 @@ institution_types <- read.csv("data/institutions_per_state.csv") %>%
   pivot_longer(-state, names_to = "institution_type", values_to = "count")
 
 demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %>%
+  # Change values from character() to numeric()
   mutate(women = as.numeric(str_extract(women, ".+(?=%)")),
          minority = as.numeric(str_extract(minority, ".+(?=%)")),
          native_american = as.numeric(str_extract(native_american, ".+(?=%)")),
@@ -437,7 +422,7 @@ demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %
          nonresident = as.numeric(str_extract(nonresident, ".+(?=%)")))
 
 student_demographics <- demographics_clustering %>%
-  mutate(
+  mutate( # Rename variables for readability of plot
     "Women" = women,
     "Men" = 100-Women,
     "Native\nAmerican" = native_american,
@@ -455,6 +440,7 @@ finance_table <- read_csv("data/finance_table.csv")
   
 student_aid <- finance_table %>%
   select(state, need_based_grants, non_need_based_grants, non_grant_aid, total_aid) %>% 
+  # Rename variables for readability of plot
   rename("Need-\nBased Grants" = need_based_grants,
          "Non-Need-\nBased Grants" = non_need_based_grants, 
          "Non-Grant Aid" = non_grant_aid, 
@@ -462,7 +448,7 @@ student_aid <- finance_table %>%
   pivot_longer(-state, names_to = "aid_type", values_to = "amount")
 
 faculty_table <- read.csv("data/faculty_pay.csv") %>%
-  mutate(
+  mutate( # Change values from character() to numeric()
     public_doctor_prof = as.numeric(gsub("[,\\$]", "", public_doctor_prof)),
     public_doctor_assoc = as.numeric(gsub("[,\\$]", "", public_doctor_assoc)),
     public_doctor_assist = as.numeric(gsub("[,\\$]", "", public_doctor_assist)),
@@ -478,6 +464,7 @@ faculty_table <- read.csv("data/faculty_pay.csv") %>%
 
 graduation_rates <- read_csv("data/graduation_rates.csv")
 
+# create table with all variables for map clustering
 cluster_table <- demographics_clustering %>%
   left_join(finance_table, by = "state") %>%
   left_join(graduation_rates, by = "state") %>%
