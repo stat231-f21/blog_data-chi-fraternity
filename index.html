@@ -201,6 +201,8 @@
 </div>
 <div id="map" class="section level1">
 <h1>Map</h1>
+<iframe src="https://rvaninmunoz22.shinyapps.io/blog_map/?showcase=0" width="100%" height="500px" data-external="1" frameborder="no">
+</iframe>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 </div>
@@ -209,13 +211,19 @@
 <h1></h1>
 <div id="general-map-statistics" class="section level2">
 <h2>General Map &amp; Statistics</h2>
-<p>The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from <a href="https://nces.ed.gov/ipeds/TrendGenerator/">the National Center for Education Statistics’ (NCES) Trend Generator tool</a> and then used to calculate admission and enrollment rates. Information on areas of study for graduates came from the <a href="https://nces.ed.gov/programs/digest/2020menu_tables.asp">NCES 2020 Digest of Education Statistics</a>. All other data were taken from <a href="https://www.chronicle.com/article/almanac-states-2021">the Chronicle of Higher Education’s 2021-22 Almanac state data</a>.</p>
+<p>The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from <a href="https://nces.ed.gov/ipeds/TrendGenerator/">the National Center for Education Statistics’ (NCES) Trend Generator tool</a> and then used to calculate admission and enrollment rates, as shown in the code chunk below. Information on areas of study for graduates came from the <a href="https://nces.ed.gov/programs/digest/2020menu_tables.asp">NCES 2020 Digest of Education Statistics</a>. All other data were taken from <a href="https://www.chronicle.com/article/almanac-states-2021">the Chronicle of Higher Education’s 2021-22 Almanac state data</a>.</p>
+<pre class="r"><code>admission_enrollment_data_full &lt;- applicants %&gt;% # Dataset with total applicants
+  inner_join(admission_rate, by = c(&quot;state&quot; = &quot;state&quot;, &quot;year&quot; = &quot;year&quot;)) %&gt;% # Dataset with admission rates
+  inner_join(yield_rate, by = c(&quot;state&quot; = &quot;state&quot;, &quot;year&quot; = &quot;year&quot;)) %&gt;% # Dataset with enrollment rates
+  mutate(
+    num_acceptances = round(num_applicants*(admission_rate*0.01), 0), # Calculate total acceptances
+    num_enrolled = round(num_acceptances*(yield_rate*0.01), 0), # Calculate total enrolled
+    enrollment_rate = round((num_enrolled/num_applicants)*100, 1) # Calculate enrollment rate
+  )</code></pre>
 </div>
 <div id="heat-map-clustering" class="section level2">
 <h2>Heat Map &amp; Clustering</h2>
 <p>The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.</p>
-<iframe src="https://rvaninmunoz22.shinyapps.io/blog_map/?showcase=0" width="100%" height="500px" data-external="1" frameborder="no">
-</iframe>
 </div>
 </div>
 <div id="notable-findings" class="section level1">

@@ -12,13 +12,11 @@ output:
 ```{r setup, include = FALSE}
 library(tidyverse)
 library(kableExtra) # for example code; delete if not needed
-
 # Set code chunk defaults 
 knitr::opts_chunk$set(echo = FALSE, 
                       mesage = FALSE,
                       warning = FALSE,
                       fig.align = "center")
-
 # Set R environment options
 options(knitr.kable.NA = '')
 ```
@@ -50,15 +48,28 @@ Along with the geographic variation of the college sphere, we have also thought 
 * Which demographic groups are most similar in how they fare in graduation rates and post-grad earnings?
 
 # Map
+
 ```{r, out.width = "100%", out.extra = 'data-external="1" frameborder="no"'}
 knitr::include_app("https://rvaninmunoz22.shinyapps.io/blog_map/",
                    height = "500px")
 ```
+
 ## Overview
 # {.tabset .tabset-fade .tabset-pills}
 ## General Map & Statistics
 
-The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from [the National Center for Education Statistics’ (NCES) Trend Generator tool](https://nces.ed.gov/ipeds/TrendGenerator/) and then used to calculate admission and enrollment rates. Information on areas of study for graduates came from the [NCES 2020 Digest of Education Statistics](https://nces.ed.gov/programs/digest/2020menu_tables.asp). All other data were taken from [the Chronicle of Higher Education’s 2021-22 Almanac state data](https://www.chronicle.com/article/almanac-states-2021).
+The interactive Shiny map below shows one of six possible plots for a state when said state is clicked on. Of the six graphs, four are bar graphs and two are line graphs. The bar graphs display breakdowns of: state spending on student aid in 2018-19, number of each type of degree-granting institutions in the state as of fall 2019, bachelor’s degrees awarded in different areas of study in 2018-2019, and demographics of enrolled students in fall 2019, respectively. The two line graphs show fall admission and enrollment rates, respectively, for first-time, degree-seeking undergraduate students to universities in the state from 2014 to 2020. Application, admissions and enrollment data were taken from [the National Center for Education Statistics’ (NCES) Trend Generator tool](https://nces.ed.gov/ipeds/TrendGenerator/) and then used to calculate admission and enrollment rates, as shown in the code chunk below. Information on areas of study for graduates came from the [NCES 2020 Digest of Education Statistics](https://nces.ed.gov/programs/digest/2020menu_tables.asp). All other data were taken from [the Chronicle of Higher Education’s 2021-22 Almanac state data](https://www.chronicle.com/article/almanac-states-2021).
+
+```{r admission-enrollment-calculations, eval=FALSE, echo=TRUE}
+admission_enrollment_data_full <- applicants %>% # Dataset with total applicants
+  inner_join(admission_rate, by = c("state" = "state", "year" = "year")) %>% # Dataset with admission rates
+  inner_join(yield_rate, by = c("state" = "state", "year" = "year")) %>% # Dataset with enrollment rates
+  mutate(
+    num_acceptances = round(num_applicants*(admission_rate*0.01), 0), # Calculate total acceptances
+    num_enrolled = round(num_acceptances*(yield_rate*0.01), 0), # Calculate total enrolled
+    enrollment_rate = round((num_enrolled/num_applicants)*100, 1) # Calculate enrollment rate
+  )
+```
 
 ## Heat Map & Clustering
 The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.
@@ -137,7 +148,7 @@ Next to the graduation rates time series, the earnings plot displays some intere
 
 It is difficult to say what exactly could have triggered this downward trend for Black Men’s earnings. Some helpful context might be found in the recession of the early 2000s. The economic crash was concentrated around 2001, but downstream detriments to unemployment continued to trickle until the third quarter of 2003 when the economy finally started to rebound. 
 
-It is important to observe that, of all the groups, Hispanic men and women, along with Black women are closest to the federal poverty line at the time (though no group actually hits it) which, for a 4-person family, ranged from $15,600 in 1996 to $23,550 in 2013.
+It is important to observe that, of all the groups, Hispanic men and women, along with Black women are closest to the federal poverty line at the time (though no group actually hits it) which, for a 4-person family, ranged from \$15,600 in 1996 to \$23,550 in 2013.
 
 ## Clustering
 
@@ -196,3 +207,15 @@ As noted at the start, these statistics and visualizations can only tell a parti
 * Explore further how large societal phenomena (recessions, COVID, etc.) affected different facets of higher education (enrollment, student aid, etc) and provide that context within the visualizations
 
 
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
