@@ -1,0 +1,487 @@
+---
+title: "Wrangling Take 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Load Packages
+library(tidyverse)
+library(robotstxt)
+library(janitor)
+library(dplyr)
+
+#Import data
+grad_rates <- read_csv("Graduation Rates.csv")
+earnings <- read_csv("Earnings.csv")
+
+#Tidy earnings
+earnings1 <- earnings %>%
+  row_to_names(row_number = 2)
+
+colnames(earnings1)[1] <- "Demographic"
+
+earnings2 <- earnings1 %>%
+  select("Demographic":"2013") %>%
+  select(!("1978":"1995")) %>%
+  pivot_longer(-Demographic, names_to = "Year", values_to = "Earnings") %>%
+  filter(!(Year == "2001"),
+         !(Year == "1997"),
+         !(Year == "1998"),
+         !(Year == "1999")) %>%
+  slice(-(113:140)) %>%
+  mutate(year_num = as.numeric(Year)) 
+
+#save earnings2 as csv
+write_csv(earnings2, "earnings2.csv")
+  
+View(earnings2)
+
+#tidy grad_rates
+grad_rates_clean <- grad_rates %>%
+  slice(-(607:611))%>%
+  select(-6) %>%
+  rename("Total" = 2, "White" = 3, "Black" = 4, "Hispanic" = 5, "Asian" = 6, "Pacific Islander" = 7, 
+         "American Indian/Alaskan Native" = 8, "Two or more races" = 9, "Non-resident alien" = 10) %>%
+  slice(-(1:64)) %>%
+  slice(-(123:183)) %>%
+  slice(-(245:323)) %>%
+  slice(-(261:266)) %>%
+  slice(-(276:281))%>%
+  slice(-(291:296))%>%
+  slice(-(322:327)) %>%
+  slice(-(337:342))%>%
+  slice(-(352:357))
+
+View(grad_rates_clean)
+
+#split grad_rates_clean by variable levels
+
+  #4 year completion, males, all 4-year institutions 
+all_males_four <- grad_rates_clean %>%
+  slice(1:16)
+rotate_all_males_four <- as.data.frame(t(all_males_four)) %>%
+  mutate(institution_type = "Total 4-Year Institutions",
+         sex = "Male",
+         years_completed = "4 years") %>%
+  select(-c(V1, V2)) %>%
+  rename("1996 entry cohort" = V3, "2000 entry cohort" = V4, "2002 entry cohort" = V5, "2003 entry cohort" = V6, 
+         "2004 entry cohort" = V7, "2005 entry cohort" = V8, "2006 entry cohort" = V9, "2007 entry cohort" = V10,
+         "2008 entry cohort" = V11, "2009 entry cohort" = V12, "2010 entry cohort" = V13, "2011 entry cohort" = V14,
+         "2012 entry cohort" = V15, "2013 entry cohort" = V16)
+
+  #4 year completion, males, public 4-year institutions 
+public_males_four <- grad_rates_clean %>%
+  slice(17:31)
+rotate_public_males_four <- as.data.frame(t(public_males_four)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Male",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #4 year completion, males, nonprofit 4-year institutions 
+nonprofit_males_four <- grad_rates_clean %>%
+  slice(32:46)
+rotate_nonprofit_males_four <- as.data.frame(t(nonprofit_males_four)) %>%
+  mutate(institution_type = "Nonprofit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #4 year completion, males, for-profit 4-year institutions 
+forprofit_males_four <- grad_rates_clean %>%
+  slice(47:61)
+rotate_forprofit_males_four <- as.data.frame(t(forprofit_males_four)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+
+  #4 year completion, females, all 4-year institutions 
+all_females_four <- grad_rates_clean %>%
+  slice(62:77)
+rotate_all_females_four <- as.data.frame(t(all_females_four)) %>%
+  mutate(institution_type = "Total 4-Year Institutions",
+         sex = "Female",
+         years_completed = "4 years") %>%
+  select(-c(V1, V2)) %>%
+  rename("1996 entry cohort" = V3, "2000 entry cohort" = V4, "2002 entry cohort" = V5, "2003 entry cohort" = V6, 
+         "2004 entry cohort" = V7, "2005 entry cohort" = V8, "2006 entry cohort" = V9, "2007 entry cohort" = V10,
+         "2008 entry cohort" = V11, "2009 entry cohort" = V12, "2010 entry cohort" = V13, "2011 entry cohort" = V14,
+         "2012 entry cohort" = V15, "2013 entry cohort" = V16)
+
+  #4 year completion, females, public 4-year institutions 
+public_females_four <- grad_rates_clean %>%
+  slice(78:92)
+rotate_public_females_four <- as.data.frame(t(public_females_four)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Female",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #4 year completion, females, nonprofit 4-year institutions 
+nonprofit_females_four <- grad_rates_clean %>%
+  slice(93:107)
+rotate_nonprofit_females_four <- as.data.frame(t(nonprofit_females_four)) %>%
+  mutate(institution_type = "Nonprofit 4-Year Institutions",
+         sex = "Female",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #4 year completion, females, for-profit 4-year institutions 
+forprofit_females_four <- grad_rates_clean %>%
+  slice(108:122)
+rotate_forprofit_females_four <- as.data.frame(t(forprofit_females_four)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Female",
+         years_completed = "4 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+  
+  #5 year completion, males, all 4-year institutions 
+all_males_five <- grad_rates_clean %>%
+  slice(124:138)
+rotate_all_males_five <- as.data.frame(t(all_males_five)) %>%
+  mutate(institution_type = "Total 4-Year Institutions",
+         sex = "Male",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  
+  #5 year completion, males, public 4-year institutions 
+public_males_five <- grad_rates_clean %>%
+  slice(139:153)
+rotate_public_males_five <- as.data.frame(t(public_males_five)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Male",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+  
+  #5 year completion, males, nonprofit 4-year institutions 
+nonprofit_males_five <- grad_rates_clean %>%
+  slice(154:168)
+rotate_nonprofit_males_five <- as.data.frame(t(nonprofit_males_five)) %>%
+  mutate(institution_type = "Nonprofit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #5 year completion, males, for profit 4-year institutions 
+forprofit_males_five <- grad_rates_clean %>%
+  slice(169:183)
+rotate_forprofit_males_five <- as.data.frame(t(forprofit_males_five)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #5 year completion, females, all 4-year institutions 
+all_females_five <- grad_rates_clean %>%
+  slice(185:199)
+rotate_all_females_five <- as.data.frame(t(all_females_five)) %>%
+  mutate(institution_type = "Total 4-Year Institutions",
+         sex = "Female",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #5 year completion, females, public 4-year institutions 
+public_females_five <- grad_rates_clean %>%
+  slice(200:214)
+rotate_public_females_five <- as.data.frame(t(public_females_five)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Female",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+  #5 year completion, females, nonprofit 4-year institutions 
+nonprofit_females_five <- grad_rates_clean %>%
+  slice(215:229)
+rotate_nonprofit_females_five <- as.data.frame(t(nonprofit_females_five)) %>%
+  mutate(institution_type = "Nonprofit 4-Year Institutions",
+         sex = "Female",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #5 year completion, females, for-profit 4-year institutions 
+forprofit_females_five <- grad_rates_clean %>%
+  slice(230:244)
+rotate_forprofit_females_five <- as.data.frame(t(forprofit_females_five)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Female",
+         years_completed = "5 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, males, all 4-year institutions 
+all_males_six <- grad_rates_clean %>%
+  slice(246:260)
+rotate_all_males_six <- as.data.frame(t(all_males_six)) %>%
+  mutate(institution_type = "All 4-Year Institutions",
+         sex = "Male",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, males, public 4-year institutions 
+public_males_six <- grad_rates_clean %>%
+  slice(261:275)
+rotate_public_males_six <- as.data.frame(t(public_males_six)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Male",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, males, nonprofit 4-year institutions 
+nonprofit_males_six <- grad_rates_clean %>%
+  slice(276:290)
+rotate_nonprofit_males_six <- as.data.frame(t(nonprofit_males_six)) %>%
+  mutate(institution_type = "Nonprofit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, males, for-profit 4-year institutions 
+forprofit_males_six <- grad_rates_clean %>%
+  slice(291:305)
+rotate_forprofit_males_six <- as.data.frame(t(forprofit_males_six)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Male",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, females, all 4-year institutions 
+all_females_six <- grad_rates_clean %>%
+  slice(307:321)
+rotate_all_females_six <- as.data.frame(t(all_females_six)) %>%
+  mutate(institution_type = "All 4-Year Institutions",
+         sex = "Female",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, females, public 4-year institutions 
+public_females_six <- grad_rates_clean %>%
+  slice(322:336)
+rotate_public_females_six <- as.data.frame(t(public_females_six)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Female",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, females, nonprofit 4-year institutions 
+nonprofit_females_six <- grad_rates_clean %>%
+  slice(337:351)
+rotate_nonprofit_females_six <- as.data.frame(t(nonprofit_females_six)) %>%
+  mutate(institution_type = "Public 4-Year Institutions",
+         sex = "Female",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+ #6 year completion, females, for-profit 4-year institutions 
+forprofit_females_six <- grad_rates_clean %>%
+  slice(352:366)
+rotate_forprofit_females_six <- as.data.frame(t(forprofit_females_six)) %>%
+  mutate(institution_type = "For-Profit 4-Year Institutions",
+         sex = "Female",
+         years_completed = "6 years") %>%
+  select(-V1) %>%
+  rename("1996 entry cohort" = V2, "2000 entry cohort" = V3, "2002 entry cohort" = V4, "2003 entry cohort" = V5, 
+         "2004 entry cohort" = V6, "2005 entry cohort" = V7, "2006 entry cohort" = V8, "2007 entry cohort" = V9,
+         "2008 entry cohort" = V10, "2009 entry cohort" = V11, "2010 entry cohort" = V12, "2011 entry cohort" = V13,
+         "2012 entry cohort" = V14, "2013 entry cohort" = V15)
+
+#merge all
+merged_grad_rates <- rbind(rotate_all_males_four, rotate_public_males_four, rotate_nonprofit_males_four, rotate_forprofit_males_four,
+                           rotate_all_females_four, rotate_public_females_four, rotate_nonprofit_females_four,
+                           rotate_forprofit_females_four, rotate_all_males_five, rotate_public_males_five,
+                           rotate_nonprofit_males_five, rotate_forprofit_males_five, rotate_all_females_five, 
+                           rotate_public_females_five, rotate_nonprofit_females_five, rotate_forprofit_females_five,
+                           rotate_all_males_six, rotate_public_males_six, rotate_nonprofit_males_six, 
+                           rotate_forprofit_males_six, rotate_all_females_six, rotate_public_females_six, 
+                           rotate_nonprofit_females_six, rotate_forprofit_females_six) 
+
+#tidy merged_grad_rates
+
+merged_grad_rates1 <- merged_grad_rates %>%
+  rownames_to_column("Race_Ethnicity") %>%
+  rename("1996" = "1996 entry cohort",
+         "2000" = "2000 entry cohort",
+         "2002" = "2002 entry cohort",
+         "2003" = "2003 entry cohort",
+         "2004" = "2004 entry cohort",
+         "2005" = "2005 entry cohort",
+         "2006" = "2006 entry cohort",
+         "2007" = "2007 entry cohort",
+         "2008" = "2008 entry cohort",
+         "2009" = "2009 entry cohort",
+         "2010" = "2010 entry cohort",
+         "2011" = "2011 entry cohort", 
+         "2012" = "2012 entry cohort",
+         "2013" = "2013 entry cohort") %>%
+  slice(-(1:1)) %>%
+  slice(-(10:39)) %>%
+  slice(-(20:49)) %>%
+  slice(-(30:59)) %>%
+  slice(-(40:69)) %>%
+  slice(-(50:79)) %>%
+  slice(-(60:89)) %>%
+  select(-institution_type) %>%
+  slice(-(6:10)) %>%
+  slice(-(11:15)) %>%
+  slice(-(16:20)) %>%
+  slice(-(21:25)) %>%
+  slice(-(26:30)) %>%
+  pivot_longer(-c(Race_Ethnicity, sex, years_completed), names_to = "Year", values_to = "Grad_Rate") %>%
+  filter(!(Race_Ethnicity == "Total"),
+         !(Race_Ethnicity == "Total4"),
+         !(Race_Ethnicity == "Total8"),
+         !(Race_Ethnicity == "Total12"),
+         !(Race_Ethnicity == "Total16"),
+         !(Race_Ethnicity == "Total20")) %>%
+  slice(-(337:392)) 
+
+#remove numbers from variable names
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "White4"] <- "White"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "White8"] <- "White"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "White12"] <- "White"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "White16"] <- "White"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "White20"] <- "White"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Black4"] <- "Black"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Black8"] <- "Black"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Black12"] <- "Black"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Black16"] <- "Black"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Black20"] <- "Black"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Hispanic4"] <- "Hispanic"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Hispanic8"] <- "Hispanic"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Hispanic12"] <- "Hispanic"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Hispanic16"] <- "Hispanic"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Hispanic20"] <- "Hispanic"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Asian4"] <- "Asian"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Asian8"] <- "Asian"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Asian12"] <- "Asian"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Asian16"] <- "Asian"
+merged_grad_rates1["Race_Ethnicity"][merged_grad_rates1["Race_Ethnicity"] == "Asian20"] <- "Asian"
+merged_grad_rates1["sex"][merged_grad_rates1["sex"] == "Male"] <- "Men"
+merged_grad_rates1["sex"][merged_grad_rates1["sex"] == "Female"] <- "Women"
+merged_grad_rates1$Demographic <- paste(merged_grad_rates1$Race_Ethnicity, merged_grad_rates1$sex)
+
+#add and takeaway some columns from merged_grad_rates1
+merged_grad_rates2 <- merged_grad_rates1 %>%
+  select(-c(Race_Ethnicity, sex)) %>% #take away race_ethnicity, sex
+  mutate(grad_rates_num = as.numeric(Grad_Rate), #add numeric version of grad rates
+         year_num = as.numeric(Year), #add numeric version of year
+         #add colors to correspond to demographics (attempt to fix color assignments in time series)
+         demo_color = case_when(Demographic == "White Men" ~ 1,
+                                Demographic == "Black Men" ~ 2,
+                                Demographic == "Hispanic Men" ~ 3,
+                                Demographic == "Asian Men" ~ 4,
+                                Demographic == "White Women" ~ 5,
+                                Demographic == "Black Women" ~ 6,
+                                Demographic == "Hispanic Women" ~ 7,
+                                Demographic == "Asian Women" ~ 8))
+
+
+#save as csv
+write_csv(merged_grad_rates2, "merged_grad_rates2.csv")
+
+View(merged_grad_rates2)
+
+#join grad rates and earnings into one table
+
+grad_rates_earnings <- merge(merged_grad_rates2, earnings2, by = c("Demographic","year_num")) %>%
+  select(-c(Year.x, Year.y, Grad_Rate)) %>%
+  rename(Grad_Rates = grad_rates_num) %>%
+  rename(Year = year_num)
+
+#save as csv
+write_csv(grad_rates_earnings, "grad_rates_earnings.csv")
+
+View(grad_rates_earnings)
+```
+
+```{r setup, include=FALSE}
+ggplot(data = merged_grad_rates2, aes(x = year_num, y = grad_rates_num, color = Demographic)) +
+            geom_line(fill = "black", alpha = 0.7)+
+            labs(x = "Year", y = "Graduation Rate") +
+            scale_y_continuous(expand = c(0, 0), limits = c(0, NA)) #set origin at (0,0)
+```
