@@ -19,8 +19,6 @@ states_sf <- tigris::states(class = "sf") %>%
   filter(! NAME %in% c("United States Virgin Islands", "Commonwealth of the Northern Mariana Islands", "Guam", "American Samoa", "Puerto Rico")) %>%
   select(NAME, geometry) %>%
   rename(state = NAME)
-  #select(NAME, STUSPS, geometry) %>%
-  #rename(state = NAME, abbrev = STUSPS)
 
 ## Plot choices
 plot_choice_values <- c("student_aid", "institutions", "majors", "demographics", "admissions", "enrollments")
@@ -31,8 +29,6 @@ names(plot_choice_values) <- plot_choice_names
 ## Clustering Choices
 names <- colnames(cluster_table)
 cluster_choice_values <- names[! names %in% c("state", "X", "total")]
-#cluster_choice_names <- c()
-#names(cluster_choice_values) <- cluster_choice_names
 
 ######
 # UI #
@@ -130,8 +126,6 @@ server <- function(input, output) {
         geom_text(aes(label = paste0(percent, "%")), vjust = -0.3, size = 5) +
         theme(text = element_text(size = 15))
       
-      #} else if (plot_type == "stud_fac_staff") {
-      
       
     } else if (plot_type == "admissions") {
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = admission_rate)) + 
@@ -145,7 +139,7 @@ server <- function(input, output) {
         geom_text(aes(label = paste0(admission_rate, "%")), vjust = -0.5, color = "turquoise", size = 5) +
         theme(text = element_text(size = 15))
       
-    } else { #enrollment
+    } else { #enrollments
       plot <- ggplot(data = admission_enrollment_data %>% filter(state == state_name), aes(x = year, y = enrollment_rate)) + 
         geom_line(size = 1.3) + 
         geom_point(size = 4) + 
@@ -161,11 +155,6 @@ server <- function(input, output) {
     
     return(plot)
   }
-  
-  # center_on <- states_sf_rne %>%
-  #   filter(state == "Alaska") %>%
-  #   pull(geometry) %>%
-  #   st_coordinates()
   
   output$map <- renderLeaflet({
     leaflet() %>%
@@ -199,15 +188,15 @@ server <- function(input, output) {
           #Assigning colors to the clusters
           getColors <- function(num) {
             return(ifelse(num==1, "red",
-                          ifelse(num==2, "magenta",
-                                 ifelse(num==3, "deeppink",
-                                        ifelse(num==4, "darkviolet",
+                          ifelse(num==2, "chocolate4",
+                                 ifelse(num==3, "turquoise",
+                                        ifelse(num==4, "tomato",
                                                ifelse(num==5, "seagreen",
-                                                      ifelse(num==6, "turquoise",
-                                                             ifelse(num==7, "tomato",
+                                                      ifelse(num==6, "deeppink",
+                                                             ifelse(num==7, "darkviolet",
                                                                     ifelse(num==8, "orange",
                                                                            ifelse(num==9, "burlywood",
-                                                                                  ifelse(num==10, "chocolate4",
+                                                                                  ifelse(num==10, "magenta",
                                                                                          "deeppink")))))))))))
           }
           
@@ -234,10 +223,9 @@ server <- function(input, output) {
           output$cluster_plot <- renderPlot({
             ggplot(data = cluster_table_2, aes_string(x = input$cluster_var[2], y = input$cluster_var[1])) + 
               geom_point(aes(color = clusters), size = 5) + 
-              scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "magenta", `3` = "deeppink",
-                                                                `4` = "darkviolet", `5` = "seagreen", `6` = "turquoise", `7` = "tomato",
-                                                                `8` = "orange", `9` = "burlywood", `10` = "chocolate4")) +
-              #geom_text(aes(label = abbrev), vjust = -0.5, color = "black") +
+              scale_colour_manual(name = "clusters", values = c(`1` = "red", `2` = "chocolate4", `3` = "turquoise",
+                                                                `4` = "tomato", `5` = "seagreen", `6` = "deeppink", `7` = "darkviolet",
+                                                                `8` = "orange", `9` = "burlywood", `10` = "magenta")) +
               labs(color = "Cluster assignment") + 
               theme(text = element_text(size = 15))
           })
@@ -293,9 +281,7 @@ server <- function(input, output) {
           })
           
           # Hide Elbow Plot output
-          output$elbow_plot <- renderPlot({
-            #ggplot()
-          })
+          output$elbow_plot <- renderPlot({})
           
         }
         
@@ -310,14 +296,10 @@ server <- function(input, output) {
           )
         
         # Hide Cluster Plot output
-        output$cluster_plot <- renderPlot({
-          #ggplot()
-        })
+        output$cluster_plot <- renderPlot({})
         
         # Hide Elbow Plot output
-        output$elbow_plot <- renderPlot({
-          #ggplot()
-        })
+        output$elbow_plot <- renderPlot({})
       }
     }
   )
