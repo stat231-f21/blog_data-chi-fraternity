@@ -217,7 +217,7 @@ grad_rates_table_clean <- as.data.frame(t(grad_rates_table)) %>% # Rows and colu
     two_more_races = as.numeric(str_extract(two_more_races, ".+(?=%)")),
   )
 
-write.csv(grad_rates_table_clean, "data\\graduation_rates.csv")
+write.csv(grad_rates_table_clean, "scrape_scrape_data\\graduation_rates.csv")
 
 ## Faculty Pay
 
@@ -278,24 +278,24 @@ finance_table_clean <- as.data.frame(t(finance_table)) %>% # Rows and columns ar
 remDr$close() #close remote tab
 rD$server$close()
 
-write.csv(applicants_table_clean, "data\\applicants_per_state.csv")
-write.csv(admission_rate_table_clean, "data\\admission_rates_per_state.csv")
-write.csv(yield_rate_table_clean, "data\\yield_rates_per_state.csv")
-write.csv(enrollment_table_clean, "data\\enrollment_per_state.csv")
-write.csv(demographics_table_clean, "data\\student_demographics_per_state.csv")
-write.csv(institution_table_clean, "data\\institutions_per_state.csv")
+write.csv(applicants_table_clean, "scrape_data\\applicants_per_state.csv")
+write.csv(admission_rate_table_clean, "scrape_data\\admission_rates_per_state.csv")
+write.csv(yield_rate_table_clean, "scrape_data\\yield_rates_per_state.csv")
+write.csv(enrollment_table_clean, "scrape_data\\enrollment_per_state.csv")
+write.csv(demographics_table_clean, "scrape_data\\student_demographics_per_state.csv")
+write.csv(institution_table_clean, "scrape_data\\institutions_per_state.csv")
 
-write.csv(undergrad_degrees, "data\\undergrad_degree_majors_per_state.csv")
+write.csv(undergrad_degrees, "scrape_data\\undergrad_degree_majors_per_state.csv")
 
-write.csv(faculty_pay_table_clean, "data\\faculty_pay.csv")
-write.csv(finance_table_clean, "data\\finance_table.csv")
+write.csv(faculty_pay_table_clean, "scrape_data\\faculty_pay.csv")
+write.csv(finance_table_clean, "scrape_data\\finance_table.csv")
 
 ```
 
 ## Additional Data wrangling
 
 ```{r enrollment-rates}
-applicants <- read.csv("data\\applicants_per_state.csv") %>% 
+applicants <- read.csv("scrape_data\\applicants_per_state.csv") %>% 
   select(-X) %>% 
   mutate( #Remove commas from values and transform from character() to numeric()
     applicants_2014 = as.numeric(gsub(",", "", applicants_2014)),
@@ -309,7 +309,7 @@ applicants <- read.csv("data\\applicants_per_state.csv") %>%
   pivot_longer(-state, names_to = "year", values_to = "num_applicants") %>%
   mutate(year = as.integer(str_extract(year, "[:digit:]+")))
 
-admission_rate <- read.csv("data\\admission_rates_per_state.csv") %>% 
+admission_rate <- read.csv("scrape_data\\admission_rates_per_state.csv") %>% 
   select(-X) %>%
   mutate( #Remove percent signs from values and transform from character() to numeric()
     rate_2014 = as.numeric(str_extract(rate_2014, ".+(?=%)")),
@@ -323,7 +323,7 @@ admission_rate <- read.csv("data\\admission_rates_per_state.csv") %>%
   pivot_longer(-state, names_to = "year", values_to = "admission_rate") %>%
   mutate(year = as.integer(str_extract(year, "[:digit:]+")))
 
-yield_rate <- read.csv("data\\yield_rates_per_state.csv") %>% 
+yield_rate <- read.csv("scrape_data\\yield_rates_per_state.csv") %>% 
   select(-X) %>%
   mutate( #Remove percent signs from values and transform from character() to numeric()
     yield_2014 = as.numeric(str_extract(yield_2014, ".+(?=%)")),
@@ -352,14 +352,14 @@ admission_enrollment_data_full <- applicants %>%
 
 admission_enrollment_data_full
 
-write.csv(admission_enrollment_data_full, "data\\admission_enrollment_data.csv")
+write.csv(admission_enrollment_data_full, "scrape_data\\admission_enrollment_data.csv")
 ```
 
 ## Wrangling for map
 
 ```{r final-wrangling-for-map}
 
-areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
+areas_of_study <- read.csv("scrape_data/undergrad_degree_majors_per_state.csv") %>%
   select(-X) %>%
   rename(education = edutation) %>%
   mutate( # Change values from character() to numeric()
@@ -390,12 +390,12 @@ areas_of_study <- read.csv("data/undergrad_degree_majors_per_state.csv") %>%
   ) %>%
   pivot_longer(-state, names_to = "major", values_to = "count")
 
-admission_enrollment_data <- read.csv("data/admission_enrollment_data.csv") %>%
+admission_enrollment_data <- read.csv("scrape_data/admission_enrollment_data.csv") %>%
   # Include only variables of interest
   select(state, year, admission_rate, enrollment_rate) %>%
   mutate(enrollment_rate = round(enrollment_rate, 1))
 
-institution_types <- read.csv("data/institutions_per_state.csv") %>%
+institution_types <- read.csv("scrape_data/institutions_per_state.csv") %>%
   select(-X) %>% 
   mutate(private_np_2yr = as.numeric(private_np_2yr)) %>%
   # Rename variables for readability of plot
@@ -408,7 +408,7 @@ institution_types <- read.csv("data/institutions_per_state.csv") %>%
          "Private\nFor-Profit\n2-Year" = private_fp_2yr) %>%
   pivot_longer(-state, names_to = "institution_type", values_to = "count")
 
-demographics_clustering <- read.csv("data/student_demographics_per_state.csv") %>%
+demographics_clustering <- read.csv("scrape_data/student_demographics_per_state.csv") %>%
   # Change values from character() to numeric()
   mutate(women = as.numeric(str_extract(women, ".+(?=%)")),
          minority = as.numeric(str_extract(minority, ".+(?=%)")),
@@ -436,7 +436,7 @@ student_demographics <- demographics_clustering %>%
   select(-c(X, minority, nonresident, total, women, native_american, asian, black, hispanic, pacific_islander, white, X2._races)) %>%
   pivot_longer(-state, names_to = "group", values_to = "percent")
 
-finance_table <- read_csv("data/finance_table.csv")
+finance_table <- read_csv("scrape_data/finance_table.csv")
   
 student_aid <- finance_table %>%
   select(state, need_based_grants, non_need_based_grants, non_grant_aid, total_aid) %>% 
@@ -447,7 +447,7 @@ student_aid <- finance_table %>%
          "Total Aid" = total_aid) %>%
   pivot_longer(-state, names_to = "aid_type", values_to = "amount")
 
-faculty_table <- read.csv("data/faculty_pay.csv") %>%
+faculty_table <- read.csv("scrape_data/faculty_pay.csv") %>%
   mutate( # Change values from character() to numeric()
     public_doctor_prof = as.numeric(gsub("[,\\$]", "", public_doctor_prof)),
     public_doctor_assoc = as.numeric(gsub("[,\\$]", "", public_doctor_assoc)),
@@ -462,7 +462,7 @@ faculty_table <- read.csv("data/faculty_pay.csv") %>%
   ) %>%
   select(-X)
 
-graduation_rates <- read_csv("data/graduation_rates.csv")
+graduation_rates <- read_csv("scrape_data/graduation_rates.csv")
 
 # create table with all variables for map clustering
 cluster_table <- demographics_clustering %>%
@@ -480,4 +480,3 @@ write.csv(student_aid, "blog_map/map_data/student_aid.csv")
 write.csv(cluster_table, "blog_map/map_data/cluster_table.csv")
 
 ```
-
