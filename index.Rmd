@@ -63,7 +63,7 @@ The interactive Shiny map below shows one of six possible plots for a state when
 ```{r admission-enrollment-calculations, eval=FALSE, echo=TRUE}
 admission_enrollment_data_full <- applicants %>% # Dataset with total applicants
   inner_join(admission_rate, by = c("state" = "state", "year" = "year")) %>% # Dataset with admission rates
-  inner_join(yield_rate, by = c("state" = "state", "year" = "year")) %>% # Dataset with enrollment rates
+  inner_join(yield_rate, by = c("state" = "state", "year" = "year")) %>% # Dataset with yield rates (enrolled/admitted)
   mutate(
     num_acceptances = round(num_applicants*(admission_rate*0.01), 0), # Calculate total acceptances
     num_enrolled = round(num_acceptances*(yield_rate*0.01), 0), # Calculate total enrolled
