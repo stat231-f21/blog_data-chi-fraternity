@@ -469,10 +469,8 @@ cluster_table <- demographics_clustering %>%
   left_join(finance_table, by = "state") %>%
   left_join(graduation_rates, by = "state") %>%
   left_join(faculty_table, by = "state") %>%
-  select(-X)
-
-# rename cluster variables
-cluster_table <- cluster_table %>%
+  select(-c(X, ...1.x, ...1.y)) %>%
+  # rename cluster variables
   rename(total_enrolled = total,
          women_enrollment_perc = women.x,
          minority_enrollment_perc = minority,
@@ -482,7 +480,7 @@ cluster_table <- cluster_table %>%
          black_enrollment_perc = black.x,
          hispanic_enrollment_perc = hispanic.x,
          pac_island_enroll_perc = pacific_islander,
-         two_more_races_enroll_perc = `2+_races`,
+         two_more_races_enroll_perc = X2._races,
          nonresident_enroll_perc = nonresident,
          change_in_state_funds = state_funds_1yr_delta,
          all_grad_rates = `all`,
@@ -495,7 +493,7 @@ cluster_table <- cluster_table %>%
          hispanic_grad_rates = hispanic.y,
          two_more_races_grad_rates = two_more_races,
          other_4yr_avg_salary = other_4yr_all,
-         other_2yr_avg_salary = `2yr_all`,
+         other_2yr_avg_salary = X2yr_all,
          public_doctor_prof_avg_salary = public_doctor_prof,
          public_doctor_assist_avg_salary = public_doctor_assist,
          public_doctor_assoc_avg_salary = public_doctor_assoc,
