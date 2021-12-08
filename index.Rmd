@@ -74,6 +74,59 @@ admission_enrollment_data_full <- applicants %>% # Dataset with total applicants
 ## Heat Map & Clustering
 The heat map and clustering of the world map is on the whole a visual comparison of the different states based on their admission demographics, graduation demographics, the financing of upper-education, and the average pay of faculty in different types of institutions. It includes variables such as the graduation rate of black students in each state, or the average pay of a faculty member at a 4 year doctoral institution. Along with the heat map and the clustering are a histogram, a scatter plot, and an elbow plot. The histogram is included because the heat map is constructed based on the variable as ratio. By including the histogram the user can get a better sense of the units of the variable that they’re observing and can get a sense of how many states fall within a different range of that category in another way than the map. The scatterplot is included with the clustering so that the user can understand what the clusters in the world map by looking at the clusters on the scatterplot where the user can also see the changes in the x and y variables leading to the clusters. The elbow plot is there so that the user can evaluate what would be a reasonable number of clusters for the two variables chosen.
 
+That said, here is the code used to make the clustering and its colors:
+
+```{r Clustering Code, eval=FALSE, echo=TRUE}
+
+# Clustering
+          set.seed(3)
+          
+          cluster_table_2 <- cluster_table %>%
+            drop_na(input$cluster_var[1], input$cluster_var[2])
+          
+          table_k <- cluster_table_2 %>%
+            select(input$cluster_var) %>%
+            kmeans(centers = input$num_clusters, nstart = 20)
+          
+          cluster_table_2 <- cluster_table_2 %>%
+            mutate(clusters = factor(table_k$cluster))
+          
+          #Assigning colors to the clusters
+          getColors <- function(num) {
+            return(ifelse(num==1, "red",
+                          ifelse(num==2, "chocolate4",
+                                 ifelse(num==3, "turquoise",
+                                        ifelse(num==4, "tomato",
+                                               ifelse(num==5, "seagreen",
+                                                      ifelse(num==6, "deeppink",
+                                                             ifelse(num==7, "darkviolet",
+                                                                    ifelse(num==8, "orange",
+                                                                           ifelse(num==9, "burlywood",
+                                                                                  ifelse(num==10, "magenta",
+                                                                                         "deeppink")))))))))))
+          }
+          
+          cluster_table_2 <- cluster_table_2 %>%
+            mutate(colors = getColors(clusters))
+          
+          #joining cluster table with map data
+          states_sf_and_clusters <- states_sf %>%
+            left_join(cluster_table_2, by = "state")
+          
+          # Display clusters in map
+          proxy %>%
+            clearShapes() %>%
+            clearControls() %>%
+            addPolygons(
+              data = states_sf_and_clusters,
+              color = ~colors,
+              stroke = FALSE,
+              fillOpacity = 0.9,
+              layerId = ~state
+            )
+
+```
+
 # Notable Findings
 # {.tabset .tabset-fade .tabset-pills}
 
