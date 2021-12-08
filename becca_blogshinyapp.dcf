@@ -1,0 +1,14 @@
+name: becca_blogshinyapp
+title: becca_blogshinyapp
+username:
+account: rpicciotto22
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5249235
+bundleId: 5347137
+url: https://rpicciotto22.shinyapps.io/becca_blogshinyapp/
+when: 1638997560.07788
+lastSyncTime: 1638997560.07789
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: merged_grad_rates2.csv
